@@ -1,0 +1,6 @@
+trang_chu
+chi_tiet_san_pham
+san_pham(category-pick)
+san_pham(department-pick)
+checkout
+thanhtoan_nganhang
