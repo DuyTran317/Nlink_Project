@@ -26,6 +26,9 @@
 	<link rel="stylesheet" type="text/css" href="lib/css/jquery-ui1.css">
 	<!-- flexslider -->
 	<link rel="stylesheet" href="lib/css/flexslider.css" type="text/css" media="screen" />
+	<!-- jquery -->
+	<script src="lib/js/jquery-2.1.4.min.js"></script>
+	<!-- //jquery -->
 	<script src="lib/js/jquery.simpleLoadMore.min.js"></script>
 </head>
 
@@ -582,9 +585,6 @@
 	<!-- //copyright -->
 
 	<!-- js-files -->
-	<!-- jquery -->
-	<script src="lib/js/jquery-2.1.4.min.js"></script>
-	<!-- //jquery -->
 
 	<!-- popup modal (for signin & signup)-->
 	<script src="lib/js/jquery.magnific-popup.js"></script>
@@ -636,105 +636,7 @@
 
 	<!-- flexisel (for special offers) -->
 	<script src="lib/js/jquery.flexisel.js"></script>
-	<script>
-		$(window).load(function () {
-			$("#flexiselDemo1").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 3000,
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint: 480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint: 640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint: 768,
-						visibleItems: 2
-					}
-				}
-			});
-			
-			$("#flexiselDemo2").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: false,
-				autoPlaySpeed: 5000,
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint: 480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint: 640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint: 768,
-						visibleItems: 2
-					}
-				}
-			});
-			
-			$("#flexiselDemo3").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 10000,
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint: 480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint: 640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint: 768,
-						visibleItems: 2
-					}
-				}
-			});
-			
-			$("#flexiselDemo4").flexisel({
-				visibleItems: 3,
-				animationSpeed: 1000,
-				autoPlay: true,
-				autoPlaySpeed: 10000,
-				pauseOnHover: true,
-				enableResponsiveBreakpoints: true,
-				responsiveBreakpoints: {
-					portrait: {
-						changePoint: 480,
-						visibleItems: 1
-					},
-					landscape: {
-						changePoint: 640,
-						visibleItems: 2
-					},
-					tablet: {
-						changePoint: 768,
-						visibleItems: 2
-					}
-				}
-			});
-
-		});
-	</script>
-	<!-- //flexisel (for special offers) -->
-
-	<!-- password-script -->
+	
 	<script>
 		window.onload = function () {
 			document.getElementById("password1").onchange = validatePassword;
@@ -751,13 +653,9 @@
 			//empty string means no validation error
 		}
 	</script>
-	<!-- //password-script -->
 
-	<!-- smoothscroll -->
 	<script src="lib/js/SmoothScroll.min.js"></script>
-	<!-- //smoothscroll -->
 
-	<!-- start-smooth-scrolling -->
 	<script src="lib/js/move-top.js"></script>
 	<script src="lib/js/easing.js"></script>
 	<script>
@@ -771,32 +669,17 @@
 			});
 		});
 	</script>
-	<!-- //end-smooth-scrolling -->
 
-	<!-- smooth-scrolling-of-move-up -->
 	<script>
 		$(document).ready(function () {
-			/*
-			var defaults = {
-				containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-			};
-			*/
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
 
 		});
 	</script>
-	<!-- //smooth-scrolling-of-move-up -->
 
-	<!-- for bootstrap working -->
 	<script src="lib/js/bootstrap.js"></script>
-	<!-- //for bootstrap working -->
-	<!-- //js-files -->
-
 
 </body>
 
