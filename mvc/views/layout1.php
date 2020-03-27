@@ -30,13 +30,21 @@
 	<script src="lib/js/jquery-2.1.4.min.js"></script>
 	<!-- //jquery -->
 	<script src="lib/js/jquery.simpleLoadMore.min.js"></script>
+	<!-- price range -->
+	<script src="lib/js/jquery-ui.js"></script>		
+	<!-- flexisel (for special offers) -->
+	<script src="lib/js/jquery.flexisel.js"></script>
+	<!--slide and zoom product_detail -->
+	<script src="lib/js/jquery.magnific-popup.js"></script>
+	<script src="lib/js/imagezoom.js"></script>
+	<script src="lib/js/jquery.flexslider.js"></script>
 </head>
 
 <body>
 	<!-- top-header -->
-	<div class="header-most-top">
+	<!--<div class="header-most-top">
 		<p>Grocery Offer Zone Top Deals & Discounts</p>
-	</div>
+	</div>-->
 	<!-- //top-header -->
 	<!-- header-bot-->
 	<div class="header-bot">
@@ -56,7 +64,7 @@
 				<ul>
 					<li>
 						<a href="#" class="play-icon popup-with-zoom-anim">
-							<i class="fa fa-shopping-cart" aria-hidden="true" style="color:#FF5722"></i> Mua Hàng</a>
+							<i class="fa fa-shopping-cart" aria-hidden="true" style="color:#993414"></i> Mua Hàng</a>
 					</li>
 					<li>
 						<a href="#" data-toggle="modal">
@@ -185,8 +193,8 @@
 	<!-- //signup Model -->
 	<!-- //header-bot -->
 	<!-- navigation -->
-	<div class="ban-top" style="height:50px">
-		<div class="container">
+	<div class="ban-top">
+		<div class="container" style="max-height: 53px">
 			<div class="agileits-navi_search">
 				<form action="#" method="post">
 					<select id="agileinfo-nav_search" name="agileinfo_search" required="">
@@ -361,16 +369,16 @@
 	<!-- newsletter -->
 	<div class="footer-top">
 		<div class="container-fluid">
-			<div class="col-xs-12 agile-leftmk">
+			<div class="col-xs-8 agile-leftmk">
 				<p>CÔNG TY TNHH NLINK VIỆT NAM - Độc quyền phân phối thương hiệu REVLON, AIMER và TWG tại thị trường Việt Nam.</p>
 				<p style="font-size: 17px">Địa chỉ: 76 Trần Đình Xu, P. Cô Giang, Q.1, TP.HCM /  E-mail: crm@nlink.vn / contact@nlink.vn - ĐT: +84 08 383 78111/222 - Fax: +84 08 3837 8000 - Hotline: 0903 029 313</p>
 				<div class="newsform-w3l">
 					<span class="fa fa-envelope-o" aria-hidden="true"></span>
 				</div>
 			</div>
-			<!--<div class="col-xs-4 w3l-rightmk">
-				<img src="lib/images/tab3.png" alt="" style="max-width:200px">
-			</div>-->
+			<div class="col-xs-4 w3l-rightmk">
+				<img src="lib/images/tab3.png" alt=" ">
+			</div>
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -585,31 +593,7 @@
 	<!-- //copyright -->
 
 	<!-- js-files -->
-
-	<!-- popup modal (for signin & signup)-->
-	<script src="lib/js/jquery.magnific-popup.js"></script>
-	<script>
-		$(document).ready(function () {
-			$('.popup-with-zoom-anim').magnificPopup({
-				type: 'inline',
-				fixedContentPos: false,
-				fixedBgPos: true,
-				overflowY: 'auto',
-				closeBtnInside: true,
-				preloader: false,
-				midClick: true,
-				removalDelay: 300,
-				mainClass: 'my-mfp-zoom-in'
-			});
-
-		});
-	</script>
-	<!-- Large modal -->
 	<!-- <script>
-		$('#').modal('show');
-	</script> -->
-	<!-- //popup modal (for signin & signup)-->
-
 	<!-- cart-js -->
 	<script src="lib/js/minicart.js"></script>
 	<script>
@@ -632,10 +616,7 @@
 			}
 		});
 	</script>
-	<!-- //cart-js -->
-
-	<!-- flexisel (for special offers) -->
-	<script src="lib/js/jquery.flexisel.js"></script>
+	<!-- //cart-js -->	
 	
 	<script>
 		window.onload = function () {
