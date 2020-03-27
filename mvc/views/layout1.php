@@ -74,8 +74,8 @@
 				<!-- //header lists -->
 				<!-- search -->
 				<div class="agileits_search">
-					<form action="#" method="post">
-						<input name="Search" type="search" placeholder="Tìm kiếm sản phẩm..." required="">
+					<form action="./Product/Search" method="post">
+						<input name="key" type="search" placeholder="Tìm kiếm sản phẩm..." required>
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<span class="fa fa-search" aria-hidden="true"> </span>
 						</button>
@@ -117,10 +117,10 @@
 						<h3 class="agileinfo_sign">Đăng Nhập </h3>						
 						<form action="#" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Email" name="email" required="">
+								<input type="text" placeholder="Email" name="email" required>
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Mật Khẩu" name="pass" required="">
+								<input type="password" placeholder="Mật Khẩu" name="pass" required>
 							</div>
 							<a href="#">Quên mật khẩu</a><br/>
 							<input type="submit" value="Đăng Nhập">
@@ -156,19 +156,19 @@
 						</p>
 						<form action="#" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Họ Tên" name="name" required="">
+								<input type="text" placeholder="Họ Tên" name="name" required>
 							</div>
 							<div class="styled-input">
-								<input type="text" placeholder="Số Điện Thoại" name="mobile" required="">
+								<input type="text" placeholder="Số Điện Thoại" name="mobile" required>
 							</div>
 							<div class="styled-input">
-								<input type="email" placeholder="Email" name="email" required="">
+								<input type="email" placeholder="Email" name="email" required>
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Mật Khẩu" name="pass" id="password1" required="">
+								<input type="password" placeholder="Mật Khẩu" name="pass" id="password1" required>
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Nhập Lại Mật Khẩu" name="re_pass" id="password2" required="">
+								<input type="password" placeholder="Nhập Lại Mật Khẩu" name="re_pass" id="password2" required>
 							</div>
 							<input type="submit" value="Đăng Ký">
 						</form>
@@ -188,8 +188,14 @@
 				<form action="#" method="post">
 					<select id="agileinfo-nav_search" name="agileinfo_search" required="">
 						<option value="">Danh mục sản phẩm</option>
-						<option value="Kitchen">Kitchen</option>
-						<option value="Household">Household</option>
+						<?php
+							foreach($data['listDepart'] as $item)
+							{
+						?>
+                        	<option value="<?=$item['DepartId']?>"><?=$item['DepartName']?></option>
+						<?php
+							}
+						?>
 					</select>
 				</form>
 			</div>
@@ -210,7 +216,7 @@
 						<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav menu__list">
 								<li class="active">
-									<a class="nav-stylehead" href="index.html">Trang Chủ
+									<a class="nav-stylehead" href="/Home">Trang Chủ
 										<span class="sr-only">(current)</span>
 									</a>
 								</li>
@@ -225,52 +231,27 @@
 										<div class="agile_inner_drop_nav_info">
 											<div class="col-sm-4 multi-gd-img">
 												<ul class="multi-column-dropdown">
+                                                <?php
+													$flag = 0;
+													foreach($data['listCate'] as $item)
+													{
+														$flag++;
+														if($flag%10 == 1)
+														{
+												?>
+                                                            </ul>
+														</div>
+														<div class="col-sm-4 multi-gd-img">
+															<ul class="multi-column-dropdown">
+                                                <?php
+														}
+												?>
 													<li>
-														<a href="product.html">Bakery</a>
+														<a href="product.html"><?=$item['CateName']?></a>
 													</li>
-													<li>
-														<a href="product.html">Baking Supplies</a>
-													</li>
-													<li>
-														<a href="product.html">Coffee, Tea & Beverages</a>
-													</li>
-													<li>
-														<a href="product.html">Dried Fruits, Nuts</a>
-													</li>
-													<li>
-														<a href="product.html">Sweets, Chocolate</a>
-													</li>
-													<li>
-														<a href="product.html">Spices & Masalas</a>
-													</li>
-													<li>
-														<a href="product.html">Jams, Honey & Spreads</a>
-													</li>
-												</ul>
-											</div>
-											<div class="col-sm-4 multi-gd-img">
-												<ul class="multi-column-dropdown">
-													<li>
-														<a href="product.html">Pickles</a>
-													</li>
-													<li>
-														<a href="product.html">Pasta & Noodles</a>
-													</li>
-													<li>
-														<a href="product.html">Rice, Flour & Pulses</a>
-													</li>
-													<li>
-														<a href="product.html">Sauces & Cooking Pastes</a>
-													</li>
-													<li>
-														<a href="product.html">Snack Foods</a>
-													</li>
-													<li>
-														<a href="product.html">Oils, Vinegars</a>
-													</li>
-													<li>
-														<a href="product.html">Meat, Poultry & Seafood</a>
-													</li>
+												<?php
+													}
+												?>
 												</ul>
 											</div>
 											<div class="col-sm-4 multi-gd-img">
@@ -369,7 +350,9 @@
 	<!-- //navigation -->
 	
 	<!--main-->
-
+	<?php 
+		require_once("./mvc/views/pages/".$data['page'].".php");
+	?>
 	<!--end main-->
 	
 	<!-- newsletter -->
