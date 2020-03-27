@@ -24,6 +24,9 @@
 	<!--//pop-up-box-->
 	<!-- price range -->
 	<link rel="stylesheet" type="text/css" href="lib/css/jquery-ui1.css">
+	<!-- flexslider -->
+	<link rel="stylesheet" href="lib/css/flexslider.css" type="text/css" media="screen" />
+	<script src="lib/js/jquery.simpleLoadMore.min.js"></script>
 </head>
 
 <body>
@@ -38,7 +41,7 @@
 			<!-- header-bot-->
 			<div class="col-md-4 logo_agile" style="margin-top:20px">
 				<h1>
-					<a href="index.html"
+					<a href="#"
 						<span>N</span>link						
 						<img src="lib/images/logo.png" alt=" ">
 					</a>
@@ -49,30 +52,30 @@
 				<!-- header lists -->
 				<ul>
 					<li>
-						<a class="play-icon popup-with-zoom-anim">
-							<i class="fa fa-shopping-cart" aria-hidden="true" style="color:#FF5722"></i> Shop Locator</a>
+						<a href="#" class="play-icon popup-with-zoom-anim">
+							<i class="fa fa-shopping-cart" aria-hidden="true" style="color:#FF5722"></i> Mua Hàng</a>
 					</li>
 					<li>
 						<a href="#" data-toggle="modal">
-							<span class="fa fa-truck" aria-hidden="true"></span>Track Order</a>
+							<span class="fa fa-truck" aria-hidden="true"></span>Thanh Toán</a>
 					</li>
 					<li>
-						<span class="fa fa-phone" aria-hidden="true"></span> 001 234 5678
+						<span class="fa fa-phone" aria-hidden="true"></span> 0903 029 313
 					</li>
 					<li>
 						<a href="#" data-toggle="modal" data-target="#myModal1">
-							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In </a>
+							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Đăng Nhập </a>
 					</li>
 					<li>
 						<a href="#" data-toggle="modal" data-target="#myModal2">
-							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up </a>
+							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Đăng Ký </a>
 					</li>
 				</ul>
 				<!-- //header lists -->
 				<!-- search -->
 				<div class="agileits_search">
 					<form action="#" method="post">
-						<input name="Search" type="search" placeholder="Tìm kiếm sản phẩm..." required>
+						<input name="Search" type="search" placeholder="Tìm kiếm sản phẩm..." required="">
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<span class="fa fa-search" aria-hidden="true"> </span>
 						</button>
@@ -111,21 +114,18 @@
 						<span class="fa fa-envelope-o" aria-hidden="true"></span>
 					</div>
 					<div class="modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign In </h3>
-						<p>
-							Sign In now, Let's start your Grocery Shopping. Don't have an account?
-							<a href="#" data-toggle="modal" data-target="#myModal2">
-								Sign Up Now</a>
-						</p>
+						<h3 class="agileinfo_sign">Đăng Nhập </h3>						
 						<form action="#" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="User Name" name="Name" required>
+								<input type="text" placeholder="Email" name="email" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" required>
+								<input type="password" placeholder="Mật Khẩu" name="pass" required="">
 							</div>
-							<input type="submit" value="Sign In">
-						</form>
+							<a href="#">Quên mật khẩu</a><br/>
+							<input type="submit" value="Đăng Nhập">
+						</form>		
+						Chưa có tài khoản? Đăng ký <a href="" data-toggle="modal" data-target="#myModal2">tại đây</a>
 						<div class="clearfix"></div>
 					</div>
 					<div class="clearfix"></div>
@@ -150,28 +150,28 @@
 						<span class="fa fa-envelope-o" aria-hidden="true"></span>
 					</div>
 					<div class="modal_body_left modal_body_left1">
-						<h3 class="agileinfo_sign">Sign Up</h3>
+						<h3 class="agileinfo_sign">Đăng Ký</h3>
 						<p>
-							Come join the Grocery Shoppy! Let's set up your Account.
+							Chưa có tài khoản? Vui lòng tạo tài khoản mới.
 						</p>
 						<form action="#" method="post">
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Name" name="Name" required>
+								<input type="text" placeholder="Họ Tên" name="name" required="">
 							</div>
 							<div class="styled-input">
-								<input type="email" placeholder="E-mail" name="Email" required>
+								<input type="text" placeholder="Số Điện Thoại" name="mobile" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Password" name="password" id="password1" required>
+								<input type="email" placeholder="Email" name="email" required="">
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Confirm Password" name="Confirm Password" id="password2" required>
+								<input type="password" placeholder="Mật Khẩu" name="pass" id="password1" required="">
 							</div>
-							<input type="submit" value="Sign Up">
+							<div class="styled-input">
+								<input type="password" placeholder="Nhập Lại Mật Khẩu" name="re_pass" id="password2" required="">
+							</div>
+							<input type="submit" value="Đăng Ký">
 						</form>
-						<p>
-							<a href="#">By clicking register, I agree to your terms</a>
-						</p>
 					</div>
 				</div>
 			</div>
@@ -182,19 +182,14 @@
 	<!-- //signup Model -->
 	<!-- //header-bot -->
 	<!-- navigation -->
-	<div class="ban-top">
+	<div class="ban-top" style="height:50px">
 		<div class="container">
 			<div class="agileits-navi_search">
 				<form action="#" method="post">
 					<select id="agileinfo-nav_search" name="agileinfo_search" required="">
 						<option value="">Danh mục sản phẩm</option>
-                        <?php
-						foreach($data['listDepart'] as $item)
-						{ ?>
-                        	<option value="<?=$item['DepartId']?>"><?=$item['DepartName']?></option>
-						<?php
-						}
-                        ?>
+						<option value="Kitchen">Kitchen</option>
+						<option value="Household">Household</option>
 					</select>
 				</form>
 			</div>
@@ -346,7 +341,7 @@
 									</ul>
 								</li>-->
 								<li class="">
-									<a class="nav-stylehead" href="faqs.html">Faqs</a>
+									<a class="nav-stylehead" href="faqs.html">Giới Thiệu</a>
 								</li>
 								<li class="dropdown">
 									<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Tra Cứu Đơn Hàng
@@ -371,27 +366,25 @@
 			</div>
 		</div>
 	</div>
-	<?php
-    	require_once("./mvc/views/pages/".$data['page'].".php");
-	?>
-	<!-- //special offers -->
+	<!-- //navigation -->
+	
+	<!--main-->
+
+	<!--end main-->
+	
 	<!-- newsletter -->
 	<div class="footer-top">
 		<div class="container-fluid">
-			<div class="col-xs-8 agile-leftmk">
-				<h2>Get your Groceries delivered from local stores</h2>
-				<p>Free Delivery on your first order!</p>
-				<form action="#" method="post">
-					<input type="email" placeholder="E-mail" name="email" required>
-					<input type="submit" value="Subscribe">
-				</form>
+			<div class="col-xs-12 agile-leftmk">
+				<p>CÔNG TY TNHH NLINK VIỆT NAM - Độc quyền phân phối thương hiệu REVLON, AIMER và TWG tại thị trường Việt Nam.</p>
+				<p style="font-size: 17px">Địa chỉ: 76 Trần Đình Xu, P. Cô Giang, Q.1, TP.HCM /  E-mail: crm@nlink.vn / contact@nlink.vn - ĐT: +84 08 383 78111/222 - Fax: +84 08 3837 8000 - Hotline: 0903 029 313</p>
 				<div class="newsform-w3l">
 					<span class="fa fa-envelope-o" aria-hidden="true"></span>
 				</div>
 			</div>
-			<div class="col-xs-4 w3l-rightmk">
-				<img src="lib/images/tab3.png" alt=" ">
-			</div>
+			<!--<div class="col-xs-4 w3l-rightmk">
+				<img src="lib/images/tab3.png" alt="" style="max-width:200px">
+			</div>-->
 			<div class="clearfix"></div>
 		</div>
 	</div>
@@ -401,19 +394,16 @@
 		<div class="container">
 			<!-- footer first section -->
 			<p class="footer-main">
-				<span>"Grocery Shoppy"</span> Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur
-				magni dolores eos qui ratione voluptatem sequi nesciunt.Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-				accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-				beatae vitae dicta sunt explicabo.</p>
+				<span>"NLink Việt Nam"</span> xây dựng một đội ngũ nhân sự chuyên môn cao và có tâm với nghề, một môi trường làm việc lành mạnh, đoàn kết, chia sẻ, cùng nhau phát triển. Hướng tới chính sách đãi ngộ nhân sự xứng đáng, NLink Việt Nam là điểm đến cho những ai muốn phát triển bằng chính thực lực.</p>
 			<!-- //footer first section -->
 			<!-- footer second section -->
 			<div class="w3l-grids-footer">
 				<div class="col-xs-4 offer-footer">
 					<div class="col-xs-4 icon-fot">
-						<span class="fa fa-map-marker" aria-hidden="true"></span>
+						<span class="fa fa-truck" aria-hidden="true"></span>
 					</div>
 					<div class="col-xs-8 text-form-footer">
-						<h3>Track Your Order</h3>
+						<h3>Giao Hàng Nhanh Chóng</h3>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -422,16 +412,16 @@
 						<span class="fa fa-refresh" aria-hidden="true"></span>
 					</div>
 					<div class="col-xs-8 text-form-footer">
-						<h3>Free & Easy Returns</h3>
+						<h3>Dễ Dàng Đổi Trả</h3>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 				<div class="col-xs-4 offer-footer">
 					<div class="col-xs-4 icon-fot">
-						<span class="fa fa-times" aria-hidden="true"></span>
+						<span class="fa fa-ravelry" aria-hidden="true"></span>
 					</div>
 					<div class="col-xs-8 text-form-footer">
-						<h3>Online cancellation </h3>
+						<h3>Cam Kết Chất Lượng</h3>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -443,7 +433,7 @@
 				<!-- footer categories -->
 				<div class="col-sm-5 address-right">
 					<div class="col-xs-6 footer-grids">
-						<h3>Categories</h3>
+						<h3>Các Sản Phẩm</h3>
 						<ul>
 							<li>
 								<a href="product.html">Grocery</a>
@@ -493,40 +483,40 @@
 				<!-- quick links -->
 				<div class="col-sm-5 address-right">
 					<div class="col-xs-6 footer-grids">
-						<h3>Quick Links</h3>
+						<h3>Liên Kết</h3>
 						<ul>
 							<li>
-								<a href="about.html">About Us</a>
+								<a href="about.html">Giới Thiệu</a>
 							</li>
 							<li>
-								<a href="contact.html">Contact Us</a>
+								<a href="contact.html">Liên Hệ</a>
 							</li>
 							<li>
-								<a href="help.html">Help</a>
+								<a href="help.html">Tra Cứu Đơn Hàng</a>
 							</li>
 							<li>
-								<a href="faqs.html">Faqs</a>
+								<a href="faqs.html">Tin Tức</a>
 							</li>
 							<li>
-								<a href="terms.html">Terms of use</a>
+								<a href="terms.html">Chính Sách Đổi Trả</a>
 							</li>
 							<li>
-								<a href="privacy.html">Privacy Policy</a>
+								<a href="privacy.html">Hướng Dẫn Đặt Hàng</a>
 							</li>
 						</ul>
 					</div>
 					<div class="col-xs-6 footer-grids">
-						<h3>Get in Touch</h3>
+						<h3>Thông Tin</h3>
 						<ul>
 							<li>
-								<i class="fa fa-map-marker"></i> 123 Sebastian, USA.</li>
+								<i class="fa fa-map-marker"></i> 76 Trần Đình Xu, P. Cô Giang, Q.1, TP.HCM</li>
 							<li>
-								<i class="fa fa-mobile"></i> 333 222 3333 </li>
+								<i class="fa fa-mobile"></i> +84 08 383 78111/222</li>
 							<li>
-								<i class="fa fa-phone"></i> +222 11 4444 </li>
+								<i class="fa fa-phone"></i> 0903 029 313 </li>
 							<li>
 								<i class="fa fa-envelope-o"></i>
-								<a href="mailto:example@mail.com"> mail@example.com</a>
+								<a href="mailto:example@mail.com"> crm@nlink.vn</a>
 							</li>
 						</ul>
 					</div>
@@ -534,7 +524,7 @@
 				<!-- //quick links -->
 				<!-- social icons -->
 				<div class="col-sm-2 footer-grids  w3l-socialmk">
-					<h3>Follow Us on</h3>
+					<h3>Theo Dõi</h3>
 					<div class="social">
 						<ul>
 							<li>
@@ -543,184 +533,54 @@
 								</a>
 							</li>
 							<li>
-								<a class="icon tw" href="#">
-									<i class="fa fa-twitter"></i>
+								<a style="background-color: red" href="#">
+									<i class="fa fa-youtube-play"></i>
 								</a>
 							</li>
 							<li>
 								<a class="icon gp" href="#">
-									<i class="fa fa-google-plus"></i>
+									<i class="fa fa-pinterest"></i>
 								</a>
 							</li>
 						</ul>
-					</div>
-					<div class="agileits_app-devices">
-						<h5>Download the App</h5>
-						<a href="#">
-							<img src="lib/images/1.png" alt="">
-						</a>
-						<a href="#">
-							<img src="lib/images/2.png" alt="">
-						</a>
-						<div class="clearfix"> </div>
-					</div>
+					</div>					
 				</div>
 				<!-- //social icons -->
 				<div class="clearfix"></div>
 			</div>
 			<!-- //footer third section -->
 			<!-- footer fourth section (text) -->
-			<div class="agile-sometext">
-				<div class="sub-some">
-					<h5>Online Grocery Shopping</h5>
-					<p>Order online. All your favourite products from the low price online supermarket for grocery home delivery in Delhi,
-						Gurgaon, Bengaluru, Mumbai and other cities in India. Lowest prices guaranteed on Patanjali, Aashirvaad, Pampers, Maggi,
-						Saffola, Huggies, Fortune, Nestle, Amul, MamyPoko Pants, Surf Excel, Ariel, Vim, Haldiram's and others.</p>
-				</div>
-				<div class="sub-some">
-					<h5>Shop online with the best deals & offers</h5>
-					<p>Now Get Upto 40% Off On Everyday Essential Products Shown On The Offer Page. The range includes Grocery, Personal Care,
-						Baby Care, Pet Supplies, Healthcare and Other Daily Need Products. Discount May Vary From Product To Product.</p>
-				</div>
-				<!-- brands -->
-				<div class="sub-some">
-					<h5>Popular Brands</h5>
-					<ul>
-						<li>
-							<a href="product.html">Aashirvaad</a>
-						</li>
-						<li>
-							<a href="product.html">Amul</a>
-						</li>
-						<li>
-							<a href="product.html">Bingo</a>
-						</li>
-						<li>
-							<a href="product.html">Boost</a>
-						</li>
-						<li>
-							<a href="product.html">Durex</a>
-						</li>
-						<li>
-							<a href="product.html"> Maggi</a>
-						</li>
-						<li>
-							<a href="product.html">Glucon-D</a>
-						</li>
-						<li>
-							<a href="product.html">Horlicks</a>
-						</li>
-						<li>
-							<a href="product2.html">Head & Shoulders</a>
-						</li>
-						<li>
-							<a href="product2.html">Dove</a>
-						</li>
-						<li>
-							<a href="product2.html">Dettol</a>
-						</li>
-						<li>
-							<a href="product2.html">Dabur</a>
-						</li>
-						<li>
-							<a href="product2.html">Colgate</a>
-						</li>
-						<li>
-							<a href="product.html">Coca-Cola</a>
-						</li>
-						<li>
-							<a href="product2.html">Closeup</a>
-						</li>
-						<li>
-							<a href="product2.html"> Cinthol</a>
-						</li>
-						<li>
-							<a href="product.html">Cadbury</a>
-						</li>
-						<li>
-							<a href="product.html">Bru</a>
-						</li>
-						<li>
-							<a href="product.html">Bournvita</a>
-						</li>
-						<li>
-							<a href="product.html">Tang</a>
-						</li>
-						<li>
-							<a href="product.html">Pears</a>
-						</li>
-						<li>
-							<a href="product.html">Oreo</a>
-						</li>
-						<li>
-							<a href="product.html"> Taj Mahal</a>
-						</li>
-						<li>
-							<a href="product.html">Sprite</a>
-						</li>
-						<li>
-							<a href="product.html">Thums Up</a>
-						</li>
-						<li>
-							<a href="product2.html">Fair & Lovely</a>
-						</li>
-						<li>
-							<a href="product2.html">Lakme</a>
-						</li>
-						<li>
-							<a href="product.html">Tata</a>
-						</li>
-						<li>
-							<a href="product2.html">Sunfeast</a>
-						</li>
-						<li>
-							<a href="product2.html">Sunsilk</a>
-						</li>
-						<li>
-							<a href="product.html">Patanjali</a>
-						</li>
-						<li>
-							<a href="product.html">MTR</a>
-						</li>
-						<li>
-							<a href="product.html">Kissan</a>
-						</li>
-						<li>
-							<a href="product2.html"> Lipton</a>
-						</li>
-					</ul>
-				</div>
-				<!-- //brands -->
+			<div class="agile-sometext">				
 				<!-- payment -->
 				<div class="sub-some child-momu">
 					<h5>Payment Method</h5>
 					<ul>
 						<li>
-							<img src="lib/images/pay2.png" alt="">
+							<img src="images/pay2.png" alt="">
 						</li>
 						<li>
-							<img src="lib/images/pay5.png" alt="">
+							<img src="images/pay5.png" alt="">
 						</li>
 						<li>
-							<img src="lib/images/pay1.png" alt="">
+							<img src="images/pay1.png" alt="">
 						</li>
 						<li>
-							<img src="lib/images/pay4.png" alt="">
+							<img src="images/pay4.png" alt="">
 						</li>
 						<li>
-							<img src="lib/images/pay6.png" alt="">
+							<img src="images/pay6.png" alt="">
 						</li>
 						<li>
-							<img src="lib/images/pay3.png" alt="">
+							<img src="images/pay3.png" alt="">
 						</li>
 						<li>
-							<img src="lib/images/pay7.png" alt="">
+							<img src="images/pay7.png" alt="">
 						</li>
 						<li>
-							<img src="lib/images/pay8.png" alt="">
+							<img src="images/pay8.png" alt="">
 						</li>
 						<li>
-							<img src="lib/images/pay9.png" alt="">
+							<img src="images/pay9.png" alt="">
 						</li>
 					</ul>
 				</div>
@@ -733,9 +593,7 @@
 	<!-- copyright -->
 	<div class="copy-right">
 		<div class="container">
-			<p>© 2017 Grocery Shoppy. All rights reserved | Design by
-				<a href="http://w3layouts.com"> W3layouts.</a>
-			</p>
+			<p>© 2020 NLink Vietnam Co., Ltd. Copyright by Superior5</p>
 		</div>
 	</div>
 	<!-- //copyright -->
