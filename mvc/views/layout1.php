@@ -216,7 +216,7 @@
 						<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav menu__list">
 								<li class="active">
-									<a class="nav-stylehead" href="/Home">Trang Chủ
+									<a class="nav-stylehead" href="./Home">Trang Chủ
 										<span class="sr-only">(current)</span>
 									</a>
 								</li>

@@ -240,7 +240,7 @@
 					<h3 class="agileits-sear-head">Sản Phẩm Bán Chạy</h3>
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
-							<img src="images/d2.jpg" alt="">
+							<img src="lib/images/d2.jpg" alt="">
 						</div>
 						<div class="col-xs-8 img-deal1">
 							<h3>Lay's Potato Chips</h3>
@@ -250,7 +250,7 @@
 					</div>
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
-							<img src="images/d1.jpg" alt="">
+							<img src="lib/images/d1.jpg" alt="">
 						</div>
 						<div class="col-xs-8 img-deal1">
 							<h3>Bingo Mad Angles</h3>
@@ -260,7 +260,7 @@
 					</div>
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
-							<img src="images/d4.jpg" alt="">
+							<img src="lib/images/d4.jpg" alt="">
 						</div>
 						<div class="col-xs-8 img-deal1">
 							<h3>Tata Salt</h3>
@@ -270,7 +270,7 @@
 					</div>
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
-							<img src="images/d5.jpg" alt="">
+							<img src="lib/images/d5.jpg" alt="">
 						</div>
 						<div class="col-xs-8 img-deal1">
 							<h3>Gujarat Dry Fruit</h3>
@@ -280,7 +280,7 @@
 					</div>
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
-							<img src="images/d3.jpg" alt="">
+							<img src="lib/images/d3.jpg" alt="">
 						</div>
 						<div class="col-xs-8 img-deal1">
 							<h3>Cadbury Dairy Milk</h3>
@@ -299,19 +299,23 @@
 					<div class="product-sec1">
 						<h3 class="heading-tittle" style="margin-bottom:25px; font-size:30px">Bán Chạy</h3>
 						<ul id="flexiselDemo2">
+                        <?php
+							foreach($data['listProductTopSold'] as $item)
+							{
+						?>
 							<li>
 								<div class="w3l-specilamk">
 									<div class="speioffer-agile">
 										<a href="single.html">
-											<img src="images/s1.jpg" alt="">
+											<img src="lib/images/<?=$item['Img']?>" alt="">
 										</a>
 									</div>
 									<div class="product-name-w3l">
 										<h4>
-											<a href="single.html">Aashirvaad, 5g</a>
+											<a href="single.html"><?=$item['ProductName']?></a>
 										</h4>
 										<div class="w3l-pricehkj">
-											<h6>$220.00</h6>
+											<h6><?php echo number_format($item['Price'])." đ"?></h6>
 											<p>Save $40.00</p>
 										</div>
 										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
@@ -333,108 +337,9 @@
 									</div>
 								</div>
 							</li>
-							<li>
-								<div class="w3l-specilamk">
-									<div class="speioffer-agile">
-										<a href="single.html">
-											<img src="images/s4.jpg" alt="">
-										</a>
-									</div>
-									<div class="product-name-w3l">
-										<h4>
-											<a href="single.html">Kissan Tomato Ketchup, 950g</a>
-										</h4>
-										<div class="w3l-pricehkj">
-											<h6>$99.00</h6>
-											<p>Save $20.00</p>
-										</div>
-										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="business" value=" " />
-													<input type="hidden" name="item_name" value="Kissan Tomato Ketchup, 950g" />
-													<input type="hidden" name="amount" value="99.00" />
-													<input type="hidden" name="discount_amount" value="1.00" />
-													<input type="hidden" name="currency_code" value="USD" />
-													<input type="hidden" name="return" value=" " />
-													<input type="hidden" name="cancel_return" value=" " />
-													<input type="submit" name="submit" value="Add to cart" class="button" />
-												</fieldset>
-											</form>
-										</div>
-									</div>
-								</div>
-							</li>														
-							<li>
-								<div class="w3l-specilamk">
-								<div class="speioffer-agile">
-									<a href="single2.html">
-										<img src="images/s6.jpg" alt="">
-									</a>
-								</div>
-								<div class="product-name-w3l">
-									<h4>
-										<a href="single2.html">Fair & Lovely, 80 g</a>
-									</h4>
-									<div class="w3l-pricehkj">
-										<h6>$121.60</h6>
-										<p>Save $30.00</p>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Fair & Lovely, 80 g" />
-												<input type="hidden" name="amount" value="121.60" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-								</div>
-								</div>
-							</li>
-							<li>
-								<div class="w3l-specilamk">
-								<div class="speioffer-agile">
-									<a href="single.html">
-										<img src="images/s5.jpg" alt="">
-									</a>
-								</div>
-								<div class="product-name-w3l">
-									<h4>
-										<a href="single.html">Sprite, 2.25L (Pack of 2)</a>
-									</h4>
-									<div class="w3l-pricehkj">
-										<h6>$180.00</h6>
-										<p>Save $30.00</p>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Sprite, 2.25L (Pack of 2)" />
-												<input type="hidden" name="amount" value="180.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-								</div>
-								</div>
-							</li>					
+						<?php
+							}
+						?>
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -448,7 +353,7 @@
 						</div>
 						<h3 class="w3l-nut-middle">Nuts & Dry Fruits</h3>
 						<div class="col-xs-5 bg-right-nut">
-							<img src="images/nut1.png" alt="">
+							<img src="lib/images/nut1.png" alt="">
 						</div>
 						<div class="clearfix"></div>
 					</div>-->
@@ -457,11 +362,15 @@
 					<div class="product-sec3">
 						<h3 class="heading-tittle" style="margin-bottom:25px; font-size:30px">Mới Nhất</h3>
 						<ul id="flexiselDemo3">
+                        <?php
+							foreach($data['listProductNew'] as $item)
+							{
+						?>
 							<li>
 								<div class="w3l-specilamk">
 									<div class="speioffer-agile">
 										<a href="single.html">
-											<img src="images/s1.jpg" alt="">
+											<img src="lib/images/s1.jpg" alt="">
 										</a>
 									</div>
 									<div class="product-name-w3l">
@@ -491,108 +400,10 @@
 									</div>
 								</div>
 							</li>
-							<li>
-								<div class="w3l-specilamk">
-									<div class="speioffer-agile">
-										<a href="single.html">
-											<img src="images/s4.jpg" alt="">
-										</a>
-									</div>
-									<div class="product-name-w3l">
-										<h4>
-											<a href="single.html">Kissan Tomato Ketchup, 950g</a>
-										</h4>
-										<div class="w3l-pricehkj">
-											<h6>$99.00</h6>
-											<p>Save $20.00</p>
-										</div>
-										<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-											<form action="#" method="post">
-												<fieldset>
-													<input type="hidden" name="cmd" value="_cart" />
-													<input type="hidden" name="add" value="1" />
-													<input type="hidden" name="business" value=" " />
-													<input type="hidden" name="item_name" value="Kissan Tomato Ketchup, 950g" />
-													<input type="hidden" name="amount" value="99.00" />
-													<input type="hidden" name="discount_amount" value="1.00" />
-													<input type="hidden" name="currency_code" value="USD" />
-													<input type="hidden" name="return" value=" " />
-													<input type="hidden" name="cancel_return" value=" " />
-													<input type="submit" name="submit" value="Add to cart" class="button" />
-												</fieldset>
-											</form>
-										</div>
-									</div>
-								</div>
-							</li>														
-							<li>
-								<div class="w3l-specilamk">
-								<div class="speioffer-agile">
-									<a href="single2.html">
-										<img src="images/s6.jpg" alt="">
-									</a>
-								</div>
-								<div class="product-name-w3l">
-									<h4>
-										<a href="single2.html">Fair & Lovely, 80 g</a>
-									</h4>
-									<div class="w3l-pricehkj">
-										<h6>$121.60</h6>
-										<p>Save $30.00</p>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Fair & Lovely, 80 g" />
-												<input type="hidden" name="amount" value="121.60" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-								</div>
-								</div>
-							</li>
-							<li>
-								<div class="w3l-specilamk">
-								<div class="speioffer-agile">
-									<a href="single.html">
-										<img src="images/s5.jpg" alt="">
-									</a>
-								</div>
-								<div class="product-name-w3l">
-									<h4>
-										<a href="single.html">Sprite, 2.25L (Pack of 2)</a>
-									</h4>
-									<div class="w3l-pricehkj">
-										<h6>$180.00</h6>
-										<p>Save $30.00</p>
-									</div>
-									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Sprite, 2.25L (Pack of 2)" />
-												<input type="hidden" name="amount" value="180.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
-									</div>
-								</div>
-								</div>
-							</li>					
+                        <?php
+							}
+						?>
+												
 						</ul>
 						<div class="clearfix"></div>
 					</div>
@@ -620,7 +431,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html">
-									<img src="images/s1.jpg" alt="">
+									<img src="lib/images/s1.jpg" alt="">
 								</a>
 							</div>
 							<div class="product-name-w3l">
@@ -654,7 +465,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html">
-									<img src="images/s4.jpg" alt="">
+									<img src="lib/images/s4.jpg" alt="">
 								</a>
 							</div>
 							<div class="product-name-w3l">
@@ -688,7 +499,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html">
-									<img src="images/s2.jpg" alt="">
+									<img src="lib/images/s2.jpg" alt="">
 								</a>
 							</div>
 							<div class="product-name-w3l">
@@ -722,7 +533,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single2.html">
-									<img src="images/s3.jpg" alt="">
+									<img src="lib/images/s3.jpg" alt="">
 								</a>
 							</div>
 							<div class="product-name-w3l">
@@ -773,7 +584,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html">
-									<img src="images/s1.jpg" alt="">
+									<img src="lib/images/s1.jpg" alt="">
 								</a>
 							</div>
 							<div class="product-name-w3l">
@@ -807,7 +618,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html">
-									<img src="images/s4.jpg" alt="">
+									<img src="lib/images/s4.jpg" alt="">
 								</a>
 							</div>
 							<div class="product-name-w3l">
@@ -841,7 +652,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single.html">
-									<img src="images/s2.jpg" alt="">
+									<img src="lib/images/s2.jpg" alt="">
 								</a>
 							</div>
 							<div class="product-name-w3l">
@@ -875,7 +686,7 @@
 						<div class="w3l-specilamk">
 							<div class="speioffer-agile">
 								<a href="single2.html">
-									<img src="images/s3.jpg" alt="">
+									<img src="lib/images/s3.jpg" alt="">
 								</a>
 							</div>
 							<div class="product-name-w3l">
