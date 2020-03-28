@@ -34,8 +34,8 @@
 							<th>Hình</th>
 							<th>Số Lượng</th>
 							<th>Sản Phẩm</th>
-
-							<th>Giá Tiền</th>
+							<th>Giá</th>
+							<th>Thành Tiền</th>
 							<th>Xóa</th>
 						</tr>
 					</thead>
@@ -44,78 +44,38 @@
 							<td class="invert">1</td>
 							<td class="invert-image">
 								<a href="single2.html">
-									<img src="lib/mages/a7.jpg" alt=" " class="img-responsive">
+									<img src="lib/images/s8.jpg" alt=" " class="img-responsive" style="width: 50px; height: 50px">
 								</a>
 							</td>
 							<td class="invert">
 								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value">
-											<span>1</span>
-										</div>
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
+									<label style="font-size: 18px">2</label>
 								</div>
 							</td>
 							<td class="invert">Spotzero Spin Mop</td>
-							<td class="invert">$888.00</td>
+							<td class="invert">10,000 VND</td>
+							<td class="invert" style="color:darkblue; font-weight: bold">20,000 VND</td>
 							<td class="invert">
-								<div class="rem">
-									<div class="close1"> </div>
-								</div>
+								<a href="#" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a>
 							</td>
 						</tr>
 						<tr>
 							<td class="invert">2</td>
 							<td class="invert-image">
 								<a href="single2.html">
-									<img src="lib/images/s6.jpg" alt=" " class="img-responsive">
+									<img src="lib/images/s7.jpg" alt=" " class="img-responsive" style="width: 50px; height: 50px">
 								</a>
 							</td>
 							<td class="invert">
 								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value">
-											<span>1</span>
-										</div>
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
+									<label style="font-size: 18px">2</label>
 								</div>
 							</td>
-							<td class="invert">Fair & Lovely, 80 g</td>
-							<td class="invert">$121.60</td>
+							<td class="invert">Spotzero Spin Mop</td>
+							<td class="invert">20,000 VND</td>
+							<td class="invert" style="color:darkblue; font-weight: bold">40,000 VND</td>
 							<td class="invert">
-								<div class="rem">
-									<div class="close2"> </div>
-								</div>
-							</td>
-						</tr>
-						<tr>
-							<td class="invert">3</td>
-							<td class="invert-image">
-								<a href="single.html">
-									<img src="lib/images/s5.jpg" alt=" " class="img-responsive">
-								</a>
-							</td>
-							<td class="invert">
-								<div class="quantity">
-									<div class="quantity-select">
-										<div class="entry value-minus">&nbsp;</div>
-										<div class="entry value">
-											<span>1</span>
-										</div>
-										<div class="entry value-plus active">&nbsp;</div>
-									</div>
-								</div>
-							</td>
-							<td class="invert">Sprite, 2.25L (Pack of 2)</td>
-							<td class="invert">$180.00</td>
-							<td class="invert">
-								<div class="rem">
-									<div class="close3"> </div>
-								</div>
+								<a href="#" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a>
 							</td>
 						</tr>
 					</tbody>
@@ -169,9 +129,14 @@
 											<input type="text" placeholder="Số Điện Thoại" name="mobile" required>
 										</div>
 									</div>
+									<div class="w3_agileits_card_number_grid_left">
+										<div class="controls">
+											<input type="text" placeholder="Số Điện Thoại 2" name="mobile2">
+										</div>
+									</div>
 									<div class="w3_agileits_card_number_grid_right">
 										<div class="controls">
-											<input type="text" placeholder="Địa Chỉ" name="address" required>
+											<input type="text" placeholder="Địa Chỉ Chi Tiết" name="address" required>
 										</div>
 									</div>
 									<div class="clear"> </div>
@@ -184,7 +149,7 @@
 										<option>Giao Hàng Tiêu Chuẩn</option>
 										<option>Giao Hàng Nhanh</option>							
 									</select>
-								</div>
+								</div>								
 							</div>
 							<h4 style="color:black; margin-top: 15px">Phương Thức Thanh Toán</h4>
 							<div class="row" style="margin-bottom: 35px">
@@ -204,6 +169,11 @@
 						</div>
 					</div>
 				</form>
+				<div class="controls">
+					<input type="checkbox" id="" name="support" style="cursor: pointer">
+					<label for="support"> Chọn vào đây nếu bạn muốn được gọi tư vấn</label>
+					<i class="fa fa-question-circle" aria-hidden="true" style="cursor: pointer; color: #3D6199" title="Nếu quý khách có bất cứ thắc mắc nào về đơn hàng hoặc chính sách vận chuyển. Hãy chọn vào đây để chúng tôi liên lạc và giải đáp thắc mắc của quý khách. Cảm ơn!"></i>
+				</div>
 				<div class="checkout-right-basket">
 					<button class="btn btn-primary check_out">Tiếp tục mua hàng</button>
 					<button class="btn btn-danger check_out">Đặt hàng</button>
