@@ -25,7 +25,7 @@
 			$listKeyword=json_decode($this->KeywordModel->getKeywords("`TimesSearch`","DESC"),true);
 
 			$this->view("layout1",array (
-				"page" => "product",
+				"page" => "home",
 				"listDepart" => $listDepart,
 				"listCate" => $listCate,
 				"listProductNew" => $listProductNew,

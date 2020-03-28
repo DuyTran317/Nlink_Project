@@ -143,11 +143,23 @@
 		<div class="agileinfo-ads-display col-md-9 w3l-rightpro">
 			<div class="wrapper">
 				<!-- first section -->
-				<div class="product-sec1">
+				
+				<?php
+				$dem = 0;
+				foreach($data['listProduct'] as $item)
+				{
+					$dem++;
+					if($dem % 3 == 1)
+					{
+				?>
+					<div class="product-sec1">
+				<?php
+					}
+				?>
 					<div class="col-xs-4 product-men">
 						<div class="men-pro-item simpleCart_shelfItem">
 							<div class="men-thumb-item">
-								<img src="lib/images/k1.jpg" alt="">
+								<img src="<?=$_SESSION['projectName']?>lib/images/product/<?=$item['Img']?>" alt="">
 								<div class="men-cart-pro">
 									<div class="inner-men-cart-pro">
 										<a href="single.html" class="link-product-add-cart">Quick View</a>
@@ -157,11 +169,11 @@
 							</div>
 							<div class="item-info-product ">
 								<h4>
-									<a href="single.html">Zeeba Basmati Rice</a>
+									<a href="single.html"><?=$item['ProductName']?></a>
 								</h4>
 								<div class="info-product-price">
-									<span class="item_price">$950.00</span>
-									<del>$1020.00</del>
+									<span class="item_price"><?php echo number_format($item['Price'])." đ";?></span>
+									<del><?php echo number_format($item['PriceOfMarket'])." đ";?></del>
 								</div>
 								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 									<form action="#" method="post">
@@ -183,336 +195,18 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-xs-4 product-men">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="lib/images/k2.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-
-							</div>
-							<div class="item-info-product ">
-								<h4>
-									<a href="single.html">Maiyas Gulab Jamun</a>
-								</h4>
-								<div class="info-product-price">
-									<span class="item_price">$137.00</span>
-									<del>$420.00</del>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Maiyas Gulab Jamun, 500g" />
-											<input type="hidden" name="amount" value="137.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-
-							</div>
-						</div>
+				<?php
+					if($dem % 3 == 0)
+					{
+				?>
+						<div class="clearfix"></div>
 					</div>
-					<div class="col-xs-4 product-men">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="lib/images/k3.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-
-							</div>
-							<div class="item-info-product ">
-								<h4>
-									<a href="single.html">Lipton Green Tea</a>
-								</h4>
-								<div class="info-product-price">
-									<span class="item_price">$384.00</span>
-									<del>$480.00</del>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Lipton Green Tea, 100 Pieces" />
-											<input type="hidden" name="amount" value="384.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<!-- //first section -->
-				<!-- 2nd section) -->
-				<div class="product-sec1">
-					<div class="col-md-4 product-men">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="lib/images/k4.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product ">
-								<h4>
-									<a href="single.html">Organicana Red Chilli</a>
-								</h4>
-								<div class="info-product-price">
-									<span class="item_price">$70.00</span>
-									<del>$90.00</del>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Organicana Red Chilli Powder, 100g" />
-											<input type="hidden" name="amount" value="70.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 product-men">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="lib/images/k5.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-
-							</div>
-							<div class="item-info-product ">
-								<h4>
-									<a href="single.html">MTR Black Pepper</a>
-								</h4>
-								<div class="info-product-price">
-									<span class="item_price">$85.00</span>
-									<del>$90.00</del>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="MTR Black Pepper Powder, 50g" />
-											<input type="hidden" name="amount" value="85.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 product-men">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="lib/images/k6.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-
-							</div>
-							<div class="item-info-product ">
-								<h4>
-									<a href="single.html">Chataka - Elaichi</a>
-								</h4>
-								<div class="info-product-price">
-									<span class="item_price">$299.99</span>
-									<del>$425.00</del>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Chataka-Elaichi (100 GM)" />
-											<input type="hidden" name="amount" value="299.99" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-				<!-- //2nd section  -->
-				<!-- 3rd section -->
-				<div class="product-sec1">
-					<div class="col-md-4 product-men">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="lib/images/k7.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-							</div>
-							<div class="item-info-product ">
-								<h4>
-									<a href="single.html">Narulag, Less Sugar</a>
-								</h4>
-								<div class="info-product-price">
-									<span class="item_price">$220.00</span>
-									<del>$250.00</del>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Narulag, Less Sugar, 400g" />
-											<input type="hidden" name="amount" value="220.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 product-men">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="lib/images/k8.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-
-							</div>
-							<div class="item-info-product ">
-								<h4>
-									<a href="single.html">Kellogg's Chocos Fills</a>
-								</h4>
-								<div class="info-product-price">
-									<span class="item_price">$175.75</span>
-									<del>$195.00</del>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Kellogg's Chocos Fills, 250g" />
-											<input type="hidden" name="amount" value="175.75" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="col-md-4 product-men">
-						<div class="men-pro-item simpleCart_shelfItem">
-							<div class="men-thumb-item">
-								<img src="lib/images/k9.jpg" alt="">
-								<div class="men-cart-pro">
-									<div class="inner-men-cart-pro">
-										<a href="single.html" class="link-product-add-cart">Quick View</a>
-									</div>
-								</div>
-								<span class="product-new-top">New</span>
-
-							</div>
-							<div class="item-info-product ">
-								<h4>
-									<a href="single.html">Amul's India</a>
-								</h4>
-								<div class="info-product-price">
-									<span class="item_price">$134.00</span>
-									<del>$150.00</del>
-								</div>
-								<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-									<form action="#" method="post">
-										<fieldset>
-											<input type="hidden" name="cmd" value="_cart" />
-											<input type="hidden" name="add" value="1" />
-											<input type="hidden" name="business" value=" " />
-											<input type="hidden" name="item_name" value="Amul's India" />
-											<input type="hidden" name="amount" value="134.00" />
-											<input type="hidden" name="discount_amount" value="1.00" />
-											<input type="hidden" name="currency_code" value="USD" />
-											<input type="hidden" name="return" value=" " />
-											<input type="hidden" name="cancel_return" value=" " />
-											<input type="submit" name="submit" value="Add to cart" class="button" />
-										</fieldset>
-									</form>
-								</div>
-
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
+				<?php
+					}
+				}
+				?>
+					
+				
 				<!-- //3rd section -->
 				<div style="text-align: center">
 					<ul class="pagination">

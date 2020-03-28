@@ -94,7 +94,7 @@
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.html">
-										<img src="lib/images/product/<?=$item['Img'] ?>" alt="">
+										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="">
 									</a>
 								</div>
 								<div class="product-name-w3l">
@@ -140,7 +140,7 @@
 					</div>
 					<h3 class="w3l-nut-middle">Nuts & Dry Fruits</h3>
 					<div class="col-xs-5 bg-right-nut">
-						<img src="lib/images/nut1.png" alt="">
+						<img src="/lib/images/nut1.png" alt="">
 					</div>
 					<div class="clearfix"></div>
 				</div>-->
@@ -163,7 +163,7 @@
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.html">
-										<img src="lib/images/product/<?=$item['Img'] ?>" alt="">
+										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="">
 									</a>
 								</div>
 								<div class="product-name-w3l">
@@ -208,13 +208,13 @@
 <!-- //top products -->
 <!-- special offers -->
 <?php
-while($depart = current($listProductAllDepart)) 
+while($depart = current($data['listProductAllDepart'])) 
 {
 ?>
 <div class="featured-section" id="projects">
 	<div class="container">
 		<!-- tittle heading -->
-		<h3 class="tittle-w3l" style="font-size:30px"><?php echo key($listProductAllDepart); ?>
+		<h3 class="tittle-w3l" style="font-size:30px"><?php echo key($data['listProductAllDepart']); ?>
 			<span class="heading-style">
 				<i></i>
 				<i></i>
@@ -223,7 +223,7 @@ while($depart = current($listProductAllDepart))
 		</h3>
 		<!-- //tittle heading -->
 		<div class="content-bottom-in">
-			<ul id="flexiselDemoSPA">
+			<ul id="flexisel<?=key($data['listProductAllDepart'])?>">
 			<?php
 				foreach($depart as $pro)
 				{
@@ -232,7 +232,7 @@ while($depart = current($listProductAllDepart))
 					<div class="w3l-specilamk">
 						<div class="speioffer-agile">
 							<a href="single.html">
-								<img src="lib/images/product/<?=$pro['Img'] ?>" alt="">
+								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$pro['Img'] ?>" alt="">
 							</a>
 						</div>
 						<div class="product-name-w3l">
@@ -271,8 +271,9 @@ while($depart = current($listProductAllDepart))
 </div>
 
 <?php
-	next($listProductAllDepart);
+	next($data['listProductAllDepart']);
 	}
+	reset($data['listProductAllDepart']);
 ?>
 <script>
 	$(document).ready(function () {
@@ -322,52 +323,44 @@ while($depart = current($listProductAllDepart))
 			}
 		});
 
-		$("#flexiselDemoSPA").flexisel({
-			visibleItems: 3,
-			animationSpeed: 1000,
-			autoPlay: false,
-			autoPlaySpeed: 10000,
-			pauseOnHover: true,
-			enableResponsiveBreakpoints: true,
-			responsiveBreakpoints: {
-				portrait: {
-					changePoint: 480,
-					visibleItems: 1
-				},
-				landscape: {
-					changePoint: 640,
-					visibleItems: 2
-				},
-				tablet: {
-					changePoint: 768,
-					visibleItems: 2
-				}
-			}
-		});		
+			
 		
-		$("#flexiselDemoSPB").flexisel({
-			visibleItems: 3,
-			animationSpeed: 1000,
-			autoPlay: false,
-			autoPlaySpeed: 10000,
-			pauseOnHover: true,
-			enableResponsiveBreakpoints: true,
-			responsiveBreakpoints: {
-				portrait: {
-					changePoint: 480,
-					visibleItems: 1
-				},
-				landscape: {
-					changePoint: 640,
-					visibleItems: 2
-				},
-				tablet: {
-					changePoint: 768,
-					visibleItems: 2
-				}
-			}
-		});		
+			
 
 	});
 </script>
+<?php
+while($depart = current($data['listProductAllDepart']))
+{
+	?>
+	<script>
+	$(document).ready(function () {
+		$("#flexisel<?=key($data['listProductAllDepart'])?>").flexisel({
+			visibleItems: 3,
+			animationSpeed: 1000,
+			autoPlay: false,
+			autoPlaySpeed: 10000,
+			pauseOnHover: true,
+			enableResponsiveBreakpoints: true,
+			responsiveBreakpoints: {
+				portrait: {
+					changePoint: 480,
+					visibleItems: 1
+				},
+				landscape: {
+					changePoint: 640,
+					visibleItems: 2
+				},
+				tablet: {
+					changePoint: 768,
+					visibleItems: 2
+				}
+			}
+		});		
+	});
+	</script>
+	<?php
+	next($data['listProductAllDepart']);
+}
+?>
 	

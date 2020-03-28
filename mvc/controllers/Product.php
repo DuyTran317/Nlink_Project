@@ -19,6 +19,7 @@
 				$key = $_POST['key'];
 				$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
 				$listCate = json_decode($this->Category->getCategories("`Order`,`DepartId`","ASC"),true);
+
 				$listProduct = json_decode($this->ProductModel->getProductsByKeyWord($key,"CrDateTime","DESC"),true);
 				$this->view("layout1",array(
 					"page" => "product",
