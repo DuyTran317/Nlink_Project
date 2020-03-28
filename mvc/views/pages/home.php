@@ -94,7 +94,7 @@
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.html">
-										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="">
+										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="" style="width:150px; height:150px">
 									</a>
 								</div>
 								<div class="product-name-w3l">
@@ -163,7 +163,7 @@
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.html">
-										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="">
+										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="" style="width:150px; height:150px">
 									</a>
 								</div>
 								<div class="product-name-w3l">
@@ -232,7 +232,7 @@ while($depart = current($data['listProductAllDepart']))
 					<div class="w3l-specilamk">
 						<div class="speioffer-agile">
 							<a href="single.html">
-								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$pro['Img'] ?>" alt="">
+								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$pro['Img'] ?>" alt="" style="width:150px; height:150px">
 							</a>
 						</div>
 						<div class="product-name-w3l">
