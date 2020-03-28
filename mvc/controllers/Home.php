@@ -14,13 +14,20 @@
 			$listCate = json_decode($this->Category->getAllCategory(),true);
 			$listProductNew = json_decode($this->ProductModel->getProductsByOrder("CrDateTime","DESC",0,5),true);
 			$listProductTopSold = json_decode($this->ProductModel->getProductsByOrder("Sold","DESC",0,5),true);
-			
+			$listProductAllDepart = array();
+			foreach($listDepart as $item)
+			{
+				$productsDepart = json_decode($this->ProductModel->getProductsByDepartId($item['DepartId'],"CrDateTime","DESC",0,5),true);
+				$listProductAllDepart[$item['DepartName']] = $productsDepart;
+			}
+
 			$this->view("layout1",array (
-			"page" => "home",
-			"listDepart" => $listDepart,
-			"listCate" => $listCate,
-			"listProductNew" => $listProductNew,
-			"listProductTopSold" => $listProductTopSold
+				"page" => "home",
+				"listDepart" => $listDepart,
+				"listCate" => $listCate,
+				"listProductNew" => $listProductNew,
+				"listProductTopSold" => $listProductTopSold,
+				"listProductAllDepart" => $listProductAllDepart
 			));
 		}
 		

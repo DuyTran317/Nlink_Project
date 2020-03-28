@@ -24,7 +24,9 @@
 		}
 		public function getProductsByCateId($id,$field,$sort,$position = -1, $display = -1)
 		{
-			$sql="select a.* from `nl_products` as a INNER JOIN `nl_categories` as b ON a.`CategoryId` = b.`CateId` where a.`Active` = 1 order by $field $sort";
+			$sql="select a.* from `nl_products` as a 
+							INNER JOIN `nl_categories` as b ON a.`CategoryId` = b.`CateId` 
+							where a.`Active` = 1 and b.`CateId` = $id order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	
@@ -35,7 +37,7 @@
 		{
 			$sql="select a.* from `nl_products` as a INNER JOIN `nl_categories` as b ON a.`CategoryId` = b.`CateId`
 						 							 INNER JOIN nl_departments as c ON b.`DepartId` = c.`DepartId`
-			 											 where a.`Active` = 1 order by $field $sort";
+			 											 where a.`Active` = 1 and c.`DepartId` = $id order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	
