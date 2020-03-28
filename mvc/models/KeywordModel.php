@@ -1,8 +1,8 @@
 <?php
-	class DepartmentModel extends DB{
-		
-		function getDepartments($field,$sort,$position = -1, $display = -1){
-			$sql="select * from `nl_departments` where `Active` = 1 order by $field $sort";
+    class KeywordModel extends DB{
+        public function getKeywords($field,$sort,$position = -1, $display = -1)
+        {
+            $sql="select * from `nl_keywords` order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	
@@ -14,6 +14,6 @@
 				$mang[] = $rs;
 			}
 			return json_encode($mang);
-		}
-	}
+        }
+    }
 ?>

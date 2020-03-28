@@ -94,16 +94,16 @@
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.html">
-										<img src="lib/images/<?=$item['Img']?>" alt="">
+										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="">
 									</a>
 								</div>
 								<div class="product-name-w3l">
 									<h4>
-										<a href="single.html"><?=$item['ProductName']?></a>
+										<a href="single.html"><?=$item['ProductName'] ?></a>
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6><?php echo number_format($item['Price'])." đ"?></h6>
-										<p>Save $40.00</p>
+										<p>Save <?php echo number_format($item['PriceOfMarket'] - $item['Price'])." đ"; ?></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<form action="#" method="post">
@@ -140,7 +140,7 @@
 					</div>
 					<h3 class="w3l-nut-middle">Nuts & Dry Fruits</h3>
 					<div class="col-xs-5 bg-right-nut">
-						<img src="lib/images/nut1.png" alt="">
+						<img src="/lib/images/nut1.png" alt="">
 					</div>
 					<div class="clearfix"></div>
 				</div>-->
@@ -163,16 +163,16 @@
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.html">
-										<img src="lib/images/s1.jpg" alt="">
+										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="">
 									</a>
 								</div>
 								<div class="product-name-w3l">
 									<h4>
-										<a href="single.html">Aashirvaad, 5g</a>
+										<a href="single.html"><?=$item['ProductName'] ?></a>
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6>$220.00</h6>
-										<p>Save $40.00</p>
+										<p>Save <?php echo number_format($item['PriceOfMarket'] - $item['Price'])." đ"; ?></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										<form action="#" method="post">
@@ -207,10 +207,14 @@
 </div>
 <!-- //top products -->
 <!-- special offers -->
+<?php
+while($depart = current($data['listProductAllDepart'])) 
+{
+?>
 <div class="featured-section" id="projects">
 	<div class="container">
 		<!-- tittle heading -->
-		<h3 class="tittle-w3l" style="font-size:30px">Sản Phẩm A
+		<h3 class="tittle-w3l" style="font-size:30px"><?php echo key($data['listProductAllDepart']); ?>
 			<span class="heading-style">
 				<i></i>
 				<i></i>
@@ -219,21 +223,25 @@
 		</h3>
 		<!-- //tittle heading -->
 		<div class="content-bottom-in">
-			<ul id="flexiselDemoSPA">
+			<ul id="flexisel<?=key($data['listProductAllDepart'])?>">
+			<?php
+				foreach($depart as $pro)
+				{
+			?>
 				<li>
 					<div class="w3l-specilamk">
 						<div class="speioffer-agile">
 							<a href="single.html">
-								<img src="lib/images/s1.jpg" alt="">
+								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$pro['Img'] ?>" alt="">
 							</a>
 						</div>
 						<div class="product-name-w3l">
 							<h4>
-								<a href="single.html">Aashirvaad, 5g</a>
+								<a href="single.html"><?=$pro['ProductName'] ?></a>
 							</h4>
 							<div class="w3l-pricehkj">
-								<h6>$220.00</h6>
-								<p>Save $40.00</p>
+								<h6><?php echo number_format($pro['Price'])." đ"; ?></h6>
+								<p>Save <?php echo number_format($pro['PriceOfMarket'] - $pro['Price'])." đ"; ?></p>
 							</div>
 							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 								<form action="#" method="post">
@@ -254,266 +262,19 @@
 						</div>
 					</div>
 				</li>
-				<li>
-					<div class="w3l-specilamk">
-						<div class="speioffer-agile">
-							<a href="single.html">
-								<img src="lib/images/s4.jpg" alt="">
-							</a>
-						</div>
-						<div class="product-name-w3l">
-							<h4>
-								<a href="single.html">Kissan Tomato Ketchup, 950g</a>
-							</h4>
-							<div class="w3l-pricehkj">
-								<h6>$99.00</h6>
-								<p>Save $20.00</p>
-							</div>
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="#" method="post">
-									<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value=" " />
-										<input type="hidden" name="item_name" value="Kissan Tomato Ketchup, 950g" />
-										<input type="hidden" name="amount" value="99.00" />
-										<input type="hidden" name="discount_amount" value="1.00" />
-										<input type="hidden" name="currency_code" value="USD" />
-										<input type="hidden" name="return" value=" " />
-										<input type="hidden" name="cancel_return" value=" " />
-										<input type="submit" name="submit" value="Add to cart" class="button" />
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="w3l-specilamk">
-						<div class="speioffer-agile">
-							<a href="single.html">
-								<img src="lib/images/s2.jpg" alt="">
-							</a>
-						</div>
-						<div class="product-name-w3l">
-							<h4>
-								<a href="single.html">Madhur Pure Sugar, 1g</a>
-							</h4>
-							<div class="w3l-pricehkj">
-								<h6>$69.00</h6>
-								<p>Save $20.00</p>
-							</div>
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="#" method="post">
-									<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value=" " />
-										<input type="hidden" name="item_name" value="Madhur Pure Sugar, 1g" />
-										<input type="hidden" name="amount" value="69.00" />
-										<input type="hidden" name="discount_amount" value="1.00" />
-										<input type="hidden" name="currency_code" value="USD" />
-										<input type="hidden" name="return" value=" " />
-										<input type="hidden" name="cancel_return" value=" " />
-										<input type="submit" name="submit" value="Add to cart" class="button" />
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="w3l-specilamk">
-						<div class="speioffer-agile">
-							<a href="single2.html">
-								<img src="lib/images/s3.jpg" alt="">
-							</a>
-						</div>
-						<div class="product-name-w3l">
-							<h4>
-								<a href="single2.html">Surf Excel Liquid, 1.02L</a>
-							</h4>
-							<div class="w3l-pricehkj">
-								<h6>$187.00</h6>
-								<p>Save $30.00</p>
-							</div>
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="#" method="post">
-									<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value=" " />
-										<input type="hidden" name="item_name" value="Surf Excel Liquid, 1.02L" />
-										<input type="hidden" name="amount" value="187.00" />
-										<input type="hidden" name="discount_amount" value="1.00" />
-										<input type="hidden" name="currency_code" value="USD" />
-										<input type="hidden" name="return" value=" " />
-										<input type="hidden" name="cancel_return" value=" " />
-										<input type="submit" name="submit" value="Add to cart" class="button" />
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-				</li>								
-			</ul>
-		</div>
-	</div>
-</div>
-<div class="featured-section" id="projects">
-	<div class="container">
-		<!-- tittle heading -->
-		<h3 class="tittle-w3l" style="font-size:30px">Sản Phẩm B
-			<span class="heading-style">
-				<i></i>
-				<i></i>
-				<i></i>
-			</span>
-		</h3>
-		<!-- //tittle heading -->
-		<div class="content-bottom-in">
-			<ul id="flexiselDemoSPB">
-				<li>
-					<div class="w3l-specilamk">
-						<div class="speioffer-agile">
-							<a href="single.html">
-								<img src="lib/images/s1.jpg" alt="">
-							</a>
-						</div>
-						<div class="product-name-w3l">
-							<h4>
-								<a href="single.html">Aashirvaad, 5g</a>
-							</h4>
-							<div class="w3l-pricehkj">
-								<h6>$220.00</h6>
-								<p>Save $40.00</p>
-							</div>
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="#" method="post">
-									<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value=" " />
-										<input type="hidden" name="item_name" value="Aashirvaad, 5g" />
-										<input type="hidden" name="amount" value="220.00" />
-										<input type="hidden" name="discount_amount" value="1.00" />
-										<input type="hidden" name="currency_code" value="USD" />
-										<input type="hidden" name="return" value=" " />
-										<input type="hidden" name="cancel_return" value=" " />
-										<input type="submit" name="submit" value="Add to cart" class="button" />
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="w3l-specilamk">
-						<div class="speioffer-agile">
-							<a href="single.html">
-								<img src="lib/images/s4.jpg" alt="">
-							</a>
-						</div>
-						<div class="product-name-w3l">
-							<h4>
-								<a href="single.html">Kissan Tomato Ketchup, 950g</a>
-							</h4>
-							<div class="w3l-pricehkj">
-								<h6>$99.00</h6>
-								<p>Save $20.00</p>
-							</div>
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="#" method="post">
-									<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value=" " />
-										<input type="hidden" name="item_name" value="Kissan Tomato Ketchup, 950g" />
-										<input type="hidden" name="amount" value="99.00" />
-										<input type="hidden" name="discount_amount" value="1.00" />
-										<input type="hidden" name="currency_code" value="USD" />
-										<input type="hidden" name="return" value=" " />
-										<input type="hidden" name="cancel_return" value=" " />
-										<input type="submit" name="submit" value="Add to cart" class="button" />
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="w3l-specilamk">
-						<div class="speioffer-agile">
-							<a href="single.html">
-								<img src="lib/images/s2.jpg" alt="">
-							</a>
-						</div>
-						<div class="product-name-w3l">
-							<h4>
-								<a href="single.html">Madhur Pure Sugar, 1g</a>
-							</h4>
-							<div class="w3l-pricehkj">
-								<h6>$69.00</h6>
-								<p>Save $20.00</p>
-							</div>
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="#" method="post">
-									<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value=" " />
-										<input type="hidden" name="item_name" value="Madhur Pure Sugar, 1g" />
-										<input type="hidden" name="amount" value="69.00" />
-										<input type="hidden" name="discount_amount" value="1.00" />
-										<input type="hidden" name="currency_code" value="USD" />
-										<input type="hidden" name="return" value=" " />
-										<input type="hidden" name="cancel_return" value=" " />
-										<input type="submit" name="submit" value="Add to cart" class="button" />
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-				</li>
-				<li>
-					<div class="w3l-specilamk">
-						<div class="speioffer-agile">
-							<a href="single2.html">
-								<img src="lib/images/s3.jpg" alt="">
-							</a>
-						</div>
-						<div class="product-name-w3l">
-							<h4>
-								<a href="single2.html">Surf Excel Liquid, 1.02L</a>
-							</h4>
-							<div class="w3l-pricehkj">
-								<h6>$187.00</h6>
-								<p>Save $30.00</p>
-							</div>
-							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="#" method="post">
-									<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value=" " />
-										<input type="hidden" name="item_name" value="Surf Excel Liquid, 1.02L" />
-										<input type="hidden" name="amount" value="187.00" />
-										<input type="hidden" name="discount_amount" value="1.00" />
-										<input type="hidden" name="currency_code" value="USD" />
-										<input type="hidden" name="return" value=" " />
-										<input type="hidden" name="cancel_return" value=" " />
-										<input type="submit" name="submit" value="Add to cart" class="button" />
-									</fieldset>
-								</form>
-							</div>
-						</div>
-					</div>
-				</li>								
+			<?php
+				}
+			?>					
 			</ul>
 		</div>
 	</div>
 </div>
 
+<?php
+	next($data['listProductAllDepart']);
+	}
+	reset($data['listProductAllDepart']);
+?>
 <script>
 	$(document).ready(function () {
 		$("#flexiselDemoMoiNhat").flexisel({
@@ -562,52 +323,44 @@
 			}
 		});
 
-		$("#flexiselDemoSPA").flexisel({
-			visibleItems: 3,
-			animationSpeed: 1000,
-			autoPlay: false,
-			autoPlaySpeed: 10000,
-			pauseOnHover: true,
-			enableResponsiveBreakpoints: true,
-			responsiveBreakpoints: {
-				portrait: {
-					changePoint: 480,
-					visibleItems: 1
-				},
-				landscape: {
-					changePoint: 640,
-					visibleItems: 2
-				},
-				tablet: {
-					changePoint: 768,
-					visibleItems: 2
-				}
-			}
-		});		
+			
 		
-		$("#flexiselDemoSPB").flexisel({
-			visibleItems: 3,
-			animationSpeed: 1000,
-			autoPlay: false,
-			autoPlaySpeed: 10000,
-			pauseOnHover: true,
-			enableResponsiveBreakpoints: true,
-			responsiveBreakpoints: {
-				portrait: {
-					changePoint: 480,
-					visibleItems: 1
-				},
-				landscape: {
-					changePoint: 640,
-					visibleItems: 2
-				},
-				tablet: {
-					changePoint: 768,
-					visibleItems: 2
-				}
-			}
-		});		
+			
 
 	});
 </script>
+<?php
+while($depart = current($data['listProductAllDepart']))
+{
+	?>
+	<script>
+	$(document).ready(function () {
+		$("#flexisel<?=key($data['listProductAllDepart'])?>").flexisel({
+			visibleItems: 3,
+			animationSpeed: 1000,
+			autoPlay: false,
+			autoPlaySpeed: 10000,
+			pauseOnHover: true,
+			enableResponsiveBreakpoints: true,
+			responsiveBreakpoints: {
+				portrait: {
+					changePoint: 480,
+					visibleItems: 1
+				},
+				landscape: {
+					changePoint: 640,
+					visibleItems: 2
+				},
+				tablet: {
+					changePoint: 768,
+					visibleItems: 2
+				}
+			}
+		});		
+	});
+	</script>
+	<?php
+	next($data['listProductAllDepart']);
+}
+?>
 	

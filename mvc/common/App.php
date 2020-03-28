@@ -1,5 +1,4 @@
 <?php
-$_SESSION['temp'] = '.';
 	class App{
 		protected $controller="Home";
 		protected $action="Index";
@@ -16,19 +15,20 @@ $_SESSION['temp'] = '.';
 				}
 			}
 			require_once("./mvc/controllers/".$this->controller.".php");
+			$temp = $this->controller;
 			$this->controller = new $this->controller;
 			
 			if(isset($arr[1]))
 			{
 				if(method_exists($this->controller,$arr[1]))
 				{
-					$_SESSION['temp'] = '..';
-					$this->action = $arr[1];
+					$this->action =$arr[1];
 					unset($arr[1]);
 				}
 			}
-			$this->params = $arr?array_values($arr):array();
-			$toAction = array($this->controller,$this->action); // ['Home','Index']
+			
+			$this->params = $arr ? array_values($arr) : array();
+			$toAction = array($this->controller,$this->action);
 			call_user_func_array($toAction,$this->params);
 		}
 		function UrlProcess(){

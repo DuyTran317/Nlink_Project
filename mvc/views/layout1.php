@@ -16,28 +16,30 @@
 		}
 	</script>
 	<!--//tags -->
-	<link href="<?=$_SESSION['temp']?>/lib/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="<?=$_SESSION['temp']?>/lib/css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="<?=$_SESSION['temp']?>/lib/css/font-awesome.css" rel="stylesheet">
+
+	<link href="<?=$_SESSION['projectName']?>/lib/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?=$_SESSION['projectName']?>/lib/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?=$_SESSION['projectName']?>/lib/css/font-awesome.css" rel="stylesheet">
 	<!--pop-up-box-->
-	<link href="<?=$_SESSION['temp']?>/lib/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?=$_SESSION['projectName']?>/lib/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 	<!--//pop-up-box-->
 	<!-- price range -->
-	<link rel="stylesheet" type="text/css" href="<?=$_SESSION['temp']?>/lib/css/jquery-ui1.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SESSION['projectName']?>/lib/css/jquery-ui1.css">
 	<!-- flexslider -->
-	<link rel="stylesheet" href="<?=$_SESSION['temp']?>/lib/css/flexslider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?=$_SESSION['projectName']?>/lib/css/flexslider.css" type="text/css" media="screen" />
 	<!-- jquery -->
-	<script src="<?=$_SESSION['temp']?>/lib/js/jquery-2.1.4.min.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/jquery-2.1.4.min.js"></script>
 	<!-- //jquery -->
-	<script src="<?=$_SESSION['temp']?>/lib/js/jquery.simpleLoadMore.min.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/jquery.simpleLoadMore.min.js"></script>
 	<!-- price range -->
-	<script src="<?=$_SESSION['temp']?>/js/jquery-ui.js"></script>		
+	<script src="<?=$_SESSION['projectName']?>/js/jquery-ui.js"></script>		
 	<!-- flexisel (for special offers) -->
-	<script src="<?=$_SESSION['temp']?>/lib/js/jquery.flexisel.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/jquery.flexisel.js"></script>
 	<!--slide and zoom product_detail -->
-	<script src="<?=$_SESSION['temp']?>/lib/js/jquery.magnific-popup.js"></script>
-	<script src="<?=$_SESSION['temp']?>/lib/js/imagezoom.js"></script>
-	<script src="<?=$_SESSION['temp']?>/lib/js/jquery.flexslider.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/jquery.magnific-popup.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/imagezoom.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/jquery.flexslider.js"></script>
+
 </head>
 
 <body>
@@ -52,9 +54,11 @@
 			<!-- header-bot-->
 			<div class="col-md-4 logo_agile" style="margin-top:20px">
 				<h1>
-					<a href="#"
+					<a href="#">
+
 						<span>N</span>link							
-						<img src="<?=$_SESSION['temp']?>/lib/images/logo.png" alt=" ">
+						<img src="<?=$_SESSION['projectName']?>/lib/images/logo.png" alt=" ">
+
 					</a>
 				</h1>
 			</div>
@@ -85,7 +89,7 @@
 				<!-- //header lists -->
 				<!-- search -->
 				<div class="agileits_search">
-					<form action="./Product/Search" method="post">
+					<form action="<?=$_SESSION['projectName']?>/Product/Search" method="post">
 						<input name="key" type="search" placeholder="Tìm kiếm sản phẩm..." required>
 						<button type="submit" class="btn btn-default" aria-label="Left Align">
 							<span class="fa fa-search" aria-hidden="true"> </span>
@@ -227,7 +231,7 @@
 						<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav menu__list">
 								<li class="active">
-									<a class="nav-stylehead" href="./Home">Trang Chủ
+									<a class="nav-stylehead" href="<?=$_SESSION['projectName']?>/Home">Trang Chủ
 										<span class="sr-only">(current)</span>
 									</a>
 								</li>
@@ -246,8 +250,7 @@
 													$flag = 0;
 													foreach($data['listCate'] as $item)
 													{
-														$flag++;
-														if($flag%10 == 1)
+														if($flag!=0 && $flag != $item['CateId'])
 														{
 												?>
                                                             </ul>
@@ -261,12 +264,13 @@
 														<a href="product.html"><?=$item['CateName']?></a>
 													</li>
 												<?php
+													$flag = $item['CateId'];
 													}
 												?>
 												</ul>
 											</div>
 											<div class="col-sm-4 multi-gd-img">
-												<img src="lib/images/nav.png" alt="">
+												<img src="<?=$_SESSION['projectName']?>/lib/images/nav.png" alt="">
 											</div>
 											<div class="clearfix"></div>
 										</div>
@@ -377,7 +381,7 @@
 				</div>
 			</div>
 			<div class="col-xs-4 w3l-rightmk">
-				<img src="lib/images/tab3.png" alt=" ">
+				<img src="<?=$_SESSION['projectName']?>/lib/images/tab3.png" alt=" ">
 			</div>
 			<div class="clearfix"></div>
 		</div>
@@ -550,31 +554,31 @@
 					<h5>Payment Method</h5>
 					<ul>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay2.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay2.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay5.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay5.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay1.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay1.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay4.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay4.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay6.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay6.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay3.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay3.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay7.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay7.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay8.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay8.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['temp']?>/images/pay9.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/images/pay9.png" alt="">
 						</li>
 					</ul>
 				</div>
@@ -595,7 +599,7 @@
 	<!-- js-files -->
 	<!-- <script>
 	<!-- cart-js -->
-	<script src="<?=$_SESSION['temp']?>/lib/js/minicart.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/minicart.js"></script>
 	<script>
 		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
@@ -635,10 +639,11 @@
 		}
 	</script>
 
-	<script src="<?=$_SESSION['temp']?>/lib/js/SmoothScroll.min.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/SmoothScroll.min.js"></script>
 
-	<script src="<?=$_SESSION['temp']?>/lib/js/move-top.js"></script>
-	<script src="<?=$_SESSION['temp']?>/lib/js/easing.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/move-top.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/easing.js"></script>
+
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -660,7 +665,7 @@
 		});
 	</script>
 
-	<script src="<?=$_SESSION['temp']?>/lib/js/bootstrap.js"></script>
+	<script src="<?=$_SESSION['projectName']?>/lib/js/bootstrap.js"></script>
 
 </body>
 
