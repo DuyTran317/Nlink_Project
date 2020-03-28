@@ -94,12 +94,12 @@
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.html">
-										<img src="lib/images/<?=$item['Img']?>" alt="">
+										<img src="lib/images/product/<?=$item['Img'] ?>" alt="">
 									</a>
 								</div>
 								<div class="product-name-w3l">
 									<h4>
-										<a href="single.html"><?=$item['ProductName']?></a>
+										<a href="single.html"><?=$item['ProductName'] ?></a>
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6><?php echo number_format($item['Price'])." đ"?></h6>
@@ -163,12 +163,12 @@
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
 									<a href="single.html">
-										<img src="lib/images/s1.jpg" alt="">
+										<img src="lib/images/product/<?=$item['Img'] ?>" alt="">
 									</a>
 								</div>
 								<div class="product-name-w3l">
 									<h4>
-										<a href="single.html">Aashirvaad, 5g</a>
+										<a href="single.html"><?=$item['ProductName'] ?></a>
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6>$220.00</h6>
@@ -208,13 +208,13 @@
 <!-- //top products -->
 <!-- special offers -->
 <?php
-while($depart = current($listProductAllDepart)) {
+while($depart = current($listProductAllDepart)) 
 {
 ?>
 <div class="featured-section" id="projects">
 	<div class="container">
 		<!-- tittle heading -->
-		<h3 class="tittle-w3l" style="font-size:30px"><?php echo key($listProductAllDepart);?>
+		<h3 class="tittle-w3l" style="font-size:30px"><?php echo key($listProductAllDepart); ?>
 			<span class="heading-style">
 				<i></i>
 				<i></i>
@@ -232,12 +232,12 @@ while($depart = current($listProductAllDepart)) {
 					<div class="w3l-specilamk">
 						<div class="speioffer-agile">
 							<a href="single.html">
-								<img src="lib/images/<?=$pro['Img']?>" alt="">
+								<img src="lib/images/product/<?=$pro['Img'] ?>" alt="">
 							</a>
 						</div>
 						<div class="product-name-w3l">
 							<h4>
-								<a href="single.html"><?=$pro['ProductName']?></a>
+								<a href="single.html"><?=$pro['ProductName'] ?></a>
 							</h4>
 							<div class="w3l-pricehkj">
 								<h6><?php echo number_format($pro['Price'])." đ"; ?></h6>
@@ -271,10 +271,9 @@ while($depart = current($listProductAllDepart)) {
 </div>
 
 <?php
-next($listProductAllDepart);
-}
+	next($listProductAllDepart);
+	}
 ?>
-
 <script>
 	$(document).ready(function () {
 		$("#flexiselDemoMoiNhat").flexisel({
