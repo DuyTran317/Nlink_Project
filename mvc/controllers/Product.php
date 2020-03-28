@@ -13,7 +13,7 @@
 			if(isset($_POST['key']))
 			{
 				$key = $_POST['key'];
-				$listProduct = json_decode($this->ProductModel->getProductByKeyWord($key,"CrDateTime","DESC"),true);
+				$listProduct = json_decode($this->ProductModel->getProductsByKeyWord($key,"CrDateTime","DESC"),true);
 				$this->view("layout1",array(
 					"page" => "product",
 					"listProduct"=>$listProduct

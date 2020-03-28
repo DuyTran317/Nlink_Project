@@ -1,4 +1,5 @@
 <?php
+$_SESSION['temp'] = '.';
 	class App{
 		protected $controller="Home";
 		protected $action="Index";
@@ -21,12 +22,13 @@
 			{
 				if(method_exists($this->controller,$arr[1]))
 				{
+					$_SESSION['temp'] = '..';
 					$this->action = $arr[1];
 					unset($arr[1]);
 				}
 			}
 			$this->params = $arr?array_values($arr):array();
-			$toAction = array($this->controller,$this->action);
+			$toAction = array($this->controller,$this->action); // ['Home','Index']
 			call_user_func_array($toAction,$this->params);
 		}
 		function UrlProcess(){

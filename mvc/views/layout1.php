@@ -16,28 +16,28 @@
 		}
 	</script>
 	<!--//tags -->
-	<link href="lib/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="lib/css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="lib/css/font-awesome.css" rel="stylesheet">
+	<link href="<?=$_SESSION['temp']?>/lib/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?=$_SESSION['temp']?>/lib/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?=$_SESSION['temp']?>/lib/css/font-awesome.css" rel="stylesheet">
 	<!--pop-up-box-->
-	<link href="lib/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?=$_SESSION['temp']?>/lib/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
 	<!--//pop-up-box-->
 	<!-- price range -->
-	<link rel="stylesheet" type="text/css" href="lib/css/jquery-ui1.css">
+	<link rel="stylesheet" type="text/css" href="<?=$_SESSION['temp']?>/lib/css/jquery-ui1.css">
 	<!-- flexslider -->
-	<link rel="stylesheet" href="lib/css/flexslider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="<?=$_SESSION['temp']?>/lib/css/flexslider.css" type="text/css" media="screen" />
 	<!-- jquery -->
-	<script src="lib/js/jquery-2.1.4.min.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/jquery-2.1.4.min.js"></script>
 	<!-- //jquery -->
-	<script src="lib/js/jquery.simpleLoadMore.min.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/jquery.simpleLoadMore.min.js"></script>
 	<!-- price range -->
-	<script src="lib/js/jquery-ui.js"></script>		
+	<script src="<?=$_SESSION['temp']?>/js/jquery-ui.js"></script>		
 	<!-- flexisel (for special offers) -->
-	<script src="lib/js/jquery.flexisel.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/jquery.flexisel.js"></script>
 	<!--slide and zoom product_detail -->
-	<script src="lib/js/jquery.magnific-popup.js"></script>
-	<script src="lib/js/imagezoom.js"></script>
-	<script src="lib/js/jquery.flexslider.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/jquery.magnific-popup.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/imagezoom.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/jquery.flexslider.js"></script>
 </head>
 
 <body>
@@ -53,8 +53,8 @@
 			<div class="col-md-4 logo_agile" style="margin-top:20px">
 				<h1>
 					<a href="#"
-						<span>N</span>link						
-						<img src="lib/images/logo.png" alt=" ">
+						<span>N</span>link							
+						<img src="<?=$_SESSION['temp']?>/lib/images/logo.png" alt=" ">
 					</a>
 				</h1>
 			</div>
@@ -550,31 +550,31 @@
 					<h5>Payment Method</h5>
 					<ul>
 						<li>
-							<img src="images/pay2.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay2.png" alt="">
 						</li>
 						<li>
-							<img src="images/pay5.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay5.png" alt="">
 						</li>
 						<li>
-							<img src="images/pay1.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay1.png" alt="">
 						</li>
 						<li>
-							<img src="images/pay4.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay4.png" alt="">
 						</li>
 						<li>
-							<img src="images/pay6.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay6.png" alt="">
 						</li>
 						<li>
-							<img src="images/pay3.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay3.png" alt="">
 						</li>
 						<li>
-							<img src="images/pay7.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay7.png" alt="">
 						</li>
 						<li>
-							<img src="images/pay8.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay8.png" alt="">
 						</li>
 						<li>
-							<img src="images/pay9.png" alt="">
+							<img src="<?=$_SESSION['temp']?>/images/pay9.png" alt="">
 						</li>
 					</ul>
 				</div>
@@ -595,7 +595,7 @@
 	<!-- js-files -->
 	<!-- <script>
 	<!-- cart-js -->
-	<script src="lib/js/minicart.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/minicart.js"></script>
 	<script>
 		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
 
@@ -635,10 +635,10 @@
 		}
 	</script>
 
-	<script src="lib/js/SmoothScroll.min.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/SmoothScroll.min.js"></script>
 
-	<script src="lib/js/move-top.js"></script>
-	<script src="lib/js/easing.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/move-top.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/easing.js"></script>
 	<script>
 		jQuery(document).ready(function ($) {
 			$(".scroll").click(function (event) {
@@ -660,7 +660,7 @@
 		});
 	</script>
 
-	<script src="lib/js/bootstrap.js"></script>
+	<script src="<?=$_SESSION['temp']?>/lib/js/bootstrap.js"></script>
 
 </body>
 
