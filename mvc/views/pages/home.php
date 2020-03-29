@@ -93,33 +93,20 @@
 						<li>
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
-									<a href="single.html">
+									<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>">
 										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="">
 									</a>
 								</div>
 								<div class="product-name-w3l">
 									<h4>
-										<a href="single.html"><?=$item['ProductName'] ?></a>
+										<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><?=$item['ProductName'] ?></a>
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6><?php echo number_format($item['Price'])." đ"?></h6>
 										<p>Save <?php echo number_format($item['PriceOfMarket'] - $item['Price'])." đ"; ?></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Aashirvaad, 5g" />
-												<input type="hidden" name="amount" value="220.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
+										
 									</div>
 								</div>
 							</div>
@@ -162,33 +149,20 @@
 						<li>
 							<div class="w3l-specilamk">
 								<div class="speioffer-agile">
-									<a href="single.html">
+									<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>">
 										<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img'] ?>" alt="">
 									</a>
 								</div>
 								<div class="product-name-w3l">
 									<h4>
-										<a href="single.html"><?=$item['ProductName'] ?></a>
+										<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><?=$item['ProductName'] ?></a>
 									</h4>
 									<div class="w3l-pricehkj">
-										<h6>$220.00</h6>
+										<h6><?php echo number_format($item['Price'])." đ"?></h6>
 										<p>Save <?php echo number_format($item['PriceOfMarket'] - $item['Price'])." đ"; ?></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-										<form action="#" method="post">
-											<fieldset>
-												<input type="hidden" name="cmd" value="_cart" />
-												<input type="hidden" name="add" value="1" />
-												<input type="hidden" name="business" value=" " />
-												<input type="hidden" name="item_name" value="Aashirvaad, 5g" />
-												<input type="hidden" name="amount" value="220.00" />
-												<input type="hidden" name="discount_amount" value="1.00" />
-												<input type="hidden" name="currency_code" value="USD" />
-												<input type="hidden" name="return" value=" " />
-												<input type="hidden" name="cancel_return" value=" " />
-												<input type="submit" name="submit" value="Add to cart" class="button" />
-											</fieldset>
-										</form>
+										
 									</div>
 								</div>
 							</div>
@@ -231,33 +205,20 @@ while($depart = current($data['listProductAllDepart']))
 				<li>
 					<div class="w3l-specilamk">
 						<div class="speioffer-agile">
-							<a href="single.html">
+							<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$pro['url']?>">
 								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$pro['Img'] ?>" alt="">
 							</a>
 						</div>
 						<div class="product-name-w3l">
 							<h4>
-								<a href="single.html"><?=$pro['ProductName'] ?></a>
+								<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$pro['url']?>"><?=$pro['ProductName'] ?></a>
 							</h4>
 							<div class="w3l-pricehkj">
 								<h6><?php echo number_format($pro['Price'])." đ"; ?></h6>
 								<p>Save <?php echo number_format($pro['PriceOfMarket'] - $pro['Price'])." đ"; ?></p>
 							</div>
 							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-								<form action="#" method="post">
-									<fieldset>
-										<input type="hidden" name="cmd" value="_cart" />
-										<input type="hidden" name="add" value="1" />
-										<input type="hidden" name="business" value=" " />
-										<input type="hidden" name="item_name" value="Aashirvaad, 5g" />
-										<input type="hidden" name="amount" value="220.00" />
-										<input type="hidden" name="discount_amount" value="1.00" />
-										<input type="hidden" name="currency_code" value="USD" />
-										<input type="hidden" name="return" value=" " />
-										<input type="hidden" name="cancel_return" value=" " />
-										<input type="submit" name="submit" value="Add to cart" class="button" />
-									</fieldset>
-								</form>
+								
 							</div>
 						</div>
 					</div>

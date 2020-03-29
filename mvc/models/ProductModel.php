@@ -37,6 +37,14 @@
 			
 			return json_encode($rs);
 		}
+		public function getProductByUrl($url)
+		{
+			$sql="select * from `nl_products` where `url` = '$url'";
+			$r = mysqli_query($this->con,$sql);
+			$rs = mysqli_fetch_row($r);
+			
+			return json_encode($rs);
+		}
 		public function getProductsByCateId($id,$field,$sort,$position = -1, $display = -1)
 		{
 			$sql="select a.* from `nl_products` as a 

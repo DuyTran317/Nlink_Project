@@ -1,12 +1,12 @@
 <?php
 	class Product extends Controller{
 		public $DepartModel;
-		public $Category;
+		public $CategoryModel;
 		public $ProductModel;
 		function __construct()
 		{
 			$this->DepartModel = $this->model("DepartmentModel");
-			$this->Category = $this->model("CategoryModel");
+			$this->CategoryModel = $this->model("CategoryModel");
 			$this->ProductModel = $this->model("ProductModel");
 		}
 		function Index(){
@@ -18,7 +18,7 @@
 			{
 				$key = $_POST['key'];
 				$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
-				$listCate = json_decode($this->Category->getCategories("`Order`,`DepartId`","ASC"),true);
+				$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
 
 				$listProduct = json_decode($this->ProductModel->getProductsByKeyWord($key,"CrDateTime","DESC"),true);
 				$this->view("layout1",array(
@@ -28,6 +28,19 @@
 					"listProduct"=>$listProduct
 				));
 			}
+		}
+		function Detail($url="")
+		{
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$Product = json_decode($this->ProductModel->getProductByUrl($url),true);
+
+			$this->view("layout1",array(
+				"page" => "product_detail",
+				"listDepart" => $listDepart,
+				"listCate" => $listCate,
+				"Product"=>$Product
+			));
 		}
 	}
 ?>

@@ -54,7 +54,7 @@
 			<!-- header-bot-->
 			<div class="col-md-4 logo_agile" style="margin-top:20px">
 				<h1>
-					<a href="#">
+					<a href="<?=$_SESSION['projectName']?>/Home">
 
 						<span>N</span>link							
 						<img src="<?=$_SESSION['projectName']?>/lib/images/logo.png" alt=" ">
