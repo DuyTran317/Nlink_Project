@@ -79,14 +79,73 @@
 							</td>
 						</tr>
 					</tbody>
-				</table>
-				<div style="float: left">
-					<img src="lib/images/cart_img.png" alt="" style="width: 300px; height: 200px; margin-top: 40px; margin-left: 5px" />
-				</div>
-				<div style="float: right; margin-top: 20px">
+				</table>				
+			</div>
+		</div>
+		<hr/>
+		<div class="checkout-left">
+			<div class="address_form_agile row">
+				<h4 style="color:black">Thông Tin Nhận Hàng</h4>
+				<form action="payment.html" method="post" class="creditly-card-form agileinfo_form col-md-8 col-sm-12 col-xs-12">
+					<div class="creditly-wrapper wthree, w3_agileits_wrapper">
+						<div class="information-wrapper">
+							<div class="first-row">
+								<div class="controls">
+									<input class="billing-address-name" type="text" name="name" placeholder="Họ Tên Người Nhận *" required>
+								</div>
+								<div class="controls">
+									<input class="billing-address-name" type="email" name="email" placeholder="Email *" required>
+								</div>
+								<div class="w3_agileits_card_number_grids">
+									<div class="w3_agileits_card_number_grid_left">
+										<div class="controls">
+											<input type="text" placeholder="Số Điện Thoại *" name="mobile" required>
+										</div>
+									</div>
+									<div class="w3_agileits_card_number_grid_left">
+										<div class="controls">
+											<input type="text" placeholder="Số Điện Thoại 2" name="mobile2">
+										</div>
+									</div>
+									<div class="w3_agileits_card_number_grid_right">
+										<div class="controls">
+											<select id="tinh_thanh" style="width: 30%">
+												<option value="0">---Chọn Tỉnh Thành---</option>
+												<option value="1">Hồ Chí Minh</option>
+											</select>
+											<select style="width: 30%">
+												<option id="chon_qh" value="0">---Chọn Quận/Huyện---</option>		<option class="quan_huyen" value="1">Gò Vấp</option>				
+											</select>
+											<select style="width: 30%">
+												<option id="chon_px" value="0">---Chọn Phường/Xã---</option>
+												<option class="phuong_xa" value="1">Phường 16</option>
+											</select>
+										</div>
+									</div>
+									<div class="w3_agileits_card_number_grid_right">
+										<div class="controls">
+											<input type="text" placeholder="Địa Chỉ Chi Tiết *" name="address" required>
+										</div>
+									</div>
+									<div class="clear"> </div>
+								</div>
+								<div class="controls">
+									<input type="text" placeholder="Ghi Chú" name="note">
+								</div>
+								<div class="controls">
+									<select class="option-w3ls">
+										<option>Giao Hàng Tiêu Chuẩn</option>
+										<option>Giao Hàng Nhanh</option>							
+									</select>
+								</div>								
+							</div>							
+						</div>
+					</div>
+				</form>
+				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div style="margin-bottom: 15px">
 						<p style="color:black; margin-top: 10px;">Tiền Hàng: <span style="font-weight: bold">2.000.000 VND</span></p>
-						<p style="color:black; margin-top: 10px;">Phí Vận Chuyển: <span style="font-weight: bold">15.000 VND</span></p>
+						<p id="trans_pay" style="color:black; margin-top: 10px;">Phí Vận Chuyển: <span style="font-weight: bold">15.000 VND</span></p>
 					</div>
 
 					<i class="fa fa-hand-o-right" aria-hidden="true"></i>
@@ -106,79 +165,31 @@
 
 					<p style="color:black; margin-top: 10px;">Tổng Điểm Nhận Được: <span style="color:#d60c0c; font-weight: bold">10</span></p>
 				</div>
-				<div style="clear: both"></div>
 			</div>
-		</div>
-		<hr/>
-		<div class="checkout-left">
-			<div class="address_form_agile">
-				<h4 style="color:black">Thông Tin Nhận Hàng</h4>
-				<form action="payment.html" method="post" class="creditly-card-form agileinfo_form">
-					<div class="creditly-wrapper wthree, w3_agileits_wrapper">
-						<div class="information-wrapper">
-							<div class="first-row">
-								<div class="controls">
-									<input class="billing-address-name" type="text" name="name" placeholder="Họ Tên Người Nhận" required>
-								</div>
-								<div class="controls">
-									<input class="billing-address-name" type="email" name="email" placeholder="Email" required>
-								</div>
-								<div class="w3_agileits_card_number_grids">
-									<div class="w3_agileits_card_number_grid_left">
-										<div class="controls">
-											<input type="text" placeholder="Số Điện Thoại" name="mobile" required>
-										</div>
-									</div>
-									<div class="w3_agileits_card_number_grid_left">
-										<div class="controls">
-											<input type="text" placeholder="Số Điện Thoại 2" name="mobile2">
-										</div>
-									</div>
-									<div class="w3_agileits_card_number_grid_right">
-										<div class="controls">
-											<input type="text" placeholder="Địa Chỉ Chi Tiết" name="address" required>
-										</div>
-									</div>
-									<div class="clear"> </div>
-								</div>
-								<div class="controls">
-									<input type="text" placeholder="Ghi Chú" name="note">
-								</div>
-								<div class="controls">
-									<select class="option-w3ls">
-										<option>Giao Hàng Tiêu Chuẩn</option>
-										<option>Giao Hàng Nhanh</option>							
-									</select>
-								</div>								
-							</div>
-							<h4 style="color:black; margin-top: 15px">Phương Thức Thanh Toán</h4>
-							<div class="row" style="margin-bottom: 35px">
-								<div id="cod" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
-									<p><i class="fa fa-truck" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán khi nhận hàng</span></p>
-									<p style="font-size: 12px">Quý khách sẽ thanh toán bằng tiền mặt khi nhận hàng</p>										
-								</div>
-								<div id="cast_bank" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
-									<p><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán bằng chuyển khoản ngân hàng</span></p>
-									<p style="font-size: 12px">Chuyển khoản trực tiếp đến tài khoản của Nlink.vn</p>
-								</div>
-								<div id="cast_online" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
-									<p><i class="fa fa-money" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán online</span></p>
-									<p style="font-size: 12px">Thanh toán trực tuyến qua cổng thanh toán OnePay</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-				<div class="controls">
-					<input type="checkbox" id="" name="support" style="cursor: pointer">
-					<label for="support"> Chọn vào đây nếu bạn muốn được gọi tư vấn</label>
-					<i class="fa fa-question-circle" aria-hidden="true" style="cursor: pointer; color: #3D6199" title="Nếu quý khách có bất cứ thắc mắc nào về đơn hàng hoặc chính sách vận chuyển. Hãy chọn vào đây để chúng tôi liên lạc và giải đáp thắc mắc của quý khách. Cảm ơn!"></i>
+			<div class="controls">
+				<input type="checkbox" id="" name="support" style="cursor: pointer; margin: 15px 0 25px 0">
+				<label for="support"> Chọn vào đây nếu bạn muốn được gọi tư vấn</label>
+				<i class="fa fa-question-circle" aria-hidden="true" style="cursor: pointer; color: #3D6199" title="Nếu quý khách có bất cứ thắc mắc nào về đơn hàng hoặc chính sách vận chuyển. Hãy chọn vào đây để chúng tôi liên lạc và giải đáp thắc mắc của quý khách. Cảm ơn!"></i>
+			</div>
+			<h4 style="color:black; margin-top: 15px">Phương Thức Thanh Toán</h4>
+			<div class="row" style="margin:20px 0 35px 0">
+				<div id="cod" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
+					<p><i class="fa fa-truck" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán khi nhận hàng</span></p>
+					<p style="font-size: 12px">Quý khách sẽ thanh toán bằng tiền mặt khi nhận hàng</p>										
 				</div>
-				<div class="checkout-right-basket">
-					<button class="btn btn-primary check_out">Tiếp tục mua hàng</button>
-					<button class="btn btn-danger check_out">Đặt hàng</button>
+				<div id="cast_bank" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
+					<p><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán bằng chuyển khoản ngân hàng</span></p>
+					<p style="font-size: 12px">Chuyển khoản trực tiếp đến tài khoản của Nlink.vn</p>
+				</div>
+				<div id="cast_online" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
+					<p><i class="fa fa-money" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán online</span></p>
+					<p style="font-size: 12px">Thanh toán trực tuyến qua cổng thanh toán OnePay</p>
 				</div>
 			</div>
+			<div class="checkout-right-basket">
+				<button class="btn btn-primary check_out">Tiếp tục mua hàng</button>
+				<button class="btn btn-danger check_out">Đặt hàng</button>
+			</div>			
 			<div class="clearfix"> </div>
 		</div>
 	</div>
@@ -187,6 +198,26 @@
 
 <script>
 	$(document).ready(function () {
+		//Chọn Tỉnh/Thành Phố => Mã vận chuyển
+		$("#trans_pay").hide();
+		$(".quan_huyen").hide();
+		$(".phuong_xa").hide();
+		$("#tinh_thanh").change(function(){
+			if($("#tinh_thanh").val() == 0)
+			{
+				$("#trans_pay").hide();
+				$(".quan_huyen").hide();
+				$(".phuong_xa").hide();
+				$("#chon_qh").prop('selected', true);
+				$("#chon_px").prop('selected', true);
+			}
+			else{
+				$("#trans_pay").show();
+				$(".quan_huyen").show();
+				$(".phuong_xa").show();
+			}
+		});
+		
 		//Chọn Mã Giám Giá
 		$("#ma_giamgia").hide();
 		$("#use_ma_giamgia").click(function(){
