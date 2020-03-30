@@ -34,12 +34,19 @@
 			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
 			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
 			$Product = json_decode($this->ProductModel->getProductByUrl($url),true);
+			$Img = json_decode($this->ProductModel->getProductImgs($Product['ProductId']),true);
+			$listQA = json_decode($this->ProductModel->getQuestionAnswersByProductId($Product['ProductId'],"a.`CrDateTime`","DESC"),true);
+			$listComment = json_decode($this->ProductModel->getCommentsByProductId($Product['ProductId'],"CrDateTime","DESC"),true);
+			$Star = current($listComment)['sao'];
 
 			$this->view("layout1",array(
 				"page" => "product_detail",
 				"listDepart" => $listDepart,
 				"listCate" => $listCate,
-				"Product"=>$Product
+				"Product"=>$Product,
+				"Img" => $Img,
+				"listQA" => $listQA,
+				"Star" => $Star
 			));
 		}
 	}

@@ -5,33 +5,34 @@
 			<div class="grid images_3_of_2">
 				<div class="flexslider">
 					<ul class="slides">
-						<li data-thumb="lib/images/si.jpg">
+					<?php
+						foreach($data['Img'] as $img)
+						{
+					?>
+						<li data-thumb="<?=$_SESSION['projectName']?>/lib/images/product/<?=$img['Img']?>">
 							<div class="thumb-image">
-								<img src="lib/images/si.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
+								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$img['Img']?>" data-imagezoom="true" class="img-responsive" alt=""> 
+							</div>
 						</li>
-						<li data-thumb="lib/images/si2.jpg">
-							<div class="thumb-image">
-								<img src="lib/images/si2.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-						</li>
-						<li data-thumb="lib/images/si3.jpg">
-							<div class="thumb-image">
-								<img src="lib/images/si3.jpg" data-imagezoom="true" class="img-responsive" alt=""> </div>
-						</li>
+					<?php
+						}
+					?>
+						
 					</ul>
 					<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-7 single-right-left simpleCart_shelfItem">
-			<h3>Zeeba Premium Basmati Rice - 5 KG</h3>				
+			<h3><?=$data['Product']['ProductName']?></h3>				
 			<p>
-				<span class="item_price">950.000 VND</span>
-				<del>1.300.000 VND</del>					
+				<span class="item_price"><?php echo number_format($data['Product']['Price']);?> VND</span>
+				<del><?php echo number_format($data['Product']['PriceOfMarket']);?> VND</del>					
 			</p>
 			<div class="single-infoagile">
 				<ul>
 					<li>
-						<span style="font-weight: bold; font-size: 17px">Trình trạng:</span> Còn hàng
+						<span style="font-weight: bold; font-size: 17px">Trình trạng: <?php if($data['Product']['Qty']>0){echo "<font color='green'>Còn hàng</font>";}else{echo "<font color='red'>Hết hàng</font>";} ?></span> 
 					</li>
 					<li>
 						<span style="font-weight: bold; font-size: 17px">Số lượng:</span>
@@ -44,28 +45,13 @@
 				</ul>
 				<div class="occasion-cart" style="margin-bottom: 25px">
 				<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-					<form action="#" method="post">
-						<fieldset>
-							<input type="hidden" name="cmd" value="_cart" />
-							<input type="hidden" name="add" value="1" />
-							<input type="hidden" name="business" value=" " />
-							<input type="hidden" name="item_name" value="Zeeba Premium Basmati Rice - 5 KG" />
-							<input type="hidden" name="amount" value="950.00" />
-							<input type="hidden" name="discount_amount" value="1.00" />
-							<input type="hidden" name="currency_code" value="USD" />
-							<input type="hidden" name="return" value=" " />
-							<input type="hidden" name="cancel_return" value=" " />
-							<input type="submit" name="submit" value="Add to cart" class="button" />
-						</fieldset>
-					</form>
+					
 				</div>
 				</div>
 			</div>
 			<div class="product-single-w3l">	
 				<div style="margin-top: 20px">
-					<p>Biotin giúp tổng hợp protein keratin bằng cách phản ứng với các enzym của tế bào để tạo ra các axit amin. Bên cạnh việc kết hợp cải thiện dinh dưỡng tổng thể là chìa khóa để tăng trưởng tóc khỏe mạnh, mạnh mẽ hơn và nhanh hơn, Biotin đóng một vai trò rất lớn trong việc sản xuất tóc khỏe mạnh</p>
-					<p>Biotin giúp tổng hợp protein keratin bằng cách phản ứng với các enzym của tế bào để tạo ra các axit amin. Bên cạnh việc kết hợp cải thiện dinh dưỡng tổng thể là chìa khóa để tăng trưởng tóc khỏe mạnh, mạnh mẽ hơn và nhanh hơn, Biotin đóng một vai trò rất lớn trong việc sản xuất tóc khỏe mạnh</p>
-					<p>Biotin giúp tổng hợp protein keratin bằng cách phản ứng với các enzym của tế bào để tạo ra các axit amin. Bên cạnh việc kết hợp cải thiện dinh dưỡng tổng thể là chìa khóa để tăng trưởng tóc khỏe mạnh, mạnh mẽ hơn và nhanh hơn, Biotin đóng một vai trò rất lớn trong việc sản xuất tóc khỏe mạnh</p>						
+					<?=$data['Product']['ProductDesc']?>						
 				</div>					
 			</div>				
 		</div>
@@ -83,10 +69,7 @@
 
 	<div class="tab-content">
 		<div id="home" class="tab-pane fade in active" style="margin-top: 10px">
-			<p>Biotin giúp tổng hợp protein keratin bằng cách phản ứng với các enzym của tế bào để tạo ra các axit amin. Bên cạnh việc kết hợp cải thiện dinh dưỡng tổng thể là chìa khóa để tăng trưởng tóc khỏe mạnh, mạnh mẽ hơn và nhanh hơn, Biotin đóng một vai trò rất lớn trong việc sản xuất tóc khỏe mạnh</p>
-			<p>Biotin giúp tổng hợp protein keratin bằng cách phản ứng với các enzym của tế bào để tạo ra các axit amin. Bên cạnh việc kết hợp cải thiện dinh dưỡng tổng thể là chìa khóa để tăng trưởng tóc khỏe mạnh, mạnh mẽ hơn và nhanh hơn, Biotin đóng một vai trò rất lớn trong việc sản xuất tóc khỏe mạnh</p>
-			<p>Biotin giúp tổng hợp protein keratin bằng cách phản ứng với các enzym của tế bào để tạo ra các axit amin. Bên cạnh việc kết hợp cải thiện dinh dưỡng tổng thể là chìa khóa để tăng trưởng tóc khỏe mạnh, mạnh mẽ hơn và nhanh hơn, Biotin đóng một vai trò rất lớn trong việc sản xuất tóc khỏe mạnh</p>
-			<p>Biotin giúp tổng hợp protein keratin bằng cách phản ứng với các enzym của tế bào để tạo ra các axit amin. Bên cạnh việc kết hợp cải thiện dinh dưỡng tổng thể là chìa khóa để tăng trưởng tóc khỏe mạnh, mạnh mẽ hơn và nhanh hơn, Biotin đóng một vai trò rất lớn trong việc sản xuất tóc khỏe mạnh</p>
+			<?=$data['Product']['ProductDesc']?>
 		</div>
 		<div id="menu1" class="tab-pane fade">
 			<div class="container-fluid">
@@ -106,52 +89,56 @@
 					<div style="clear: right"></div>
 				</div>										
 			</div>
-			<div class="container-fluid" style="margin-top: 20px">
-				<div class="row" style="margin-top: 15px">
-					<label class="col-md-1">Hỏi:</label>
-					<span class="col-md-11">Trời nóng ở sài gòn như bây giờ thì mình phải bào quản như thế nào. Minh thấy shop ghi la đẻ ở tủ đông đá, vậy mỗi lần sd la phải làm tan đá mơi uống được phải khôg shop?<br/>
-					<span style="font-size: 14px; color: gray">Bởi: Thanh Mai vào 21/03/2020 14:00</span></span>
+			<div style="margin-top: 20px">
+			<?php
+				$flag = 0;
+				foreach($data['listQA'] as $item)
+				{
+					if($flag != $item['QuestionId'] && $flag != 0)
+					{
+						?>
+							</div>
+							<hr/>
+						<?php
+					}
+					if($flag != $item['QuestionId'])
+					{
+						?>
+						<div class="container-fluid" style="margin-top: 20px">
+							<div class="row" style="margin-top: 15px">
+								<label class="col-md-1">Hỏi:</label>
+								<span class="col-md-11">Trời nóng ở sài gòn như bây giờ thì mình phải bào quản như thế nào. Minh thấy shop ghi la đẻ ở tủ đông đá, vậy mỗi lần sd la phải làm tan đá mơi uống được phải khôg shop?<br/>
+								<span style="font-size: 14px; color: gray">Bởi: Thanh Mai vào 21/03/2020 14:00</span></span>
+							</div>
+						<?php
+					}
+					if($item['AnswerId'] != NULL)
+					{
+						?>
+							<div class="row" style="margin-top: 15px">
+								<label class="col-md-1">Đáp:</label>
+								<span class="col-md-11">Bạn chỉ cần bảo quản sản phẩm ở ngăn mát tủ lạnh thôi nhé, không để ở ngăn đông đá ạ<br/>
+								<span style="font-size: 14px; color: gray">Bởi: Nlink.vn vào 21/03/2020 14:00</span></span>
+							</div>
+						<?php
+					}
+				}
+				if($flag != 0)
+				{
+			?>
 				</div>
-				<div class="row" style="margin-top: 15px">
-					<label class="col-md-1">Đáp:</label>
-					<span class="col-md-11">Bạn chỉ cần bảo quản sản phẩm ở ngăn mát tủ lạnh thôi nhé, không để ở ngăn đông đá ạ<br/>
-					<span style="font-size: 14px; color: gray">Bởi: Nlink.vn vào 21/03/2020 14:00</span></span>
-				</div>
+				<hr/>
+			<?php
+				}
+			?>
 			</div>
-			<hr/>
-			<div class="container-fluid">
-				<div class="row" style="margin-top: 15px">
-					<label class="col-md-1">Hỏi:</label>
-					<span class="col-md-11">Trời nóng ở sài gòn như bây giờ thì mình phải bào quản như thế nào. Minh thấy shop ghi la đẻ ở tủ đông đá, vậy mỗi lần sd la phải làm tan đá mơi uống được phải khôg shop?<br/>
-					<span style="font-size: 14px; color: gray">Bởi: Thanh Mai vào 21/03/2020 14:00</span></span>
-				</div>
-				<div class="row" style="margin-top: 15px">
-					<label class="col-md-1">Đáp:</label>
-					<span class="col-md-11">Bạn chỉ cần bảo quản sản phẩm ở ngăn mát tủ lạnh thôi nhé, không để ở ngăn đông đá ạ<br/>
-					<span style="font-size: 14px; color: gray">Bởi: Nlink.vn vào 21/03/2020 14:00</span></span>
-				</div>
-			</div>
-			<hr/>
-			<div class="container-fluid">
-				<div class="row" style="margin-top: 15px">
-					<label class="col-md-1">Hỏi:</label>
-					<span class="col-md-11">Trời nóng ở sài gòn như bây giờ thì mình phải bào quản như thế nào. Minh thấy shop ghi la đẻ ở tủ đông đá, vậy mỗi lần sd la phải làm tan đá mơi uống được phải khôg shop?<br/>
-					<span style="font-size: 14px; color: gray">Bởi: Thanh Mai vào 21/03/2020 14:00</span></span>
-				</div>
-				<div class="row" style="margin-top: 15px">
-					<label class="col-md-1">Đáp:</label>
-					<span class="col-md-11">Bạn chỉ cần bảo quản sản phẩm ở ngăn mát tủ lạnh thôi nhé, không để ở ngăn đông đá ạ<br/>
-					<span style="font-size: 14px; color: gray">Bởi: Nlink.vn vào 21/03/2020 14:00</span></span>
-				</div>
-			</div>
-			<hr/>
 			<div style="text-align: center"><button class="btn btn-default">Xem thêm</button></div>
 		</div>
 		<div id="menu2" class="tab-pane fade">
 			<div class="container" style="margin-top: 15px">
 				<h4>Khách hàng đánh giá</h4>
 				<h3 style="margin-top: 20px; color: red; font-size: 42px">
-					4.5/5 <i class="fa fa-star" aria-hidden="true" style="color: yellow; font-size: 42px"></i>
+					<?=$data['Star']==NULL?0:$data['Star']?>/5 <i class="fa fa-star" aria-hidden="true" style="color: yellow; font-size: 42px"></i>
 				</h3>
 				<h4 style="margin-top: 40px">Gửi nhận xét của bạn</h4>
 				<h5 style="margin-top: 20px">1. Đánh giá của bạn về sản phẩm này:<br/>				
