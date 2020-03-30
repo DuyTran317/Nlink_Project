@@ -202,6 +202,16 @@
 							<span style="font-weight: bold; margin-bottom: 5px">Nhi</span> - <span style="color:gray">21/03/2020 14:00</span><br/>
 							<span style="font-size: 15px">Ok bạn nhé!</span>
 						</div>
+						
+						<!--Xem thêm theo mỗi comment-->
+						<div style="font-size: 14px; margin-top: 6px">
+							<a href="#">Xem thêm</a>
+						</div>
+						
+						<!--Xem thêm theo tất cả comment-->
+						<div style="font-size: 14px; margin-top: 10px; text-align: center">
+							<button class="btn btn-default">Xem thêm</button>
+						</div>
 					</div>
 				</div>
 			</div>
