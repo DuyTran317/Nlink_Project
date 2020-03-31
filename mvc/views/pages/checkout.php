@@ -164,6 +164,11 @@
 					<p style="color:black; margin-top: 15px;">Tổng Tiền Cần Thanh Toán: <span style="color:#d60c0c; font-weight: bold">2.015.000 VND</span></p>
 
 					<p style="color:black; margin-top: 10px;">Tổng Điểm Nhận Được: <span style="color:#d60c0c; font-weight: bold">10</span></p>
+					
+					<p id="day_ship" style="color:black; margin-top: 10px; font-weight: bold">Thời gian giao hàng: Từ <span class="day_shipfrom">2</span> đến <span id="day_shipto">4</span> ngày làm việc kể từ khi xác nhận đơn hàng</p>
+					
+					<p style="color:black; margin-top: 10px; font-size: 14px">Đặt hàng qua điện thoại (8h-17h30)</p>
+					
 				</div>
 			</div>
 			<div class="controls">
@@ -200,6 +205,7 @@
 	$(document).ready(function () {
 		//Chọn Tỉnh/Thành Phố => Mã vận chuyển
 		$("#trans_pay").hide();
+		$("#day_ship").hide();
 		$(".quan_huyen").hide();
 		$(".phuong_xa").hide();
 		$("#tinh_thanh").change(function(){
@@ -208,11 +214,13 @@
 				$("#trans_pay").hide();
 				$(".quan_huyen").hide();
 				$(".phuong_xa").hide();
+				$(".day_ship").hide();
 				$("#chon_qh").prop('selected', true);
 				$("#chon_px").prop('selected', true);
 			}
 			else{
 				$("#trans_pay").show();
+				$("#day_ship").show();
 				$(".quan_huyen").show();
 				$(".phuong_xa").show();
 			}

@@ -134,7 +134,7 @@
 			<div class="row mb-2">
 				<div class="col-sm-12">
 					<ol class="breadcrumb float-sm-left">
-						<li class="breadcrumb-item" style="font-size:18px">Chi Tiết Đơn Hàng</li>
+						<li class="breadcrumb-item" style="font-size:18px">Thông Tin Địa Điểm</li>
 					</ol>
 				</div><!-- /.col -->
 			</div><!-- /.row -->
@@ -142,188 +142,45 @@
 			</div>  
 			<div class="container">
 			<!-- Main content -->	
-				<div class="row" style="margin-bottom: 50px">
-					<table class="col-md-12 col-sm-12 col-xs-12 table-bordered table_form datatable">
-					<thead>
-						<tr class="table_header">
-							<th class="table_th">STT</th>
-							<th class="table_th">Hình</th>
-							<th class="table_th">Số Lượng</th>
-							<th class="table_th">Sản Phẩm</th>
-							<th class="table_th">Giá Tiền</th>
-							<th class="table_th">Tổng Giá Tiền</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="hv_row" style="cursor:pointer" onclick="">
-							<td class="table_row">1</td>
-							<td class="table_row"><img src="../lib/images/product/a1.jpg" alt="" style="width: 50px; height: 50px" /></td>
-							<td class="table_row">2</td>
-							<td class="table_row">Bánh Orion</td>
-							<td class="table_row" style="font-weight: bold; color: #122eac">10,000 VND</td>		
-							<td class="table_row" style="font-weight: bold; color: red">20,000 VND</td>		
-						</tr>		
-						<tr class="hv_row" style="cursor:pointer" onclick="">
-							<td class="table_row">2</td>
-							<td class="table_row"><img src="../lib/images/product/a2.jpg" alt="" style="width: 50px; height: 50px" /></td>
-							<td class="table_row">5</td>
-							<td class="table_row">Bánh Orion</td>
-							<td class="table_row" style="font-weight: bold; color: #122eac">12,000 VND</td>
-							<td class="table_row" style="font-weight: bold; color: red">60,000 VND</td>
-						</tr>							
-					</tbody>
-				</table>		
+				<label>Tỉnh/Thành Phố</label>
+				<select id="tinh_thanh_ad" class="form-control">
+					<option value="0">---Chọn Tỉnh Thành---</option>
+					<option value="1">Hồ Chí Minh</option>
+				</select>
+				<label style="margin-top: 10px">Quận/Huyện</label>
+				<select class="form-control">
+					<option id="chon_qh_ad" value="0">---Chọn Quận/Huyện---</option>		
+					<option class="quan_huyen_ad" value="1">Gò Vấp</option>
+				</select>
+				<label style="margin-top: 10px">Phường/Xã</label>
+				<select class="form-control">
+					<option id="chon_px_ad" value="0">---Chọn Phường/Xã---</option>
+					<option class="phuong_xa_ad" value="1">Phường 16</option>
+				</select>
+				
+				<div style="margin-top: 40px" class="row">
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<label>Phí Vận Chuyển:</label>
+						<input type="number" required /><br/>						
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<label>Từ:</label>
+						<input type="number" required />
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12">
+						<label>Đến:</label>
+						<input type="number" required /> (ngày)
+					</div>
 				</div>
 				
-				<div class="row">
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<table>
-							<tbody>
-								<tr>
-									<td><label style="margin-top:20px">Mã Đơn Hàng:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#1947C4">DH28032020</label>
-									</td>
-								</tr>							
-								<tr>
-									<td><label style="margin-top:20px">Tổng Số Tiền:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:red">100,000 VND</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Phí Vận Chuyên:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#1b7e33">15,000 VND</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Điểm Sử Dụng:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px">0</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Loại Voucher:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px">Không có</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Mã Voucher:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px">Không có</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Số Tiền Voucher:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#f47238">0 VND</label>
-									</td>
-								</tr>	
-								<tr>
-									<td><label style="margin-top:20px">Số Tiền Phải Trả:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:red">100,000 VND</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Phương Thức Thanh Toán:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px">COD</label>
-									</td>
-								</tr>	
-								<tr>
-									<td><label style="margin-top:20px">Loại Vận Chuyển:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px">Giao Hàng Tiêu Chuẩn</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Trạng Thái:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color: #CD0C7E">Chờ xử lý</label>
-									</td>
-								</tr>	
-							</tbody>
-						</table>						
-					</div>
-					
-					<div class="col-md-6 col-sm-6 col-xs-12">
-						<table>
-							<tbody>
-								<tr>
-									<td><label style="margin-top:20px">Ngày Tạo Đơn Hàng:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#BC1176">19:00 28/03/2020</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Họ Tên:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#36527c">Nguyễn Văn Test</label>
-									</td>
-								</tr>	
-								<tr>
-									<td><label style="margin-top:20px">Email:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#36527c">test@gmail.com</label>
-									</td>
-								</tr>	
-								<tr>
-									<td><label style="margin-top:20px">Số Điện Thoại 1:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#36527c">0123456789</label>
-									</td>
-								</tr>	
-								<tr>
-									<td><label style="margin-top:20px">Số Điện Thoại 2:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#36527c">Không có</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Tỉnh/Thành:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#ab32bc">Hồ Chí Minh</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Quận/Huyện:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#ab32bc">Gò Vấp</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Phường/Xã</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#ab32bc">Phường 11</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Địa Chỉ Chi Tiết:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#36527c">80 Quang Trung, P.11, Q.Gò Vấp, TPHCM</label>
-									</td>
-								</tr>
-								<tr>
-									<td><label style="margin-top:20px">Ghi Chú:</label></td>
-									<td>
-										<label style="width:250px; margin-left:10px; margin-top:20px; color:#36527c">Không có</label>
-									</td>
-								</tr>
-								<tr>
-									<td colspan="2"><label style="margin-top:20px; color: #e93f3f">***YÊU CẦU LIÊN HỆ TƯ VẤN***</label></td>			
-								</tr>
-							</tbody>
-						</table>
-					</div>
+				<div style="margin-top: 15px">
+					<span style="color:red">*Lưu ý: Phí vận chuyển và khoảng thời gian giao hàng sẽ được điều chỉnh theo tỉnh/thành phố đã chọn</span>
 				</div>
-				<div style="position: flexible; text-align: center; margin:50px 0 50px 0">
-							<button type="button" class="btn btn-default" style="font-size:14px">Quay Lại</button>
-							<button type="button" class="btn btn-success" style="font-size:14px">Xử Lý</button>
+				
+				<div style="margin-top: 35px; text-align: center">
+					<button class="btn btn-success">Cập Nhật</button>
 				</div>
-				<!-- /.content -->	
+			<!-- /.content -->	
 			</div>
 		</div>
   	</section>
@@ -380,3 +237,21 @@
 <script src="dist/js/demo.js"></script>
 </body>
 </html>
+
+<script>
+	$(".quan_huyen_ad").hide();
+	$(".phuong_xa_ad").hide();
+	$("#tinh_thanh_ad").change(function(){
+		if($("#tinh_thanh_ad").val() == 0)
+		{				
+			$(".quan_huyen_ad").hide();
+			$(".phuong_xa_ad").hide();
+			$("#chon_qh_ad").prop('selected', true);
+			$("#chon_px_ad").prop('selected', true);
+		}
+		else{				
+			$(".quan_huyen_ad").show();
+			$(".phuong_xa_ad").show();
+		}
+	});
+</script>
