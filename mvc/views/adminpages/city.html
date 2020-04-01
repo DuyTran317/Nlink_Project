@@ -154,33 +154,74 @@
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div id="home" class="container tab-pane active"><br>
-					  	<label>Tỉnh/Thành Phố</label>
-						<select class="form-control">
-							<option value="0">---Chọn Tỉnh Thành---</option>
-							<option value="1">Hồ Chí Minh</option>
-						</select>
-						<label style="margin-top: 10px">Quận/Huyện</label>
-						<input type="text" class="form-control" />
+						<div class="row">
+							<div class="col-md-5 col-sm-5 col-xs-12">
+								<label>Tỉnh/Thành Phố</label>
+								<select class="form-control">
+									<option value="0">---Chọn Tỉnh Thành---</option>
+									<option value="1">Hồ Chí Minh</option>
+								</select>
+								<label style="margin-top: 10px">Quận/Huyện</label>
+								<textarea class="form-control"></textarea>
+								<div style="margin-top: 35px; text-align: center">
+									<button class="btn btn-success">Thêm Mới</button>
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-2 col-xs-12"></div>
+							<div class="col-md-5 col-sm-5 col-xs-12">
+								<label>Tỉnh/Thành Phố</label>
+								<select class="form-control">
+									<option value="0">---Chọn Tỉnh Thành---</option>
+									<option value="1">Hồ Chí Minh</option>
+								</select>
+								<label style="margin-top: 10px">Quận/Huyện</label>
+								<textarea class="form-control">Quận Gò Vấp, Quận 1, Quận 2, Quận Bình Thạnh, Quận Tân Phú, Quận 12</textarea>
+								<div style="margin-top: 35px; text-align: center">
+									<button class="btn btn-primary">Cập Nhật</button>
+								</div>
+							</div>
+						</div>
 					</div>
 					<div id="menu1" class="container tab-pane fade"><br>
-					  <label>Tỉnh/Thành Phố</label>
-						<select id="tinh_thanh_ad2" class="form-control">
-							<option value="0">---Chọn Tỉnh Thành---</option>
-							<option value="1">Hồ Chí Minh</option>
-						</select>
-						<label style="margin-top: 10px">Quận/Huyện</label>
-						<select id="qh2" class="form-control">
-							<option id="chon_qh_ad2" value="0">---Chọn Quận/Huyện---</option>		
-							<option class="quan_huyen_ad2" value="1">Gò Vấp</option>
-						</select>
-						<label style="margin-top: 10px">Phường/Xã</label>
-						<input type="text" class="form-control" />
+						<div class="row">
+							<div class="col-md-5 col-sm-5 col-xs-12">
+								<label>Tỉnh/Thành Phố</label>
+								<select id="tinh_thanh_ad" class="form-control">
+									<option value="0">---Chọn Tỉnh Thành---</option>
+									<option value="1">Hồ Chí Minh</option>
+								</select>
+								<label style="margin-top: 10px">Quận/Huyện</label>
+								<select id="qh" class="form-control">
+									<option id="chon_qh_ad" value="0">---Chọn Quận/Huyện---</option>		
+									<option class="quan_huyen_ad" value="1">Gò Vấp</option>
+								</select>
+								<label style="margin-top: 10px">Phường/Xã</label>
+								<textarea class="form-control"></textarea>
+								<div style="margin-top: 35px; text-align: center">
+									<button class="btn btn-success">Thêm Mới</button>
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-2 col-xs-12"></div>
+							<div class="col-md-5 col-sm-5 col-xs-12">
+								<label>Tỉnh/Thành Phố</label>
+								<select id="tinh_thanh_ad2" class="form-control">
+									<option value="0">---Chọn Tỉnh Thành---</option>
+									<option value="1">Hồ Chí Minh</option>
+								</select>
+								<label style="margin-top: 10px">Quận/Huyện</label>
+								<select id="qh2" class="form-control">
+									<option id="chon_qh_ad2" value="0">---Chọn Quận/Huyện---</option>		
+									<option class="quan_huyen_ad2" value="1">Gò Vấp</option>
+								</select>
+								<label style="margin-top: 10px">Phường/Xã</label>
+								<textarea class="form-control"></textarea>
+								<div style="margin-top: 35px; text-align: center">
+									<button class="btn btn-primary">Cập Nhật</button>
+								</div>
+							</div>
+						</div>
 					</div>
-				</div>				
-				
-				<div style="margin-top: 35px; text-align: center">
-					<button class="btn btn-success">Cập Nhật</button>
-				</div>
+				</div>												
 			<!-- /.content -->	
 			</div>
 		</div>
@@ -241,6 +282,18 @@
 
 <script>	
 	//Tab Phường Xã
+	$(".quan_huyen_ad").hide();	
+	$("#tinh_thanh_ad").change(function(){
+		if($("#tinh_thanh_ad").val() == 0)
+		{				
+			$(".quan_huyen_ad").hide();			
+			$("#chon_qh_ad").prop('selected', true);			
+		}
+		else{				
+			$(".quan_huyen_ad").show();					
+		}
+	});	
+	
 	$(".quan_huyen_ad2").hide();	
 	$("#tinh_thanh_ad2").change(function(){
 		if($("#tinh_thanh_ad2").val() == 0)
