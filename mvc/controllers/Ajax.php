@@ -116,7 +116,7 @@
 				$email = Trim($_POST['email']);
 				$pass = password_hash($_POST['pass'],PASSWORD_DEFAULT); //sử dụng password_verify($passNgdungnhap,$passdaduochash) để xác thực
 				$userid = $this->UserModel->insertUser($email,$name,$phone,$pass);
-
+				
 				if($userid!=0)
 				{
 					$_SESSION['UserId'] = $userid;
@@ -127,6 +127,36 @@
 				else
 				{
 					echo "0";
+				}
+			}
+			else echo "0";
+		}
+		function Login()
+		{
+			if(isset($_POST['email']))
+			{
+				$email = $_POST['email'];
+				$pass = $_POST['pass'];
+				
+				$user = json_decode($this->UserModel->getUserByEmail($email),true);
+				if($user != null)
+				{
+
+					if(password_verify($pass,$user['Password']))
+					{
+						$_SESSION['UserId'] = $user['UserId'];
+						$_SESSION['UserName'] = $user['FullName'];
+
+						echo "1";
+					}
+					else 
+					{
+						echo "-1";
+					}
+				}
+				else
+				{
+					echo "-2";
 				}
 			}
 			else echo "0";

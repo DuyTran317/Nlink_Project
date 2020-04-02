@@ -36,31 +36,7 @@
 				"listKeyword" => $listKeyword
 			));
 		}
-		function Register()
-		{
-			if(isset($_POST['register']))
-			{
-				$name = Trim($_POST['name']);
-				$phone = $_POST['mobile'];
-				$email = Trim($_POST['email']);
-				$pass = $_POST['pass'];
-				$userid = $this->UserModel->insertUser($email,$name,$phone,$pass);
-
-				if($userid!=0)
-				{
-					$_SESSION['UserId'] = $userid;
-					$_SESSION['UserName'] = $name;
-
-					echo "<script>
-						location.reload(true);
-					</script>"
-				}
-				else
-				{
-
-				}
-			}
-		}
+		
 		
 	}
 ?>

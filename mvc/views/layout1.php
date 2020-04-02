@@ -130,16 +130,16 @@
 					</div>
 					<div class="modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Đăng Nhập </h3>						
-						<form action="#" method="post">
+						
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Email" name="email" required>
+								<input id="l_email" type="email" placeholder="Email" name="email" required>
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Mật Khẩu" name="pass" required>
+								<input id="l_pass" type="password" placeholder="Mật Khẩu" name="pass" required>
 							</div>
 							<a href="#">Quên mật khẩu</a><br/>
-							<input type="submit" value="Đăng Nhập">
-						</form>		
+							<input type="button" onclick="login()" value="Đăng Nhập">
+							
 						Chưa có tài khoản? Đăng ký <a href="" data-toggle="modal" data-target="#myModal2">tại đây</a>
 						<div class="clearfix"></div>
 					</div>
@@ -186,9 +186,9 @@
 							</div>
 							<div class="styled-input">
 								<span id="noti_repass"></span>
-								<input id="r_repass" type="password" onkeyup="$(this).val()==$('#r_pass').val()?$('#r_submit').prop('disabled', false):{$('#r_submit').prop('disabled', true);$('#noti_repass').html('Nhập lại Mật Khẩu phải giống Mật khẩu!');}" placeholder="Nhập Lại Mật Khẩu" name="re_pass" id="password2" required>
+								<input id="r_repass" type="password" onkeyup="checkRepass($(this).val())" placeholder="Nhập Lại Mật Khẩu" name="re_pass" id="password2" required>
 							</div>
-							<input id="r_submit" onclick="checkinfo()" name="register" value="Đăng Ký">
+							<input type="button" id="r_submit" onclick="register()" name="register" value="Đăng Ký">
 						<!-- </form> -->
 					</div>
 				</div>
@@ -264,7 +264,7 @@
 														}
 												?>
 													<li>
-														<a href="product.html"><?=$item['CateName']?></a>
+														<a href="<?=$_SESSION['projectName']?>/Product/Category/<?=$item['url']?>"><?=$item['CateName']?></a>
 													</li>
 												<?php
 													$flag = $item['CateId'];
@@ -680,11 +680,15 @@
 						switch(data)
 						{
 							case "1":
-								$("#noti_email").html("<p style='color: green' >có thể sử dụng email này!</p>");
+								$("#noti_email").html("");
 								$('#r_submit').prop('disabled', false);
 								break;
 							case "-1":
 								$("#noti_email").html("<p style='color: red' >email đã được đăng ký!</p>");
+								$('#r_submit').prop('disabled', true);
+								break;
+							case "-3":
+								$("#noti_email").html("<p style='color: red' >email không đúng định dạng!</p>");
 								$('#r_submit').prop('disabled', true);
 								break;
 							default:
@@ -702,11 +706,29 @@
 			{
 				if(pass.length < 6)
 				{
-					$("#noti_pass").html("Mật khẩu phải có ít nhất 6 kí tự!");
+					$("#noti_pass").html('<p style="color: red">Mật khẩu phải có ít nhất 6 kí tự!</p>');
+				}
+				else
+				{
+					$("#noti_pass").html("");
 				}
 			}
 		}
-		function checkinfo()
+		function checkRepass(repass)
+		{
+			if(repass!="")
+			{
+				if(repass!=$('#r_pass').val())
+				{
+					$('#noti_repass').html('<p style="color: red">Nhập lại Mật Khẩu phải giống Mật khẩu!</p>');
+				}
+				else
+				{
+					$("#noti_repass").html("");
+				}
+			}
+		}
+		function register()
 		{
 			var email = $("#r_email").val().trim();
 			var name = $("#r_name").val().trim();
@@ -739,6 +761,7 @@
 				alert(noti);
 			}
 			else
+			if(noti == "" && $("#noti_repass").html() == "" && $("#noti_pass").html() == "" && $("#noti_email").html() == "")
 			{
 				$.ajax({
 					url:'<?=$_SESSION['projectName']?>/Ajax/Register',
@@ -750,17 +773,42 @@
 						pass : pass,
 					},
 					success: function (data){
+						console.log(data);
+						switch(data)
+						{
+							case "1":
+								location.reload(true);
+								break;
+							default:
+								alert("Đăng ký thất bại!")
+								break;
+						}
+					}
+				});
+			}
+		}
+		function login(){
+			var email = $("#l_email").val();
+			var pass = $("#l_pass").val();
+			$.ajax({
+					url:'<?=$_SESSION['projectName']?>/Ajax/Login',
+					type:"POST",
+					data: {
+						email : email,
+						pass : pass,
+					},
+					success: function (data){
+						console.log(data);
 						if(data == "1")
 						{
 							location.reload(true);
 						}
 						else
 						{
-
+							alert("Đăng nhập thất bại!");
 						}
 					}
 				});
-			}
 		}
 	</script>
 
