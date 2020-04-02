@@ -77,14 +77,36 @@
 					<li>
 						<span class="fa fa-phone" aria-hidden="true"></span> 0903 029 313
 					</li>
-					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal1">
-							<span class="fa fa-unlock-alt" aria-hidden="true"></span> Đăng Nhập </a>
-					</li>
-					<li>
-						<a href="#" data-toggle="modal" data-target="#myModal2">
-							<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Đăng Ký </a>
-					</li>
+					<?php
+						if(isset($_SESSION['UserId']))
+						{
+					?>
+							<li>
+								<a href="#">
+									<i class="fa fa-user-circle-o" aria-hidden="true"></i> Tài Khoản
+								</a>
+							</li>
+							<li>
+								<a href="#">Hi, <?=$_SESSION['UserName']?></a>
+							</li>
+					<?php
+						}
+		  				else
+						{
+					?>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#myModal1">
+									<span class="fa fa-unlock-alt" aria-hidden="true"></span> Đăng Nhập
+								</a>
+							</li>
+							<li>
+								<a href="#" data-toggle="modal" data-target="#myModal2">
+									<span class="fa fa-pencil-square-o" aria-hidden="true"></span> Đăng Ký 
+								</a>
+							</li>
+					<?php
+						}
+					?>
 				</ul>
 				<!-- //header lists -->
 				<!-- search -->
@@ -166,29 +188,64 @@
 					</div>
 					<div class="modal_body_left modal_body_left1">
 						<h3 class="agileinfo_sign">Đăng Ký</h3>
-						<p>
+						<p style="color:gray">
 							Chưa có tài khoản? Vui lòng tạo tài khoản mới.
 						</p>
 						<!-- <form action="<?=$_SESSION['projectName']?>/Home/Register" method="post"> -->
-							<div class="styled-input agile-styled-input-top">
-								<input id="r_name" type="text" placeholder="Họ Tên" name="name" required>
+							<div class="agile-styled-input-top">
+								<label style="margin-bottom: 5px">Họ Tên <span style="color:red">*</span></label>
+								<input class="form-control" id="r_name" type="text" name="name" required>
 							</div>
-							<div class="styled-input">
-								<input id="r_phone" type="number" placeholder="Số Điện Thoại" name="mobile" required>
+							<div>
+								<label style="margin-bottom: 5px">Số Điện Thoại <span style="color:red">*</span></label>
+								<input class="form-control" id="r_phone" type="text" name="mobile" required>
 							</div>
-							<div class="styled-input">
+							<div>
+								<label style="margin-bottom: 5px">Email <span style="color:red">*</span></label><br/>
 								<span id="noti_email"></span>
-								<input id="r_email" type="email" onkeyup="checkEmail($(this).val())" placeholder="Email" name="email" required>
+								<input class="form-control" id="r_email" type="email" onkeyup="checkEmail($(this).val())" name="email" required>
 							</div>
-							<div class="styled-input">
+							<div>
+								<label style="margin-bottom: 5px">Mật Khẩu <span style="color:red">*</span></label><br/>
 								<span id="noti_pass"></span>
-								<input id="r_pass" type="password" onkeyup="checkPass($(this).val())" placeholder="Mật Khẩu" name="pass" id="password1" required>
+								<input class="form-control" id="r_pass" type="password" onkeyup="checkPass($(this).val())" name="pass" id="password1" required>
 							</div>
-							<div class="styled-input">
+							<div>
+								<label style="margin-bottom: 5px">Nhập Lại Mật Khẩu <span style="color:red">*</span></label><br/>
 								<span id="noti_repass"></span>
-								<input id="r_repass" type="password" onkeyup="$(this).val()==$('#r_pass').val()?$('#r_submit').prop('disabled', false):{$('#r_submit').prop('disabled', true);$('#noti_repass').html('Nhập lại Mật Khẩu phải giống Mật khẩu!');}" placeholder="Nhập Lại Mật Khẩu" name="re_pass" id="password2" required>
+								<input class="form-control" id="r_repass" type="password" onkeyup="$(this).val()==$('#r_pass').val()?$('#r_submit').prop('disabled', false):{$('#r_submit').prop('disabled', true);$('#noti_repass').html('Nhập lại Mật Khẩu phải giống Mật khẩu!');}" name="re_pass" id="password2" required>
 							</div>
-							<input id="r_submit" onclick="checkinfo()" name="register" value="Đăng Ký">
+							<div>
+								<label style="margin-bottom: 5px">Năm Sinh <span style="color:red">*</span></label>								
+								<input id="" type="date" class="form-control" name="" id="" required style="margin-bottom: 15px">
+							</div>
+							<div>
+								<label style="margin:10px 0 5px 0">Tỉnh/Thành Phố <span style="color:red">*</span></label>				
+								<select id="tinh_thanh_ly" class="form-control">
+									<option value="0">---Chọn Tỉnh Thành---</option>
+									<option value="1">Hồ Chí Minh</option>
+								</select>
+							</div>
+							<div>
+								<label style="margin:20px 0 5px 0">Quận/Huyện <span style="color:red">*</span></label>				
+								<select id="qh_change" class="form-control">
+								    <option id="chon_qh_ly" value="0">---Chọn Quận/Huyện---</option>
+									<option class="quan_huyen_ly" value="1">Gò Vấp</option>				
+								</select>
+							</div>
+							<div>
+								<label style="margin:20px 0 5px 0">Phường/Xã <span style="color:red">*</span></label>				
+								<select class="form-control">
+									<option id="chon_px_ly" value="0">---Chọn Phường/Xã---</option>
+									<option class="phuong_xa_ly" value="1">Phường 16</option>
+								</select>
+							</div>
+							<div>
+								<label style="margin:20px 0 5px 0">Địa Chỉ <span style="color:red">*</span></label><br/>
+								<span id="noti_email"></span>
+								<input class="form-control" id="" type="text" name="" required>
+							</div>
+							<input type="button" class="btn btn-primary" id="r_submit" onclick="checkinfo()" name="register" value="Đăng Ký">
 						<!-- </form> -->
 					</div>
 				</div>
@@ -664,8 +721,34 @@
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
-
+			
+			$(".quan_huyen_ly").hide();
+			$(".phuong_xa_ly").hide();
+			$("#tinh_thanh_ly").change(function(){
+				if($("#tinh_thanh_ly").val() == 0)
+				{
+					$(".quan_huyen_ly").hide();
+					$(".phuong_xa_ly").hide();				
+					$("#chon_qh_ly").prop('selected', true);
+					$("#chon_px_ly").prop('selected', true);
+				}
+				else{
+					$(".quan_huyen_ly").show();					
+				}
+			});
+			
+			$("#qh_change").change(function(){				
+				if($("#qh_change").val() == 0)
+				{
+					$("#chon_px_ly").prop('selected', true);
+					$(".phuong_xa_ly").hide();	
+				}
+				else{
+					$(".phuong_xa_ly").show();					
+				}
+			});
 		});
+		
 		function checkEmail(email)
 		{
 			if(email.trim()!="")

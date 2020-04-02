@@ -113,8 +113,10 @@
 												<option value="0">---Chọn Tỉnh Thành---</option>
 												<option value="1">Hồ Chí Minh</option>
 											</select>
-											<select style="width: 30%">
-												<option id="chon_qh" value="0">---Chọn Quận/Huyện---</option>		<option class="quan_huyen" value="1">Gò Vấp</option>				
+											<select id="qh_change_ck" style="width: 30%">
+												<option id="chon_qh" value="0">---Chọn Quận/Huyện---</option>		
+												<option class="quan_huyen" value="1">Gò Vấp</option>	
+												<option class="quan_huyen" value="2">Phú Nhuận</option>
 											</select>
 											<select style="width: 30%">
 												<option id="chon_px" value="0">---Chọn Phường/Xã---</option>
@@ -221,9 +223,19 @@
 			else{
 				$("#trans_pay").show();
 				$("#day_ship").show();
-				$(".quan_huyen").show();
-				$(".phuong_xa").show();
+				$(".quan_huyen").show();				
 			}
+		});
+		
+		$("#qh_change_ck").change(function(){
+			if($("#qh_change_ck").val() == 0)
+			{
+				$("#chon_px").prop('selected', true);
+				$(".phuong_xa").hide();	
+			}
+			else{
+				$(".phuong_xa").show();		
+			}					
 		});
 		
 		//Chọn Mã Giám Giá

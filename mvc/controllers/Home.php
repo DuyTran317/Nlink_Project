@@ -53,7 +53,7 @@
 
 					echo "<script>
 						location.reload(true);
-					</script>"
+						</script>";
 				}
 				else
 				{
