@@ -148,7 +148,7 @@
 					<option value="1">Hồ Chí Minh</option>
 				</select>
 				<label style="margin-top: 10px">Quận/Huyện</label>
-				<select class="form-control">
+				<select id="qh" class="form-control">
 					<option id="chon_qh_ad" value="0">---Chọn Quận/Huyện---</option>		
 					<option class="quan_huyen_ad" value="1">Gò Vấp</option>
 				</select>
@@ -250,8 +250,17 @@
 			$("#chon_px_ad").prop('selected', true);
 		}
 		else{				
-			$(".quan_huyen_ad").show();
-			$(".phuong_xa_ad").show();
+			$(".quan_huyen_ad").show();			
+		}
+	});
+	
+	$("#qh").change(function(){
+		if($("#qh").val() == 0)
+		{	
+			$(".phuong_xa_ad").hide();
+		}
+		else{				
+			$(".phuong_xa_ad").show();;					
 		}
 	});
 </script>
