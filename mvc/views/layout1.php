@@ -169,24 +169,27 @@
 						<p>
 							Chưa có tài khoản? Vui lòng tạo tài khoản mới.
 						</p>
-						<form action="#" method="post">
+						<!-- <form action="<?=$_SESSION['projectName']?>/Home/Register" method="post"> -->
 							<div class="styled-input agile-styled-input-top">
-								<input type="text" placeholder="Họ Tên" name="name" required>
+								<input id="r_name" type="text" placeholder="Họ Tên" name="name" required>
 							</div>
 							<div class="styled-input">
-								<input type="text" placeholder="Số Điện Thoại" name="mobile" required>
+								<input id="r_phone" type="number" placeholder="Số Điện Thoại" name="mobile" required>
 							</div>
 							<div class="styled-input">
-								<input type="email" placeholder="Email" name="email" required>
+								<span id="noti_email"></span>
+								<input id="r_email" type="email" onkeyup="checkEmail($(this).val())" placeholder="Email" name="email" required>
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Mật Khẩu" name="pass" id="password1" required>
+								<span id="noti_pass"></span>
+								<input id="r_pass" type="password" onkeyup="checkPass($(this).val())" placeholder="Mật Khẩu" name="pass" id="password1" required>
 							</div>
 							<div class="styled-input">
-								<input type="password" placeholder="Nhập Lại Mật Khẩu" name="re_pass" id="password2" required>
+								<span id="noti_repass"></span>
+								<input id="r_repass" type="password" onkeyup="$(this).val()==$('#r_pass').val()?$('#r_submit').prop('disabled', false):{$('#r_submit').prop('disabled', true);$('#noti_repass').html('Nhập lại Mật Khẩu phải giống Mật khẩu!');}" placeholder="Nhập Lại Mật Khẩu" name="re_pass" id="password2" required>
 							</div>
-							<input type="submit" value="Đăng Ký">
-						</form>
+							<input id="r_submit" onclick="checkinfo()" name="register" value="Đăng Ký">
+						<!-- </form> -->
 					</div>
 				</div>
 			</div>
@@ -198,7 +201,7 @@
 	<!-- //header-bot -->
 	<!-- navigation -->
 	<div class="ban-top">
-		<div class="container" style="max-height: 53px">
+		<div class="container" style="max-height: 53px;">
 			<div class="agileits-navi_search">
 				<form action="#" method="post">
 					<select id="agileinfo-nav_search" name="agileinfo_search" required="">
@@ -663,6 +666,102 @@
 			});
 
 		});
+		function checkEmail(email)
+		{
+			if(email.trim()!="")
+			{
+				$.ajax({
+					url:'<?=$_SESSION['projectName']?>/Ajax/CheckIssetUser',
+					type:"POST",
+					data: {
+						email : email.trim()
+					},
+					success: function (data){
+						switch(data)
+						{
+							case "1":
+								$("#noti_email").html("<p style='color: green' >có thể sử dụng email này!</p>");
+								$('#r_submit').prop('disabled', false);
+								break;
+							case "-1":
+								$("#noti_email").html("<p style='color: red' >email đã được đăng ký!</p>");
+								$('#r_submit').prop('disabled', true);
+								break;
+							default:
+								$("#noti_email").html("");
+								$('#r_submit').prop('disabled', true);
+								break;
+						}
+					}
+				});
+			}
+		}
+		function checkPass(pass)
+		{
+			if(pass!="")
+			{
+				if(pass.length < 6)
+				{
+					$("#noti_pass").html("Mật khẩu phải có ít nhất 6 kí tự!");
+				}
+			}
+		}
+		function checkinfo()
+		{
+			var email = $("#r_email").val().trim();
+			var name = $("#r_name").val().trim();
+			var phone = $("#r_phone").val();
+			var pass = $("#r_pass").val();
+			var repass = $("#r_repass").val();
+			var noti = "";
+			if(email == "")
+			{
+				noti += "Địa chỉ email không được rỗng!<br/>";
+			}
+			if(name == "")
+			{
+				noti += "Họ Tên không được rỗng!<br/>";
+			}
+			if(phone == "")
+			{
+				noti += "Số điện thoại không được rỗng!<br/>";
+			}
+			if(pass == "")
+			{
+				noti += "Mật Khẩu không được rỗng!<br/>";
+			}
+			if(email == "")
+			{
+				noti += "Nhập lại Mật Khẩu không được rỗng!<br/>";
+			}
+			if(noti != "")
+			{
+				alert(noti);
+			}
+			else
+			{
+				$.ajax({
+					url:'<?=$_SESSION['projectName']?>/Ajax/Register',
+					type:"POST",
+					data: {
+						email : email,
+						name: name,
+						mobile: phone,
+						pass : pass,
+					},
+					success: function (data){
+						if(data == "1")
+						{
+							location.reload(true);
+						}
+						else
+						{
+
+						}
+					}
+				});
+			}
+		}
 	</script>
 
 	<script src="<?=$_SESSION['projectName']?>/lib/js/bootstrap.js"></script>

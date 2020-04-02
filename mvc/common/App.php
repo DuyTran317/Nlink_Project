@@ -5,25 +5,24 @@
 		protected $params=array();
 		
 		function __construct(){
-			$arr = $this->UrlProcess(); $area = "";
+			$_SESSION['area'] = "";
+			$arr = $this->UrlProcess();
 			if(isset($arr[0]) && $arr[0] == "admin")
 			{
-				if(mkdir("/".$arr[0]) == true)
-				{
-					$area = "/".$arr[0];
-					$arr = array_shift($arr);
-					
-				}
+				
+				$_SESSION['area'] = "/".$arr[0];
+				array_shift($arr);
+				
 			}
 			if(isset($arr[0]))
 			{
-				if(file_exists(".".$area."/mvc/controllers/".$arr[0].".php"));
+				if(file_exists(".".$_SESSION['area']."/mvc/controllers/".$arr[0].".php"));
 				{
 					$this->controller = $arr[0];
 					unset($arr[0]);
 				}
 			}
-			require_once(".".$area."/mvc/controllers/".$this->controller.".php");
+			require_once(".".$_SESSION['area']."/mvc/controllers/".$this->controller.".php");
 			$temp = $this->controller;
 			$this->controller = new $this->controller;
 			
@@ -43,7 +42,6 @@
 		function UrlProcess(){
 			if(isset($_GET['url']))
 			{
-				echo $_GET['url'];
 				return explode("/",filter_var(trim($_GET['url'],"/")));
 			}
 			return array();

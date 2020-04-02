@@ -31,7 +31,7 @@
 		}
 		public function getProductById($id)
 		{
-			$sql="select * from `nl_products` where `id` = $id";
+			$sql="select * from `nl_products` where `ProductId` = $id";
 			$r = mysqli_query($this->con,$sql);
 			$rs = mysqli_fetch_assoc($r);
 			

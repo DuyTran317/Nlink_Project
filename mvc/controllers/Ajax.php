@@ -1,9 +1,11 @@
 <?php
 	class Ajax extends Controller{
 		public $ProductModel;
+		public $UserModel;
 		function __construct()
 		{
 			$this->ProductModel = $this->model("ProductModel");
+			$this->UserModel = $this->model("UserModel");
 		}
 		function LoadCommentProduct()
 		{
@@ -74,6 +76,60 @@
 				}
 			}
 			return $data;
+		}
+		function CheckIssetUser()
+		{
+			if(isset($_POST['email']))
+			{
+				$email = Trim($_POST['email']);
+				if($email != "")
+				{
+					if(filter_var($email, FILTER_VALIDATE_EMAIL))
+					{
+						if(json_decode($this->UserModel->getUserByEmail($email),true)==null)
+						{
+							echo "1";
+							//echo "<p style='color: red' >email đã được đăng ký!</p>";	
+						}
+						else
+						{
+							echo "-1";
+							//echo "<p style='color: green' >có thể sử dụng email này!</p>";
+						}
+					}
+					else
+					{
+						echo "-3";
+					}
+				}
+				else{
+					echo "-2";
+				}
+			}
+		}
+		function Register()
+		{
+			if(isset($_POST['email']))
+			{
+				$name = Trim($_POST['name']);
+				$phone = $_POST['mobile'];
+				$email = Trim($_POST['email']);
+				$pass = password_hash($_POST['pass'],PASSWORD_DEFAULT); //sử dụng password_verify($passNgdungnhap,$passdaduochash) để xác thực
+				$userid = $this->UserModel->insertUser($email,$name,$phone,$pass);
+
+				if($userid!=0)
+				{
+					$_SESSION['UserId'] = $userid;
+					$_SESSION['UserName'] = $name;
+
+					echo "1";
+				}
+				else
+				{
+					echo "0";
+				}
+			}
+			else echo "0";
 		}
 	}
 ?>

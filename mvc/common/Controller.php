@@ -5,7 +5,7 @@
 			return new $model;
 		}
 		public function view($view, $data = array()){
-			require_once("./mvc/views/".$view.".php");
+			require_once(".".$_SESSION['area']."/mvc/views/".$view.".php");
 		}
 	}
 ?>
