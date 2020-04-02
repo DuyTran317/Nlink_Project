@@ -160,9 +160,10 @@
 								<input id="l_pass" type="password" placeholder="Mật Khẩu" name="pass" required>
 							</div>
 							<a href="#">Quên mật khẩu</a><br/>
-							<input type="button" onclick="login()" value="Đăng Nhập">
-							
-						Chưa có tài khoản? Đăng ký <a href="" data-toggle="modal" data-target="#myModal2">tại đây</a>
+							<div style="margin-top: 15px">
+								<input class="btn btn-primary" type="button" onclick="login()" value="Đăng Nhập">&nbsp;					
+								Chưa có tài khoản? Đăng ký <a href="" data-toggle="modal" data-target="#myModal2">tại đây</a>
+							</div>
 						<div class="clearfix"></div>
 					</div>
 					<div class="clearfix"></div>
