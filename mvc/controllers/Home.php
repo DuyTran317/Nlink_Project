@@ -36,6 +36,7 @@
 				"listKeyword" => $listKeyword
 			));
 		}
+		
 		function Register()
 		{
 			if(isset($_POST['register']))
@@ -61,6 +62,5 @@
 				}
 			}
 		}
-		
 	}
 ?>
