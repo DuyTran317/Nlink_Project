@@ -33,18 +33,16 @@
 			<div class="left-side">
 				<h3 class="agileits-sear-head">Danh mục sản phẩm</h3>
 				<ul>
+				<?php
+					foreach($data['listCateOfDepart'] as $item)
+					{
+				?>
 					<li style="margin-top: 3px; font-size: 15px">
-						<a href="#">Kitchen Products</a>				
+						<a href="<?=$_SESSION['projectName']?>/Product/Category/<?=$item['url']?>"><?=$item['CateName']?></a>				
 					</li>
-					<li style="margin-top: 3px; font-size: 15px">
-						<a href="#">Motor BCX</a>						
-					</li>		
-					<li style="margin-top: 3px; font-size: 15px">
-						<a href="#">PIN Engal</a>							
-					</li>
-					<li style="margin-top: 3px; font-size: 15px">
-						<a href="#">Escanor CrualSun</a>								
-					</li>
+				<?php
+					}
+				?>
 				</ul>
 			</div>
 			<!-- price range -->
@@ -61,24 +59,19 @@
 			<!-- //price range -->
 			<!-- food preference -->
 			<div class="left-side">
-				<h3 class="agileits-sear-head">Loại sản phẩm</h3>
+				<h3 class="agileits-sear-head">Thương Hiệu</h3>
 				<ul>
+				<?php
+					foreach($data['listBrands'] as $item)
+					{
+				?>
 					<li style="margin-top: 3px; font-size: 15px">
 						<input type="checkbox" name="cb1" value="" style="cursor: pointer">
-						<label for="cb1"> Sản Phẩm A</label>					
+						<label for="cb1"> <?=$item['BrandName']?></label>					
 					</li>
-					<li style="margin-top: 3px; font-size: 15px">
-						<input type="checkbox" name="cb2" value="" style="cursor: pointer">
-						<label for="cb2"> Sản Phẩm B</label>				
-					</li>		
-					<li style="margin-top: 3px; font-size: 15px">
-						<input type="checkbox" name="cb3" value="" style="cursor: pointer">
-						<label for="cb3"> Sản Phẩm C</label>					
-					</li>
-					<li style="margin-top: 3px; font-size: 15px">
-						<input type="checkbox" name="cb4" value="" style="cursor: pointer">
-						<label for="cb4"> Sản Phẩm D</label>						
-					</li>
+				<?php
+					}
+				?>
 				</ul>
 			</div>
 			<!-- //food preference -->								
@@ -159,7 +152,7 @@
 					<div class="col-xs-4 product-men">
 						<div class="men-pro-item simpleCart_shelfItem">
 							<div class="men-thumb-item">
-								<img src="<?=$_SESSION['projectName']?>lib/images/product/<?=$item['Img']?>" alt="">
+								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img']?>" alt="">
 								<div class="men-cart-pro">
 									<div class="inner-men-cart-pro">
 										<a href="single.html" class="link-product-add-cart">Quick View</a>

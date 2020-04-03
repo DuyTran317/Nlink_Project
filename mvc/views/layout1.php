@@ -263,14 +263,14 @@
 	<div class="ban-top">
 		<div class="container" style="max-height: 53px;">
 			<div class="agileits-navi_search">
-				<form action="#" method="post">
-					<select id="agileinfo-nav_search" name="agileinfo_search" required="">
+				<form id="form-select-depart" action="<?=$_SESSION['projectName']?>/Product/Department" method="get">
+					<select id="agileinfo-nav_search" name="url" required="">
 						<option value="">Danh mục sản phẩm</option>
 						<?php
 							foreach($data['listDepart'] as $item)
 							{
 						?>
-                        	<option value="<?=$item['DepartId']?>"><?=$item['DepartName']?></option>
+                        	<option value="<?=$item['url']?>"><?=$item['DepartName']?></option>
 						<?php
 							}
 						?>
@@ -750,6 +750,10 @@
 					$(".phuong_xa_ly").show();					
 				}
 			});
+			$("#agileinfo-nav_search").change(function(){
+				console.log($("#agileinfo-nav_search").val());
+				window.location = "<?=$_SESSION['projectName']?>/Product/Department/"+$("#agileinfo-nav_search").val();
+			})
 		});
 		
 		function checkEmail(email)
@@ -896,6 +900,7 @@
 					}
 				});
 		}
+		
 	</script>
 
 	<script src="<?=$_SESSION['projectName']?>/lib/js/bootstrap.js"></script>

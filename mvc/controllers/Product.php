@@ -49,5 +49,26 @@
 				"Star" => $Star
 			));
 		}
+		function Department($url = "", $brand = "", $rangePrice = "")
+		{
+			$depart = json_decode($this->DepartModel->getDepartmentByUrl($url),true);
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$range = explode('-',$rangePrice);
+			$priceMin = isset($range[0])?$range[0]:-1; 
+			$priceMax = isset($range[1])?$range[1]:-1;
+			$listCateOfDepart = json_decode($this->DepartModel->getCategoriesOfDepartment($depart['DepartId'],"`Order`","ASC"),true);
+			$listProduct = json_decode($this->ProductModel->getProductsByDepartId($url,$brand,$priceMin,$priceMax,"`CrDateTime`","DESC"),true);
+			$listBrands = json_decode($this->DepartModel->getBrandsDepartmentById($depart['DepartId'],"c.`BrandName`","ASC"),true)
+			
+			$this->view("layout1",array(
+				"page" => "product",
+				"listDepart" => $listDepart,
+				"listCate" => $listCate,
+				"listCateOfDepart" => $listCateOfDepart,
+				"listProduct" => $listProduct,
+				"listBrands" => $listBrands
+			));
+		}
 	}
 ?>
