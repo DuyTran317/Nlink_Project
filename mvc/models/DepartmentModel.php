@@ -29,9 +29,10 @@
 			}
 			return json_encode($mang);
 		}
+		
 		function getDepartmentByUrl($url)
 		{
-			$sql="select * from `nl_departments` where `url` = $url and `Active` = 1";
+			$sql="select * from `nl_departments` where `url` = '$url' and `Active` = 1";
 			$r = mysqli_query($this->con,$sql);
 			$rs = mysqli_fetch_assoc($r);
 			

@@ -32,7 +32,7 @@
 	<!-- //jquery -->
 	<script src="<?=$_SESSION['projectName']?>/lib/js/jquery.simpleLoadMore.min.js"></script>
 	<!-- price range -->
-	<script src="<?=$_SESSION['projectName']?>/js/jquery-ui.js"></script>		
+	<script src="<?=$_SESSION['projectName']?>/lib/js/jquery-ui.js"></script>		
 	<!-- flexisel (for special offers) -->
 	<script src="<?=$_SESSION['projectName']?>/lib/js/jquery.flexisel.js"></script>
 	<!--slide and zoom product_detail -->

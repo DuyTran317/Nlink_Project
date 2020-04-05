@@ -21,7 +21,7 @@
 			$listProductAllDepart = array();
 			foreach($listDepart as $item)
 			{
-				$productsDepart = json_decode($this->ProductModel->getProductsByDepartId($item['DepartId'],"`CrDateTime`","DESC",0,5),true);
+				$productsDepart = json_decode($this->ProductModel->getProductsByDepartId($item['DepartId'],0,-1,-1,"`CrDateTime`","DESC",0,5),true);
 				$listProductAllDepart[$item['DepartName']] = $productsDepart;
 			}
 			$listKeyword=json_decode($this->KeywordModel->getKeywords("`TimesSearch`","DESC"),true);
