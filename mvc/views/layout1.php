@@ -121,14 +121,10 @@
 				<!-- //search -->
 				<!-- cart details -->
 				<div class="top_nav_right">
-					<div class="wthreecartaits wthreecartaits2 cart cart box_1">
-						<form action="#" method="post" class="last">
-							<input type="hidden" name="cmd" value="_cart">
-							<input type="hidden" name="display" value="1">
-							<button class="w3view-cart" type="submit" name="submit" value="">
-								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
-							</button>
-						</form>
+					<div class="wthreecartaits wthreecartaits2 cart cart box_1">					
+						<button class="w3view-cart" data-toggle="modal" data-target="#myModal">
+							<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+						</button>
 					</div>
 				</div>
 				<!-- //cart details -->
@@ -657,33 +653,56 @@
 			<p>© 2020 NLink Vietnam Co., Ltd. Copyright by Superior5</p>
 		</div>
 	</div>
+	
+	<!-- Modal -->
+	<div class="modal fade" id="myModal" role="dialog">
+		<div class="modal-dialog">
+
+		  <!-- Modal content-->
+	  		<div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">Giỏ Hàng</h4>
+				</div>
+				<div class="modal-body">
+					<table style="margin-top: 10px">
+						<tr>
+							<td style="width: 200px; font-size: 15px">Bánh ABC</td>
+							<td style="width: 100px"><input type="number" min="1" value="1" style="width: 50px; text-align: center" /></td>
+							<td style="width: 100px"><button class="btn btn-danger" style="font-size: 8px">X</button></td>
+							<td><label style="font-size: 15px">220.000 VND</label></td>
+						</tr>
+					</table>
+					<table style="margin-top: 10px">
+						<tr>
+							<td style="width: 200px; font-size: 15px">Bánh Ngọt Không Đường ABC</td>
+							<td style="width: 100px"><input type="number" min="1" value="2" style="width: 50px; text-align: center" /></td>
+							<td style="width: 100px"><button class="btn btn-danger" style="font-size: 8px">X</button></td>
+							<td><label style="font-size: 15px">220.000 VND</label></td>
+						</tr>
+					</table>
+					
+					<!--Tổng thành tiền-->
+					<table style="margin-top: 40px">
+						<tr>
+							<td colspan="2" style="font-weight: bold">Tổng thành tiền: <span style="color:red">500.000 VND</span></td>
+						</tr>
+					</table>
+					
+				</div>
+				<div class="modal-footer">					
+					<button type="button" class="btn btn-primary">Kiểm Tra Giỏ Hàng</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+				</div>
+		  	</div>
+
+		</div>
+	</div>
+	
 	<!-- //copyright -->
 
 	<!-- js-files -->
-	<!-- <script>
-	<!-- cart-js -->
-	<script src="<?=$_SESSION['projectName']?>/lib/js/minicart.js"></script>
-	<script>
-		paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
-
-		paypalm.minicartk.cart.on('checkout', function (evt) {
-			var items = this.items(),
-				len = items.length,
-				total = 0,
-				i;
-
-			// Count the number of each item in the cart
-			for (i = 0; i < len; i++) {
-				total += items[i].get('quantity');
-			}
-
-			if (total < 3) {
-				alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-				evt.preventDefault();
-			}
-		});
-	</script>
-	<!-- //cart-js -->	
+	<!-- <script>-->		
 	
 	<script>
 		window.onload = function () {
@@ -900,7 +919,90 @@
 					}
 				});
 		}
+	function addCart(id,qty,price,name,img,buynow = 0)
+	{
 		
+		var cart = new Array();
+		setCookie("cart_nlink",JSON.stringify(cart),-1);
+		if(getCookie("cart_nlink") == "")
+		{
+			setCookie("cart_nlink",JSON.stringify(cart),30);
+		}
+		
+		cart = JSON.parse(getCookie("cart_nlink"));
+		cart.forEach(function(value,index){
+			if(value.id == id)
+			{
+				value.qty += qty; 
+			}
+			else
+			{
+				var pro = {
+					id:id,
+					qty:qty,
+					price:price,
+					name:name,
+					img:img
+				}
+				cart.push(pro);
+				break;
+			}
+		});
+		setCookie("cart_nlink",JSON.stringify(cart),30);
+		cart.forEach(function(item){
+			console.log(item);
+		})
+		if(buynow == 1)
+		{
+			window.location = "<?=$_SESSION['projectName']?>/Cart";
+		}
+		else
+		{
+
+		}
+		
+	}
+	function deleteCart(id)
+	{
+		
+		if(getCookie("cart_nlink") != "")
+		{
+			var cart = JSON.parse(getCookie("cart_nlink"));
+
+			cart.forEach(function(value,index){
+				if(value.id == id)
+				{
+					cart.splice(index,1);
+					break;
+				}
+			});
+			setCookie("cart_nlink",JSON.stringify(cart),30);
+		}
+		cart.forEach(function(item){
+			console.log(item);
+		})
+	}
+	function setCookie(cname, cvalue, exdays) {
+       var d = new Date();
+       d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+       var expires = "expires=" + d.toUTCString();
+       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    function getCookie(cname) {
+       var name = cname + "=";
+       var decodedCookie = decodeURIComponent(document.cookie);
+       var ca = decodedCookie.split(';');
+       for (var i = 0; i < ca.length; i++) {
+           var c = ca[i];
+           while (c.charAt(0) == ' ') {
+               c = c.substring(1);
+           }
+           if (c.indexOf(name) == 0) {
+               return c.substring(name.length, c.length);
+           }
+       }
+       return "";
+    }
 	</script>
 
 	<script src="<?=$_SESSION['projectName']?>/lib/js/bootstrap.js"></script>

@@ -36,18 +36,18 @@
 					</li>
 					<li>
 						<span style="font-weight: bold; font-size: 17px">Số lượng:</span>
-						<input type="number" min="1" value="1" style="width: 50px; margin-left: 10px; text-align: center" />
+						<input id="qty" type="number" min="1" value="1" style="width: 50px; margin-left: 10px; text-align: center" />
+					</li>
+					<li>
+						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,<?=$data['Product']['ProductName']?>,<?=$data['Product']['Img']?>,1)" class="btn btn-danger">Mua Ngay</button>
+						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,<?=$data['Product']['ProductName']?>,<?=$data['Product']['Img']?>)" class="btn btn-success">Thêm Vào Giỏ</button>
 					</li>
 					<!--<li>
 						1 offer from
 						<span class="item_price">$950.00</span>
 					</li>-->
 				</ul>
-				<div class="occasion-cart" style="margin-bottom: 25px">
-				<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-					
-				</div>
-				</div>
+				
 			</div>
 			<div class="product-single-w3l">	
 				<div style="margin-top: 20px">
@@ -440,4 +440,5 @@
 		});
 
 	});
+	
 </script>

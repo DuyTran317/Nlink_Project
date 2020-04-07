@@ -161,5 +161,45 @@
 			}
 			else echo "0";
 		}
+		// function setCart()
+		// {
+		// 	if(isset($_POST['id']))
+		// 	{
+		// 		$id = $_POST['id'];
+		// 		$qty = $_POST['qty'];
+
+		// 		$cart = json_decode($_COOKIE['cart_nlink'],true);
+		// 		if(!isset($cart[$id]))
+		// 		{
+		// 			$cart[$id]=$qty;
+		// 		}
+		// 		else
+		// 		{
+		// 			$cart[$id]+=$qty;
+		// 		}
+		// 		$_COOKIE['cart_nlink']=json_encode($cart);
+		// 		echo $_COOKIE['cart_nlink'];
+		// 		echo "1";
+		// 	}
+		// 	else
+		// 	{
+		// 		echo "0";
+		// 	}
+		// }
+		// function deleteCart()
+		// {
+		// 	if(isset($_POST['id']))
+		// 	{
+		// 		$id = $_POST['id'];
+		// 		if(isset($_COOKIE['cart_nlink']))
+		// 		{
+		// 			$cart = json_decode($_COOKIE['cart_nlink'],true);
+		// 			unset($cart[$id]);
+		// 			$_COOKIE['cart_nlink'] = json_encode($cart);
+		// 			echo "1";
+		// 		}
+		// 		else echo "0";
+		// 	}else echo "0";
+		// }
 	}
 ?>
