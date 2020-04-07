@@ -921,44 +921,41 @@
 		}
 	function addCart(id,qty,price,name,img,buynow = 0)
 	{
-		
 		var cart = new Array();
-		setCookie("cart_nlink",JSON.stringify(cart),-1);
-		if(getCookie("cart_nlink") == "")
+		if(getCookie("cart_nlink") == '')
 		{
 			setCookie("cart_nlink",JSON.stringify(cart),30);
 		}
 		
 		cart = JSON.parse(getCookie("cart_nlink"));
-		cart.forEach(function(value,index){
-			if(value.id == id)
+		var flag = 0;
+		for(var i = 0; i < cart.length; i++){
+			if(cart[i].id == id)
 			{
-				value.qty += qty; 
+				cart[i].qty += qty; 
+				flag = 1;
+				break;
 			}
-			else
-			{
-				var pro = {
+		}
+		if(flag == 0)
+		{
+			var pro = {
 					id:id,
 					qty:qty,
 					price:price,
 					name:name,
 					img:img
 				}
-				cart.push(pro);
-				break;
-			}
-		});
+			cart.push(pro);
+		}
 		setCookie("cart_nlink",JSON.stringify(cart),30);
-		cart.forEach(function(item){
-			console.log(item);
-		})
 		if(buynow == 1)
 		{
 			window.location = "<?=$_SESSION['projectName']?>/Cart";
 		}
 		else
 		{
-
+			$("#myModal").modal("show");
 		}
 		
 	}
