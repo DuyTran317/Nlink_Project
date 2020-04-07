@@ -11,7 +11,7 @@
 					?>
 						<li data-thumb="<?=$_SESSION['projectName']?>/lib/images/product/<?=$img['Img']?>">
 							<div class="thumb-image">
-								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$img['Img']?>" data-imagezoom="true" class="img-responsive" alt=""> 
+								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$img['Img']?>" data-imagezoom="true" class="img-responsive" alt="err" style="width: 100%; height: 300px"> 
 							</div>
 						</li>
 					<?php
