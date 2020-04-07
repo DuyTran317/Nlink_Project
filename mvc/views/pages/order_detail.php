@@ -39,22 +39,31 @@
 						</tr>
 					</thead>
 					<tbody>
+					<?php
+						$stt=0;
+						foreach($data['listOrderDetail'] as $item)
+						{
+							$stt++;
+					?>
 						<tr>
-							<td class="invert">1</td>
+							<td class="invert"><?=$stt?></td>
 							<td class="invert-image">
-								<a href="single2.html">
-									<img src="lib/images/s8.jpg" alt=" " class="img-responsive" style="width: 50px; height: 50px">
+								<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>">
+									<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img']?>" alt=" " class="img-responsive" style="width: 50px; height: 50px">
 								</a>
 							</td>
 							<td class="invert">
 								<div class="quantity">
-									<label style="font-size: 18px">2</label>
+									<label style="font-size: 18px"><?=$_COOKIE[$item['ProductId']]?></label>
 								</div>
 							</td>
-							<td class="invert">Spotzero Spin Mop</td>
-							<td class="invert">10,000 VND</td>
-							<td class="invert" style="color:darkblue; font-weight: bold">20,000 VND</td>
-						</tr>						
+							<td class="invert"><?=$item['ProductName']?></td>
+							<td class="invert"><?php echo number_format($item['Price']); ?> VND</td>
+							<td class="invert" style="color:darkblue; font-weight: bold"><?php echo number_format($item['Price']*$_COOKIE[$item['ProductId']]); ?> VND</td>
+						</tr>
+					<?php
+						}
+					?>						
 					</tbody>
 				</table>				
 			</div>
@@ -128,6 +137,8 @@
 			</div>
 			<h4 style="color:black; margin-top: 15px">Phương Thức Thanh Toán: <span style="font-size: 16px; color:#0E37B8">Thanh toán khi nhận hàng</h4>
 			<div class="clearfix"> </div>
+			<a href="<?=$_SESSION['projectName']?>/Home"><button class="btn btn-success">Tiếp tục mua hàng</button></a>
+			<button class="btn btn-danger">Đặt hàng</button>
 		</div>
 	</div>
 </div>

@@ -34,7 +34,7 @@
 			}
 			if(isset($_POST['key']))
 			{
-			$key = $_POST['key'];
+				$key = $_POST['key'];
 			}
 			$display = 12;$begin = ($pagenumber-1)*$display;
 			$sumsp = json_decode($this->ProductModel->getSumProductsOfSearch($key,$brand,$priceMin,$priceMax),false);
@@ -42,6 +42,7 @@
 			
 			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
 			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$listProductNew = json_decode($this->ProductModel->getProductsByOrder("`CrDateTime`","DESC",0,5),true);
 			$listCateOfSearch = json_decode($this->ProductModel->getCategoriesOfSearch($key,$brand,$priceMin,$priceMax,"b.`Order`","ASC"),true);
 			$listProduct = json_decode($this->ProductModel->getProductsByKeyWord($key,$brand,$priceMin,$priceMax,"CrDateTime","DESC"),true);
 			$listBrands = json_decode($this->ProductModel->getBrandsProductByKeyWord($key,$brand,$priceMin,$priceMax,"b.`BrandName`","ASC"),true);
@@ -51,6 +52,7 @@
 				"page" => "product",
 				"listDepart" => $listDepart,
 				"listCate" => $listCate,
+				"listProductNew" => $listProductNew,
 				"listCateOfDepart" => $listCateOfSearch,
 				"listProduct"=>$listProduct,
 				"listBrands" => $listBrands,
@@ -110,6 +112,7 @@
 			
 			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
 			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$listProductNew = json_decode($this->ProductModel->getProductsByOrder("`CrDateTime`","DESC",0,5),true);
 			$listCateOfDepart = json_decode($this->DepartModel->getCategoriesOfDepartment($depart['DepartId'],"`Order`","ASC"),true);
 			$listProduct = json_decode($this->ProductModel->getProductsByDepartId($depart['DepartId'],$brand,$priceMin,$priceMax,"`CrDateTime`","DESC",$begin,$display),true);
 			$listBrands = json_decode($this->DepartModel->getBrandsDepartmentById($depart['DepartId'],"c.`BrandName`","ASC"),true);
@@ -120,6 +123,7 @@
 				"page" => "product",
 				"listDepart" => $listDepart,
 				"listCate" => $listCate,
+				"listProductNew" => $listProductNew,
 				"listCateOfDepart" => $listCateOfDepart,
 				"listProduct" => $listProduct,
 				"listBrands" => $listBrands,
@@ -158,6 +162,7 @@
 			
 			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
 			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$listProductNew = json_decode($this->ProductModel->getProductsByOrder("`CrDateTime`","DESC",0,5),true);
 			$listProduct = json_decode($this->ProductModel->getProductsByCateId($cate['CateId'],$brand,$priceMin,$priceMax,"`CrDateTime`","DESC",$begin,$display),true);
 			$listBrands = json_decode($this->CategoryModel->getBrandsCategoryById($cate['CateId'],"c.`BrandName`","ASC"),true);
 			$action = "Category";
@@ -167,6 +172,7 @@
 				"page" => "product",
 				"listDepart" => $listDepart,
 				"listCate" => $listCate,
+				"listProductNew" => $listProductNew,
 				"listProduct" => $listProduct,
 				"listBrands" => $listBrands,
 				"brand" => $brand,
@@ -177,5 +183,6 @@
 				"sumpage" => $sumpage
 			));
 		}
+		
 	}
 ?>

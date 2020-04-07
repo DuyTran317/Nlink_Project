@@ -900,7 +900,90 @@
 					}
 				});
 		}
+	function addCart(id,qty,price,name,img,buynow = 0)
+	{
 		
+		var cart = new Array();
+		setCookie("cart_nlink",JSON.stringify(cart),-1);
+		if(getCookie("cart_nlink") == "")
+		{
+			setCookie("cart_nlink",JSON.stringify(cart),30);
+		}
+		
+		cart = JSON.parse(getCookie("cart_nlink"));
+		cart.forEach(function(value,index){
+			if(value.id == id)
+			{
+				value.qty += qty; 
+			}
+			else
+			{
+				var pro = {
+					id:id,
+					qty:qty,
+					price:price,
+					name:name,
+					img:img
+				}
+				cart.push(pro);
+				break;
+			}
+		});
+		setCookie("cart_nlink",JSON.stringify(cart),30);
+		cart.forEach(function(item){
+			console.log(item);
+		})
+		if(buynow == 1)
+		{
+			window.location = "<?=$_SESSION['projectName']?>/Cart";
+		}
+		else
+		{
+
+		}
+		
+	}
+	function deleteCart(id)
+	{
+		
+		if(getCookie("cart_nlink") != "")
+		{
+			var cart = JSON.parse(getCookie("cart_nlink"));
+
+			cart.forEach(function(value,index){
+				if(value.id == id)
+				{
+					cart.splice(index,1);
+					break;
+				}
+			});
+			setCookie("cart_nlink",JSON.stringify(cart),30);
+		}
+		cart.forEach(function(item){
+			console.log(item);
+		})
+	}
+	function setCookie(cname, cvalue, exdays) {
+       var d = new Date();
+       d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+       var expires = "expires=" + d.toUTCString();
+       document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+    function getCookie(cname) {
+       var name = cname + "=";
+       var decodedCookie = decodeURIComponent(document.cookie);
+       var ca = decodedCookie.split(';');
+       for (var i = 0; i < ca.length; i++) {
+           var c = ca[i];
+           while (c.charAt(0) == ' ') {
+               c = c.substring(1);
+           }
+           if (c.indexOf(name) == 0) {
+               return c.substring(name.length, c.length);
+           }
+       }
+       return "";
+    }
 	</script>
 
 	<script src="<?=$_SESSION['projectName']?>/lib/js/bootstrap.js"></script>

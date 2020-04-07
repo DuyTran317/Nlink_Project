@@ -299,5 +299,6 @@
 			$rs = mysqli_fetch_assoc($r);
 			return json_encode($rs['tongsp']);
 		}
+		
 	}
 ?>

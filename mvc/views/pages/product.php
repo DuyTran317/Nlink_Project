@@ -97,56 +97,23 @@
 				<!-- deals -->
 				<div class="deal-leftmk left-side">
 					<h3 class="agileits-sear-head">Sản phẩm mới</h3>
+				<?php
+					foreach($data['listProductNew'] as $item)
+					{
+				?>
 					<div class="special-sec1">
 						<div class="col-xs-4 img-deals">
-							<img src="lib/images/d2.jpg" alt="">
+							<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img']?>" alt=""></a>
 						</div>
 						<div class="col-xs-8 img-deal1">
-							<h3>Lay's Potato Chips</h3>
-							<a href="">$18.00</a>
+						<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><h3><?=$item['ProductName']?></h3></a>
+							<p style="color:red"><?php echo number_format($item['Price']);?> VNĐ</p>
 						</div>
 						<div class="clearfix"></div>
 					</div>
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="lib/images/d1.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Bingo Mad Angles</h3>
-							<a href="">$9.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>				
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="lib/images/d4.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Tata Salt</h3>
-							<a href="">$15.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="lib/images/d5.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Gujarat Dry Fruit</h3>
-							<a href="">$525.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>
-					<div class="special-sec1">
-						<div class="col-xs-4 img-deals">
-							<img src="lib/images/d3.jpg" alt="">
-						</div>
-						<div class="col-xs-8 img-deal1">
-							<h3>Cadbury Dairy Milk</h3>
-							<a href="">$149.00</a>
-						</div>
-						<div class="clearfix"></div>
-					</div>
+				<?php
+					}
+				?>
 				</div>
 				<!-- //deals -->
 			</div>
@@ -174,14 +141,14 @@
 									<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img']?>" alt="">
 									<div class="men-cart-pro">
 										<div class="inner-men-cart-pro">
-											<a href="single.html" class="link-product-add-cart">Quick View</a>
+											<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>" class="link-product-add-cart">Xem Chi Tiết</a>
 										</div>
 									</div>
-									<span class="product-new-top">New</span>
+						<?php if($dem <= 3) {?><span class="product-new-top">New</span><?php }?>
 								</div>
 								<div class="item-info-product ">
 									<h4>
-										<a href="single.html"><?=$item['ProductName']?></a>
+										<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><?=$item['ProductName']?></a>
 									</h4>
 									<div class="info-product-price">
 										<span class="item_price"><?php echo number_format($item['Price'])." đ";?></span>
