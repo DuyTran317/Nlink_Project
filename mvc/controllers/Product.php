@@ -59,7 +59,7 @@
 			$priceMax = isset($range[1])?$range[1]:-1;
 			$listCateOfDepart = json_decode($this->DepartModel->getCategoriesOfDepartment($depart['DepartId'],"`Order`","ASC"),true);
 			$listProduct = json_decode($this->ProductModel->getProductsByDepartId($url,$brand,$priceMin,$priceMax,"`CrDateTime`","DESC"),true);
-			$listBrands = json_decode($this->DepartModel->getBrandsDepartmentById($depart['DepartId'],"c.`BrandName`","ASC"),true)
+			$listBrands = json_decode($this->DepartModel->getBrandsDepartmentById($depart['DepartId'],"c.`BrandName`","ASC"),true);
 			
 			$this->view("layout1",array(
 				"page" => "product",
