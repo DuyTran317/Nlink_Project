@@ -1,74 +1,39 @@
 
 <!-- //navigation -->
 <!-- banner -->
-<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	<!-- Indicators-->
-	<ol class="carousel-indicators">
-		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		<li data-target="#myCarousel" data-slide-to="1" class=""></li>
-		<li data-target="#myCarousel" data-slide-to="2" class=""></li>
-		<li data-target="#myCarousel" data-slide-to="3" class=""></li>
-	</ol>
-	<div class="carousel-inner" role="listbox">
-		<div class="item active">
-			<div class="container">
-				<div class="carousel-caption">
-					<h3>Big
-						<span>Save</span>
-					</h3>
-					<p>Get flat
-						<span>10%</span> Cashback</p>
-					<a class="button2" href="product.html">Shop Now </a>
-				</div>
+<div id="myCarousel" class="carousel slide col-md-12 col-sm-12 col-xs-12" data-ride="carousel" style="margin-bottom: 50px">
+		<!-- Indicators -->
+			<ol class="carousel-indicators">
+			  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			  <li data-target="#myCarousel" data-slide-to="1"></li>
+			  <li data-target="#myCarousel" data-slide-to="2"></li>
+			</ol>
+
+			<!-- Wrapper for slides -->
+			<div class="carousel-inner">
+			  <div class="item active">
+				<img class="img-crs" src="lib/images/banner1.jpg" alt="err">			
+			  </div>
+
+			  <div class="item">
+				<img class="img-crs" src="lib/images/banner2.jpg" alt="err">
+			  </div>
+
+			  <div class="item">
+				<img class="img-crs" src="lib/images/banner3.jpg" alt="err">
+			  </div>
 			</div>
+
+			<!-- Left and right controls -->
+			<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			  <span class="glyphicon glyphicon-chevron-left"></span>
+			  <span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#myCarousel" data-slide="next">
+			  <span class="glyphicon glyphicon-chevron-right"></span>
+			  <span class="sr-only">Next</span>
+			</a>
 		</div>
-		<div class="item item2">
-			<div class="container">
-				<div class="carousel-caption">
-					<h3>Healthy
-						<span>Saving</span>
-					</h3>
-					<p>Get Upto
-						<span>30%</span> Off</p>
-					<a class="button2" href="product.html">Shop Now </a>
-				</div>
-			</div>
-		</div>
-		<div class="item item3">
-			<div class="container">
-				<div class="carousel-caption">
-					<h3>Big
-						<span>Deal</span>
-					</h3>
-					<p>Get Best Offer Upto
-						<span>20%</span>
-					</p>
-					<a class="button2" href="product.html">Shop Now </a>
-				</div>
-			</div>
-		</div>
-		<div class="item item4">
-			<div class="container">
-				<div class="carousel-caption">
-					<h3>Today
-						<span>Discount</span>
-					</h3>
-					<p>Get Now
-						<span>40%</span> Discount</p>
-					<a class="button2" href="product.html">Shop Now </a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-		<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-		<span class="sr-only">Previous</span>
-	</a>
-	<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-		<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-		<span class="sr-only">Next</span>
-	</a>
-</div>
 <!-- //banner -->
 
 <!-- top Products -->
@@ -77,7 +42,7 @@
 		<div class="agileinfo-ads-display col-md-12">
 			<div class="wrapper">
 				<!-- first section (nuts) -->
-				<div class="product-sec1">
+				<div class="product-sec1" style="box-shadow: none">
 					<h3 class="tittle-w3l" style="font-size:30px">Sản Phẩm Mới
 						<span class="heading-style">
 							<i></i>
@@ -98,12 +63,12 @@
 									</a>
 								</div>
 								<div class="product-name-w3l">
-									<h4>
+									<h4 style="text-align: center">
 										<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><?=$item['ProductName'] ?></a>
 									</h4>
 									<div class="w3l-pricehkj">
-										<h6><?php echo number_format($item['Price'])." đ"?></h6>
-										<p>Save <?php echo number_format($item['PriceOfMarket'] - $item['Price'])." đ"; ?></p>
+										<h6 style="text-align: center"><?php echo number_format($item['Price'])." đ"?></h6>
+										<p style="text-align: center; border: none"><button class="btn btn-danger">Mua Ngay</button></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										
@@ -134,7 +99,7 @@
 				<!-- //second section (nuts special) -->
 				<!-- third section (oils) -->
 				<div class="product-sec3">
-					<h3 class="tittle-w3l" style="font-size:30px">Sản Phẩm Bán Chạy
+					<h3 class="tittle-w3l" style="font-size:30px; margin-top: 50px">Sản Phẩm Bán Chạy
 						<span class="heading-style">
 							<i></i>
 							<i></i>
@@ -154,12 +119,12 @@
 									</a>
 								</div>
 								<div class="product-name-w3l">
-									<h4>
+									<h4 style="text-align: center">
 										<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><?=$item['ProductName'] ?></a>
 									</h4>
 									<div class="w3l-pricehkj">
-										<h6><?php echo number_format($item['Price'])." đ"?></h6>
-										<p>Save <?php echo number_format($item['PriceOfMarket'] - $item['Price'])." đ"; ?></p>
+										<h6 style="text-align: center"><?php echo number_format($item['Price'])." đ"?></h6>
+										<p style="text-align: center; border: none"><button class="btn btn-danger">Mua Ngay</button></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										
@@ -210,12 +175,12 @@ while($depart = current($data['listProductAllDepart']))
 							</a>
 						</div>
 						<div class="product-name-w3l">
-							<h4>
+							<h4 style="text-align: center">
 								<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$pro['url']?>"><?=$pro['ProductName'] ?></a>
 							</h4>
 							<div class="w3l-pricehkj">
-								<h6><?php echo number_format($pro['Price'])." đ"; ?></h6>
-								<p>Save <?php echo number_format($pro['PriceOfMarket'] - $pro['Price'])." đ"; ?></p>
+								<h6 style="text-align: center"><?php echo number_format($pro['Price'])." đ"; ?></h6>
+								<p style="text-align: center; border: none"><button class="btn btn-primary">Mua Ngay</button></p>
 							</div>
 							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 								

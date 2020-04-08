@@ -827,23 +827,23 @@
 			var noti = "";
 			if(email == "")
 			{
-				noti += "Địa chỉ email không được rỗng!<br/>";
+				noti += "Địa chỉ email không được rỗng!\n";
 			}
 			if(name == "")
 			{
-				noti += "Họ Tên không được rỗng!<br/>";
+				noti += "Họ tên không được rỗng!\n";
 			}
 			if(phone == "")
 			{
-				noti += "Số điện thoại không được rỗng!<br/>";
+				noti += "Số điện thoại không được rỗng!\n";
 			}
 			if(pass == "")
 			{
-				noti += "Mật Khẩu không được rỗng!<br/>";
+				noti += "Mật khẩu không được rỗng!\n";
 			}
 			if(email == "")
 			{
-				noti += "Nhập lại Mật Khẩu không được rỗng!<br/>";
+				noti += "Nhập lại mật khẩu không được rỗng!\n";
 			}
 			if(noti != "")
 			{
