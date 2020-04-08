@@ -38,32 +38,8 @@
 							<th>Thành Tiền</th>							
 						</tr>
 					</thead>
-					<tbody>
-					<?php
-						$stt=0;
-						foreach($data['listOrderDetail'] as $item)
-						{
-							$stt++;
-					?>
-						<tr>
-							<td class="invert"><?=$stt?></td>
-							<td class="invert-image">
-								<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>">
-									<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img']?>" alt=" " class="img-responsive" style="width: 50px; height: 50px">
-								</a>
-							</td>
-							<td class="invert">
-								<div class="quantity">
-									<label style="font-size: 18px"><?=$_COOKIE[$item['ProductId']]?></label>
-								</div>
-							</td>
-							<td class="invert"><?=$item['ProductName']?></td>
-							<td class="invert"><?php echo number_format($item['Price']); ?> VND</td>
-							<td class="invert" style="color:darkblue; font-weight: bold"><?php echo number_format($item['Price']*$_COOKIE[$item['ProductId']]); ?> VND</td>
-						</tr>
-					<?php
-						}
-					?>						
+					<tbody id="order-detail">
+									
 					</tbody>
 				</table>				
 			</div>
@@ -143,3 +119,23 @@
 	</div>
 </div>
 <!-- //checkout page -->
+<script>
+	$(document).ready(function(){
+		drawOrderDetail();
+	});
+	function drawOrderDetail()
+	{
+		if(getCookie("cart_nlink")!="")
+		{
+			var cart = JSON.parse(getCookie("cart_nlink"));
+			$("#order-detail").html("");
+			var totalPrice = 0;
+			for(var i = 0; i< cart.length; i++)
+			{
+				totalPrice += cart[i].qty * cart[i].price;
+				$("#order-detail").append('<tr><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="<?=$_SESSION["projectName"]?>/Product/Detail/'+cart[i].url+'"><img src="<?=$_SESSION["projectName"]?>/lib/images/product/'+cart[i].img+'" alt=" " class="img-responsive" style="width: 50px; height: 50px"></a></td><td class="invert"><div class="quantity"><label style="font-size: 18px">'+cart[i].qty+'</label></div></td><td class="invert">'+cart[i].name+'</td><td class="invert">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+' VND</td><td class="invert" style="color:darkblue; font-weight: bold">'+new Intl.NumberFormat('de-DE').format(parseInt(cart[i].price) * parseInt(cart[i].qty))+' VND</td></tr>');
+			}
+			
+		}
+	}
+</script>

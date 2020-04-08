@@ -122,7 +122,7 @@
 				<!-- cart details -->
 				<div class="top_nav_right">
 					<div class="wthreecartaits wthreecartaits2 cart cart box_1">					
-						<button class="w3view-cart" data-toggle="modal" data-target="#myModal">
+						<button onclick="drawCart()" class="w3view-cart" data-toggle="modal" data-target="#myModal">
 							<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
 						</button>
 					</div>
@@ -664,34 +664,14 @@
 				  <button type="button" class="close" data-dismiss="modal">&times;</button>
 				  <h4 class="modal-title">Giỏ Hàng</h4>
 				</div>
-				<div class="modal-body">
-					<table style="margin-top: 10px">
-						<tr>
-							<td style="width: 200px; font-size: 15px">Bánh ABC</td>
-							<td style="width: 100px"><input type="number" min="1" value="1" style="width: 50px; text-align: center" /></td>
-							<td style="width: 100px"><button class="btn btn-danger" style="font-size: 8px">X</button></td>
-							<td><label style="font-size: 15px">220.000 VND</label></td>
-						</tr>
-					</table>
-					<table style="margin-top: 10px">
-						<tr>
-							<td style="width: 200px; font-size: 15px">Bánh Ngọt Không Đường ABC</td>
-							<td style="width: 100px"><input type="number" min="1" value="2" style="width: 50px; text-align: center" /></td>
-							<td style="width: 100px"><button class="btn btn-danger" style="font-size: 8px">X</button></td>
-							<td><label style="font-size: 15px">220.000 VND</label></td>
-						</tr>
-					</table>
+				<div id="cart-modal" class="modal-body">
 					
-					<!--Tổng thành tiền-->
-					<table style="margin-top: 40px">
-						<tr>
-							<td colspan="2" style="font-weight: bold">Tổng thành tiền: <span style="color:red">500.000 VND</span></td>
-						</tr>
-					</table>
+					
+					
 					
 				</div>
 				<div class="modal-footer">					
-					<button type="button" class="btn btn-primary">Kiểm Tra Giỏ Hàng</button>
+					<button onclick="window.location='<?=$_SESSION['projectName']?>/Cart'" type="button" class="btn btn-primary">Kiểm Tra Giỏ Hàng</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 				</div>
 		  	</div>
@@ -919,7 +899,7 @@
 					}
 				});
 		}
-	function addCart(id,qty,price,name,img,buynow = 0)
+	function addCart(id,qty,price,name,img,url,buynow = 0)
 	{
 		var cart = new Array();
 		if(getCookie("cart_nlink") == '')
@@ -932,7 +912,7 @@
 		for(var i = 0; i < cart.length; i++){
 			if(cart[i].id == id)
 			{
-				cart[i].qty += qty; 
+				cart[i].qty = parseInt(cart[i].qty) + parseInt(qty); 
 				flag = 1;
 				break;
 			}
@@ -944,11 +924,13 @@
 					qty:qty,
 					price:price,
 					name:name,
-					img:img
+					img:img,
+					url:url
 				}
 			cart.push(pro);
 		}
 		setCookie("cart_nlink",JSON.stringify(cart),30);
+		drawCart();
 		if(buynow == 1)
 		{
 			window.location = "<?=$_SESSION['projectName']?>/Cart";
@@ -959,25 +941,58 @@
 		}
 		
 	}
-	function deleteCart(id)
+	function updateCart(id,qty)
 	{
-		
 		if(getCookie("cart_nlink") != "")
 		{
 			var cart = JSON.parse(getCookie("cart_nlink"));
 
-			cart.forEach(function(value,index){
-				if(value.id == id)
+			for(var i = 0; i < cart.length; i++){
+				if(cart[i].id == id)
 				{
-					cart.splice(index,1);
+					cart[i].qty = qty;
 					break;
 				}
-			});
+			}
 			setCookie("cart_nlink",JSON.stringify(cart),30);
+			drawCart();
 		}
-		cart.forEach(function(item){
-			console.log(item);
-		})
+	}
+	function deleteCart(id)
+	{
+		if(getCookie("cart_nlink") != "")
+		{
+			var r = confirm("Bạn có chắc muốn xóa sản phẩm này khỏi giỏ hàng?");
+			if(r == true)
+			{
+				var cart = JSON.parse(getCookie("cart_nlink"));
+
+				for(var i = 0; i < cart.length; i++){
+					if(cart[i].id == id)
+					{
+						cart.splice(i,1);
+						break;
+					}
+				}
+				setCookie("cart_nlink",JSON.stringify(cart),30);
+				drawCart();
+			}
+		}
+	}
+	function drawCart()
+	{
+		if(getCookie("cart_nlink")!="")
+		{
+			var cart  = JSON.parse(getCookie("cart_nlink"));
+			$("#cart-modal").html("");
+			var totalPrice = 0;
+			for(var i = 0; i< cart.length; i++)
+			{
+				totalPrice += cart[i].qty * cart[i].price;
+				$("#cart-modal").append('<table style="margin-top: 10px"><tr><td style="width: 200px; font-size: 15px">'+cart[i].name+'</td><td style="width: 100px"><input onchange="updateCart('+cart[i].id+',$(this).val())" type="number" min="1" value="'+cart[i].qty+'" style="width: 50px; text-align: center" /></td><td style="width: 100px"><button class="btn btn-danger" onclick="deleteCart('+cart[i].id+')" style="font-size: 8px">X</button></td><td><label style="font-size: 15px">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+'</label></td></tr></table>');
+			}
+			$("#cart-modal").append('<table style="margin-top: 40px"><tr><td colspan="2" style="font-weight: bold">Tổng thành tiền: <span style="color:red">'+new Intl.NumberFormat('de-DE').format(totalPrice)+' VND</span></td></tr></table>');
+		}
 	}
 	function setCookie(cname, cvalue, exdays) {
        var d = new Date();
@@ -1000,6 +1015,7 @@
        }
        return "";
     }
+	
 	</script>
 
 	<script src="<?=$_SESSION['projectName']?>/lib/js/bootstrap.js"></script>
