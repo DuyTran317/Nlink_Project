@@ -237,7 +237,8 @@ var havevoucher = 0; var payment = 1;
 				$("#shipFee").html(new Intl.NumberFormat('de-DE').format(shipFee));
 				$("#day_shipfrom").html($(".dscity:selected").attr('data-timemin'));
 				$("#day_shipto").html($(".dscity:selected").attr('data-timemax'));
-
+				$("#qh_change_ck").html("");
+				$("#qh_change_ck").append('<option id="chon_qh" value="0">---Chọn Quận/Huyện---</option>')
 				$.ajax({
 					url:"<?=$_SESSION['projectName']?>/Ajax/loadDictrict",
 					type:"POST",
@@ -264,7 +265,9 @@ var havevoucher = 0; var payment = 1;
 			}
 			else{
 				$(".phuong_xa").show();	
-
+				$("#phuong_xa").html("");
+				$("#phuong_xa").append('<option id="chon_px" value="0">---Chọn Phường/Xã---</option>');
+				
 				$.ajax({
 					url:"<?=$_SESSION['projectName']?>/Ajax/loadWard",
 					type:"POST",
@@ -321,11 +324,11 @@ var havevoucher = 0; var payment = 1;
 	});
 	function drawOrderDetail()
 	{
-		
+		$("#order-detail").html("");
 		if(getCookie("cart_nlink")!="")
 		{
 			var cart = JSON.parse(getCookie("cart_nlink"));
-			$("#order-detail").html("");
+			
 			var totalPrice = 0; var totalPoint = 0;
 			for(var i = 0; i< cart.length; i++)
 			{
@@ -421,8 +424,13 @@ var havevoucher = 0; var payment = 1;
 		var total = parseInt($('#total').html().replace('.',''));
 		var totalPay = parseInt($('#total-pay').html().replace('.',''));
 		var shipFee = parseInt($('#shipFee').html().replace('.',''));
-		var codeVoucher = $('#code-voucher').val();
-		var valueVoucher = $('#value-voucher').val() == ""? 0 : parseInt($('#value-voucher').val());
+		var codeVoucher = '';
+		var valueVoucher = 0;
+		if(havevoucher == 1)
+		{
+			codeVoucher = $('#code-voucher').val();
+			valueVoucher = parseInt($('#value-voucher').val());
+		}
 		var timemin = $("#day_shipfrom").html();
 		var timemax = $("#day_shipmax").html();
 		
@@ -503,7 +511,9 @@ var havevoucher = 0; var payment = 1;
 					console.log(data);
 					if(data == '1')
 					{
-						setCookie("cart_nlink",JSON.stringify(new Array()),-1);
+						setCookie("cart_nlink",JSON.stringify(new Array()),30);
+						drawCart();
+						drawOrderDetail();
 						alert("Đặt hàng thành công!");
 						setTimeout(function(){
 							window.location = "<?=$_SESSION['projectName']?>/Home";

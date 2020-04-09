@@ -238,8 +238,8 @@
 
 				if(isset($_POST['codeVoucher']) && $_POST['codeVoucher']!="")
 				{
-					$voucher = $this->VoucherModel->checkVoucher($_POST['codeVoucher']);
-					$this->addOrderVoucher($orderId,$voucher['VoucherId']);
+					$voucher = json_decode($this->VoucherModel->checkVoucher($_POST['codeVoucher']),true);
+					$this->VoucherModel->addOrderVoucher($orderId,$voucher['VoucherId']);
 				}
 				if($orderId != 0)
 					echo 1;
