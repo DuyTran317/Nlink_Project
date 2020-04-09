@@ -899,7 +899,7 @@
 					}
 				});
 		}
-	function addCart(id,qty,price,name,img,url,buynow = 0)
+	function addCart(id,qty,price,name,img,url,point,buynow = 0)
 	{
 		var cart = new Array();
 		if(getCookie("cart_nlink") == '')
@@ -925,7 +925,8 @@
 					price:price,
 					name:name,
 					img:img,
-					url:url
+					url:url,
+					point:point
 				}
 			cart.push(pro);
 		}

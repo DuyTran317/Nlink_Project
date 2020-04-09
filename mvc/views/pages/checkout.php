@@ -39,7 +39,7 @@
 							<th>Xóa</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody id="order-detail">
 						<tr>
 							<td class="invert">1</td>
 							<td class="invert-image">
@@ -91,53 +91,59 @@
 						<div class="information-wrapper">
 							<div class="first-row">
 								<div class="controls">
-									<input class="billing-address-name" type="text" name="name" placeholder="Họ Tên Người Nhận *" required>
+									<input id="name" class="billing-address-name" type="text" name="name" placeholder="Họ Tên Người Nhận *" required>
 								</div>
 								<div class="controls">
-									<input class="billing-address-name" type="email" name="email" placeholder="Email *" required>
+									<input id="email" class="billing-address-name" type="email" name="email" placeholder="Email" required>
 								</div>
 								<div class="w3_agileits_card_number_grids">
 									<div class="w3_agileits_card_number_grid_left">
 										<div class="controls">
-											<input type="text" placeholder="Số Điện Thoại *" name="mobile" required>
+											<input id="phonenumber1" type="text" placeholder="Số Điện Thoại *" name="mobile" required>
 										</div>
 									</div>
 									<div class="w3_agileits_card_number_grid_left">
 										<div class="controls">
-											<input type="text" placeholder="Số Điện Thoại 2" name="mobile2">
+											<input id="phonenumber2" type="text" placeholder="Số Điện Thoại 2" name="mobile2">
 										</div>
 									</div>
+									
 									<div class="w3_agileits_card_number_grid_right">
 										<div class="controls">
 											<select id="tinh_thanh" style="width: 30%">
-												<option value="0">---Chọn Tỉnh Thành---</option>
-												<option value="1">Hồ Chí Minh</option>
+												<option class="dscity" value="0" data-fee="0" data-timemin="0" data-timemax="0">---Chọn Tỉnh Thành---</option>
+											<?php
+												foreach($data['listCity'] as $item)
+												{
+											?>
+												<option class="dscity" value="<?=$item['CityId']?>" data-fee="<?=$item['FeeShip']?>" data-timemin="<?=$item['TimeShipMin']?>" data-timemax="<?=$item['TimeShipMax']?>"><?=$item['CityName']?></option>
+												
+											<?php
+												}
+											?>
 											</select>
 											<select id="qh_change_ck" style="width: 30%">
-												<option id="chon_qh" value="0">---Chọn Quận/Huyện---</option>		
-												<option class="quan_huyen" value="1">Gò Vấp</option>	
-												<option class="quan_huyen" value="2">Phú Nhuận</option>
+												<option id="chon_qh" value="0">---Chọn Quận/Huyện---</option>
 											</select>
-											<select style="width: 30%">
+											<select id="phuong_xa" style="width: 30%">
 												<option id="chon_px" value="0">---Chọn Phường/Xã---</option>
-												<option class="phuong_xa" value="1">Phường 16</option>
 											</select>
 										</div>
 									</div>
 									<div class="w3_agileits_card_number_grid_right">
 										<div class="controls">
-											<input type="text" placeholder="Địa Chỉ Chi Tiết *" name="address" required>
+											<input id="address" type="text" placeholder="Địa Chỉ Chi Tiết *" name="address" required>
 										</div>
 									</div>
 									<div class="clear"> </div>
 								</div>
 								<div class="controls">
-									<input type="text" placeholder="Ghi Chú" name="note">
+									<input id="note" type="text" placeholder="Ghi Chú" name="note">
 								</div>
 								<div class="controls">
-									<select class="option-w3ls">
-										<option>Giao Hàng Tiêu Chuẩn</option>
-										<option>Giao Hàng Nhanh</option>							
+									<select id="transpot" class="option-w3ls">
+										<option value="1">Giao Hàng Tiêu Chuẩn</option>
+										<option value="2">Giao Hàng Nhanh</option>							
 									</select>
 								</div>								
 							</div>							
@@ -146,15 +152,16 @@
 				</form>
 				<div class="col-md-4 col-sm-12 col-xs-12">
 					<div style="margin-bottom: 15px">
-						<p style="color:black; margin-top: 10px;">Tiền Hàng: <span style="font-weight: bold">2.000.000 VND</span></p>
-						<p id="trans_pay" style="color:black; margin-top: 10px;">Phí Vận Chuyển: <span style="font-weight: bold">15.000 VND</span></p>
+						<p style="color:black; margin-top: 10px;">Tiền Hàng: <span id="total" style="font-weight: bold">0</span> VND</p>
+						<p id="trans_pay" style="color:black; margin-top: 10px;">Phí Vận Chuyển: <span id="shipFee" style="font-weight: bold">0</span> VND</p>
 					</div>
 
 					<i class="fa fa-hand-o-right" aria-hidden="true"></i>
 					<a id="use_ma_giamgia" href="javascript:void()" style="font-size:14px; color:black; font-weight: bold">Sử dụng mã giảm giá <i class="fa fa-chevron-down" aria-hidden="true"></i></a><br/>
 
 					<div id="ma_giamgia">
-						<input type="text" style="margin: 8px; border-radius: 2px" /><button class="btn btn-success">Áp dụng</button>
+						<input id="value-voucher" type=number style="display:none" />
+						<input id="code-voucher" type="text" style="margin: 8px; border-radius: 2px" /><button id="submit-voucher" onclick="applyVoucher()" class="btn btn-success">Áp dụng</button>
 					</div>
 
 					<div style="margin-top: 15px">
@@ -163,39 +170,39 @@
 						<p id="diem_tichluy" style="color:black; margin: 8px; font-size: 15px">Bạn có: 9 điểm <button class="btn btn-success">Áp dụng</button></p>
 					</div>
 
-					<p style="color:black; margin-top: 15px;">Tổng Tiền Cần Thanh Toán: <span style="color:#d60c0c; font-weight: bold">2.015.000 VND</span></p>
+					<p style="color:black; margin-top: 15px;">Tổng Tiền Cần Thanh Toán: <span id="total-pay" style="color:#d60c0c; font-weight: bold">0</span> VND</p>
 
-					<p style="color:black; margin-top: 10px;">Tổng Điểm Nhận Được: <span style="color:#d60c0c; font-weight: bold">10</span></p>
+					<p style="color:black; margin-top: 10px;">Tổng Điểm Nhận Được: <span id="total-point" style="color:#d60c0c; font-weight: bold">0</span></p>
 					
-					<p id="day_ship" style="color:black; margin-top: 10px; font-weight: bold">Thời gian giao hàng: Từ <span class="day_shipfrom">2</span> đến <span id="day_shipto">4</span> ngày làm việc kể từ khi xác nhận đơn hàng</p>
+					<p id="day_ship" style="color:black; margin-top: 10px; font-weight: bold">Thời gian giao hàng: Từ <span id="day_shipfrom">2</span> đến <span id="day_shipto">4</span> ngày làm việc kể từ khi xác nhận đơn hàng</p>
 					
 					<p style="color:black; margin-top: 10px; font-size: 14px">Đặt hàng qua điện thoại (8h-17h30)</p>
 					
 				</div>
 			</div>
 			<div class="controls">
-				<input type="checkbox" id="" name="support" style="cursor: pointer; margin: 15px 0 25px 0">
+				<input type="checkbox" id="support" name="support" style="cursor: pointer; margin: 15px 0 25px 0">
 				<label for="support"> Chọn vào đây nếu bạn muốn được gọi tư vấn</label>
 				<i class="fa fa-question-circle" aria-hidden="true" style="cursor: pointer; color: #3D6199" title="Nếu quý khách có bất cứ thắc mắc nào về đơn hàng hoặc chính sách vận chuyển. Hãy chọn vào đây để chúng tôi liên lạc và giải đáp thắc mắc của quý khách. Cảm ơn!"></i>
 			</div>
 			<h4 style="color:black; margin-top: 15px">Phương Thức Thanh Toán</h4>
 			<div class="row" style="margin:20px 0 35px 0">
-				<div id="cod" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
+				<div id="cod" onclick="changePayment(1)" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
 					<p><i class="fa fa-truck" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán khi nhận hàng</span></p>
 					<p style="font-size: 12px">Quý khách sẽ thanh toán bằng tiền mặt khi nhận hàng</p>										
 				</div>
-				<div id="cast_bank" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
+				<div id="cast_bank" onclick="changePayment(2)" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
 					<p><i class="fa fa-credit-card-alt" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán bằng chuyển khoản ngân hàng</span></p>
 					<p style="font-size: 12px">Chuyển khoản trực tiếp đến tài khoản của Nlink.vn</p>
 				</div>
-				<div id="cast_online" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
+				<!-- <div id="cast_online" onclick="changePayment(3)" class="col-md-3" style="border:1px solid #ebe1e1; height: 130px; cursor: pointer">
 					<p><i class="fa fa-money" aria-hidden="true" style="color:dodgerblue"></i> <span style="color:black">Thanh toán online</span></p>
 					<p style="font-size: 12px">Thanh toán trực tuyến qua cổng thanh toán OnePay</p>
-				</div>
+				</div> -->
 			</div>
 			<div class="checkout-right-basket">
-				<button class="btn btn-primary check_out">Tiếp tục mua hàng</button>
-				<button class="btn btn-danger check_out">Đặt hàng</button>
+				<button onclick="window.location='<?=$_SESSION['projectName']?>/Home'" class="btn btn-primary check_out">Tiếp tục mua hàng</button>
+				<button onclick="submitCheckout()" class="btn btn-danger check_out">Đặt hàng</button>
 			</div>			
 			<div class="clearfix"> </div>
 		</div>
@@ -204,7 +211,9 @@
 <!-- //checkout page -->
 
 <script>
+var havevoucher = 0; var payment = 1;
 	$(document).ready(function () {
+		drawOrderDetail();
 		//Chọn Tỉnh/Thành Phố => Mã vận chuyển
 		$("#trans_pay").hide();
 		$("#day_ship").hide();
@@ -223,7 +232,27 @@
 			else{
 				$("#trans_pay").show();
 				$("#day_ship").show();
-				$(".quan_huyen").show();				
+				$(".quan_huyen").show();
+				var shipFee = $(".dscity:selected").attr('data-fee');
+				$("#shipFee").html(new Intl.NumberFormat('de-DE').format(shipFee));
+				$("#day_shipfrom").html($(".dscity:selected").attr('data-timemin'));
+				$("#day_shipto").html($(".dscity:selected").attr('data-timemax'));
+
+				$.ajax({
+					url:"<?=$_SESSION['projectName']?>/Ajax/loadDictrict",
+					type:"POST",
+					data:{
+						id:$("#tinh_thanh").val()
+					},
+					success: function(data){
+						var listDictrict = JSON.parse(data);
+						for(var i = 0; i<listDictrict.length; i++)
+						{
+							$("#qh_change_ck").append('<option value="'+listDictrict[i].DictrictId+'">'+listDictrict[i].DictrictName+'</option>');
+						}
+					}
+				});
+				drawOrderDetail();
 			}
 		});
 		
@@ -234,7 +263,22 @@
 				$(".phuong_xa").hide();	
 			}
 			else{
-				$(".phuong_xa").show();		
+				$(".phuong_xa").show();	
+
+				$.ajax({
+					url:"<?=$_SESSION['projectName']?>/Ajax/loadWard",
+					type:"POST",
+					data:{
+						id:$("#qh_change_ck").val()
+					},
+					success: function(data){
+						var listWard = JSON.parse(data);
+						for(var i = 0; i<listWard.length; i++)
+						{
+							$("#phuong_xa").append('<option value="'+listWard[i].WardId+'">'+listWard[i].WardName+'</option>');
+						}
+					}
+				})	
 			}					
 		});
 		
@@ -275,4 +319,202 @@
 			$(this).css("border-width","3px");
 		});
 	});
+	function drawOrderDetail()
+	{
+		
+		if(getCookie("cart_nlink")!="")
+		{
+			var cart = JSON.parse(getCookie("cart_nlink"));
+			$("#order-detail").html("");
+			var totalPrice = 0; var totalPoint = 0;
+			for(var i = 0; i< cart.length; i++)
+			{
+				totalPrice += cart[i].qty * cart[i].price;
+				$("#order-detail").append('<tr><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="<?=$_SESSION["projectName"]?>/Product/Detail/'+cart[i].url+'"><img src="<?=$_SESSION["projectName"]?>/lib/images/product/'+cart[i].img+'" alt=" " class="img-responsive" style="width: 50px; height: 50px"></a></td><td class="invert"><div class="quantity"><label style="font-size: 18px">'+cart[i].qty+'</label></div></td><td class="invert">'+cart[i].name+'</td><td class="invert">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+' VND</td><td class="invert" style="color:darkblue; font-weight: bold">'+new Intl.NumberFormat('de-DE').format(parseInt(cart[i].price) * parseInt(cart[i].qty))+' VND</td><td class="invert"><a onclick="deleteCheckout('+cart[i].id+')" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a></td></tr>');
+				
+				totalPoint += parseInt(cart[i].point) * parseInt(cart[i].qty);
+			}
+			$("#total-point").html(totalPoint);
+			$("#total").html(new Intl.NumberFormat('de-DE').format(totalPrice));
+			$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPrice));
+			if(havevoucher == 1)
+			{
+				var totalPay = parseInt($('#total-pay').html().replace('.',''));
+				$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPay-parseInt($("#value-voucher").val())));
+			}
+			if($("#shipFee").html()!='0')
+			{
+				var totalPay = parseInt($('#total-pay').html().replace('.',''));
+				var shipFee = parseInt($('#shipFee').html().replace('.',''));
+				$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPay+shipFee));
+			}
+		}
+	}
+	function deleteCheckout(id)
+	{
+		deleteCart(id);
+		drawOrderDetail();
+	}
+	
+	function changePayment(p)
+	{
+		payment = p;
+	}
+	function applyVoucher()
+	{
+		var code = $('#code-voucher').val();
+		if(havevoucher == 0 && code != "")
+		{
+			$.ajax({
+				url:"<?=$_SESSION['projectName']?>/Ajax/checkVoucher",
+				type:"POST",
+				data:{
+					Code:code
+				},
+				success: function(data){
+					if(data != 'null')
+					{
+						var voucher = JSON.parse(data);
+						
+						
+						var total = parseInt($('#total').html().replace('.',''));
+						var totalPay = parseInt($('#total-pay').html().replace('.',''));
+						
+						$('#code-voucher').prop('disabled', true);
+						$('#submit-voucher').prop('disabled', true);
+						switch(voucher.TypeId)
+						{
+							case '1':
+								if(voucher.Value > $('#total-pay').html()) {
+									$('#value-voucher').val(parseInt(voucher.Value));
+									havevoucher = 1;
+								}
+								break;
+							case '2':
+								$('#value-voucher').val(totalPay*parseFloat(voucher.Value));
+								havevoucher = 1;
+								break;
+						}
+						drawOrderDetail();
+					}
+					else
+					{
+						alert("Mã giảm giá không phù hợp, vui lòng kiểm tra lại!");
+					}
+				}
+			})
+		}
+	}
+	function submitCheckout(){
+		var flag = 1;
+		var name = $("#name").val().trim();
+		var email = $("#email").val().trim();
+		var phonenumber1 = $("#phonenumber1").val().trim();
+		var phonenumber2 = $("#phonenumber2").val().trim();
+		var tinh_tp = $("#tinh_thanh").val();
+		var quan_huyen = $("#qh_change_ck").val();
+		var phuong_xa = $("#phuong_xa").val();
+		var address = $("#address").val().trim();
+		var note = $("#note").val().trim();
+		var transpot = $("#transpot").val();
+		var support = $("#support").val() == 'on' ? 1 : 0;
+		var total = parseInt($('#total').html().replace('.',''));
+		var totalPay = parseInt($('#total-pay').html().replace('.',''));
+		var shipFee = parseInt($('#shipFee').html().replace('.',''));
+		var codeVoucher = $('#code-voucher').val();
+		var valueVoucher = $('#value-voucher').val() == ""? 0 : parseInt($('#value-voucher').val());
+		var timemin = $("#day_shipfrom").html();
+		var timemax = $("#day_shipmax").html();
+		
+		if(name == "")
+		{
+			alert("Vui lòng nhập tên người nhận!");
+			flag = 0;
+		}
+		if(email != "")
+		{
+			if(!validateEmail(email))
+			{
+				alert("Email người nhận không đúng định dạng!");
+				flag = 0;
+			}
+		}
+		if(phonenumber1 == ""){
+			alert("Vui lòng nhập số điện thoại người nhận!");
+			flag = 0;
+		}
+		else
+		{
+			if(isNaN(phonenumber1) || phonenumber1.length <10 || phonenumber1.length >13)
+			{
+				alert("Số điện thoại người nhận không hợp lệ!");
+				flag = 0;
+			}
+		}
+		if(tinh_tp == 0)
+		{
+			alert("Vui lòng chọn tỉnh/thành phố!");
+			flag = 0;
+		}
+		if(quan_huyen == 0)
+		{
+			alert("Vui lòng chọn quận/huyện!");
+			flag = 0;
+		}
+		if(phuong_xa == 0)
+		{
+			alert("Vui lòng chọn phường/xã!");
+			flag = 0;
+		}
+		if(address == "")
+		{
+			alert("Vui lòng nhập địa chỉ!");
+			flag = 0;
+		}
+		if(flag == 1)
+		{
+			var cart = getCookie("cart_nlink");
+			$.ajax({
+				url: "<?=$_SESSION['projectName']?>/Ajax/createOrder",
+				type: "POST",
+				data:{
+					cart:cart,
+					name:name,
+					email:email,
+					phonenumber1:phonenumber1,
+					phonenumber2:phonenumber2,
+					tinh_tp:tinh_tp,
+					quan_huyen:quan_huyen,
+					phuong_xa:phuong_xa,
+					address:address,
+					note:note,
+					transpot:transpot,
+					support:support,
+					payment:payment,
+					total:total,
+					totalPay:totalPay,
+					shipFee:shipFee,
+					codeVoucher:codeVoucher,
+					valueVoucher:valueVoucher,
+					timemin:timemin,
+					timemax:timemax
+				},
+				success: function(data){
+					console.log(data);
+					if(data == '1')
+					{
+						setCookie("cart_nlink",JSON.stringify(new Array()),-1);
+						alert("Đặt hàng thành công!");
+						setTimeout(function(){
+							window.location = "<?=$_SESSION['projectName']?>/Home";
+						}, 2000);
+					}
+				}
+			})
+		}
+	}
+	function validateEmail(email) {
+		var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(email);
+	}
 </script>

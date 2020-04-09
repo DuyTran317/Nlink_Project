@@ -39,8 +39,8 @@
 						<input id="qty" type="number" min="1" value="1" style="width: 50px; margin-left: 10px; text-align: center" />
 					</li>
 					<li>
-						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,'<?=$data['Product']['ProductName']?>','<?=$data['Product']['Img']?>','<?=$data['Product']['url']?>',1)" class="btn btn-danger">Mua Ngay</button>
-						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,'<?=$data['Product']['ProductName']?>','<?=$data['Product']['Img']?>','<?=$data['Product']['url']?>')" class="btn btn-success">Thêm Vào Giỏ</button>
+						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,'<?=$data['Product']['ProductName']?>','<?=$data['Product']['Img']?>','<?=$data['Product']['url']?>',<?=$data['Product']['Point']?>,1)" class="btn btn-danger">Mua Ngay</button>
+						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,'<?=$data['Product']['ProductName']?>','<?=$data['Product']['Img']?>','<?=$data['Product']['url']?>',<?=$data['Product']['Point']?>)" class="btn btn-success">Thêm Vào Giỏ</button>
 					</li>
 					<!--<li>
 						1 offer from

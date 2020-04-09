@@ -2,10 +2,16 @@
 	class Ajax extends Controller{
 		public $ProductModel;
 		public $UserModel;
+		public $VoucherModel;
+		public $LocationModel;
+		public $OrderModel;
 		function __construct()
 		{
 			$this->ProductModel = $this->model("ProductModel");
 			$this->UserModel = $this->model("UserModel");
+			$this->VoucherModel = $this->model("VoucherModel");
+			$this->LocationModel = $this->model("LocationModel");
+			$this->OrderModel = $this->model("OrderModel");
 		}
 		function LoadCommentProduct()
 		{
@@ -160,6 +166,90 @@
 				}
 			}
 			else echo "0";
+		}
+		function checkVoucher()
+		{
+			if(isset($_POST['Code']))
+			{
+				$code = $_POST['Code'];
+				$voucher = $this->VoucherModel->checkVoucher($code);
+				if($voucher != null)
+				{
+					echo $voucher;
+				}
+				echo null;
+			}
+		}
+		function loadDictrict()
+		{
+			if(isset($_POST['id']))
+			{
+				$id = $_POST['id'];
+				echo $this->LocationModel->getDictrictsOfCityId($id,"`DictrictId`","ASC");
+			}
+			else
+			{
+				echo "";
+			}
+		}
+		function loadWard()
+		{
+			if(isset($_POST['id']))
+			{
+				$id = $_POST['id'];
+				echo $this->LocationModel->getWardsOfDictrictId($id,"`WardId`","ASC");
+			}
+			else
+			{
+				echo "";
+			}
+		}
+		function createOrder()
+		{
+			if(isset($_POST['cart'])){
+				$price = $_POST['total'];
+				$pricePay = $_POST['totalPay'];
+				$userId = isset($_SESSION['UserId']) ? $_SESSION['UserId'] : 0;
+				$name = $_POST['name'];
+				$email = $_POST['email'];
+				$phonenumber1 = $_POST['phonenumber1'];
+				$phonenumber2 = $_POST['phonenumber2'];
+				$wardId = $_POST['phuong_xa'];
+				$address = $_POST['address'];
+				$transpotId = $_POST['transpot'];
+				$note = $_POST['note'];
+				$support = $_POST['support'];
+				$payment = $_POST['payment'];
+				$shipFee = $_POST['shipFee'];
+				$valueVoucher = $_POST['valueVoucher'];
+
+				$now = date("Y-m-d H:i:s");
+            	$code = date("YmdHis");
+				$sql = "INSERT INTO `nl_orders`(`OrderId`, `OrderCode`, `Price`, `PointUsed`, `PricePay`, `UserId`, `FullName`, `Email`, `PhoneNumber1`, `PhoneNumber2`, `WardId`, `Address`, `TransportId`, `NoteTypeId`, `Note`, `CallSupport`, `PaymentId`, `StatusId`, `CrDateTime`, `Sale`, `ShipFee`, `ShipDateTime`) 
+                VALUES (NULL,'$code',$price,0,$pricePay,$userId,N'$name','$email','$phonenumber1','$phonenumber2',$wardId,N'$address',$transpotId,0,N'$note',$support,$payment,1,'$now',$shipFee,$valueVoucher,NULL)";
+				
+				$orderId = $this->OrderModel->addOrder($price,$pricePay,$userId,$name,$email,$phonenumber1,$phonenumber2,$wardId,$address,$transpotId,$note,$support,$payment,$shipFee,$valueVoucher);
+				
+				$cart = json_decode($_POST['cart'],true);
+				foreach($cart as $item)
+				{
+					$this->OrderModel->addOrderDetail($orderId,$item['id'],$item['qty'],$item['price']);
+				}
+
+				if(isset($_POST['codeVoucher']) && $_POST['codeVoucher']!="")
+				{
+					$voucher = $this->VoucherModel->checkVoucher($_POST['codeVoucher']);
+					$this->addOrderVoucher($orderId,$voucher['VoucherId']);
+				}
+				if($orderId != 0)
+					echo 1;
+				else 
+					echo 0;
+			}
+			else
+			{
+			echo 0;
+			}
 		}
 		// function setCart()
 		// {

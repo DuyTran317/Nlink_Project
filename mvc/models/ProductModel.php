@@ -299,6 +299,13 @@
 			$rs = mysqli_fetch_assoc($r);
 			return json_encode($rs['tongsp']);
 		}
-		
+		public function getPointProduct($id)
+		{
+			$sql = "select `Point` from `nl_products` where `ProductId` = $id";
+			$r = mysqli_query($this->con,$sql);
+			$rs = mysqli_fetch_assoc($r);
+			
+			return json_encode($rs['Point']);
+		}
 	}
 ?>

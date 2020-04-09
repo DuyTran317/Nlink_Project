@@ -38,8 +38,23 @@
 							<th>Thành Tiền</th>							
 						</tr>
 					</thead>
-					<tbody id="order-detail">
-									
+					<tbody>
+						<tr>
+							<td class="invert">1</td>
+							<td class="invert-image">
+								<a href="single2.html">
+									<img src="lib/images/s8.jpg" alt=" " class="img-responsive" style="width: 50px; height: 50px">
+								</a>
+							</td>
+							<td class="invert">
+								<div class="quantity">
+									<label style="font-size: 18px">2</label>
+								</div>
+							</td>
+							<td class="invert">Spotzero Spin Mop</td>
+							<td class="invert">10,000 VND</td>
+							<td class="invert" style="color:darkblue; font-weight: bold">20,000 VND</td>		
+						</tr>					
 					</tbody>
 				</table>				
 			</div>
@@ -119,23 +134,4 @@
 	</div>
 </div>
 <!-- //checkout page -->
-<script>
-	$(document).ready(function(){
-		drawOrderDetail();
-	});
-	function drawOrderDetail()
-	{
-		if(getCookie("cart_nlink")!="")
-		{
-			var cart = JSON.parse(getCookie("cart_nlink"));
-			$("#order-detail").html("");
-			var totalPrice = 0;
-			for(var i = 0; i< cart.length; i++)
-			{
-				totalPrice += cart[i].qty * cart[i].price;
-				$("#order-detail").append('<tr><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="<?=$_SESSION["projectName"]?>/Product/Detail/'+cart[i].url+'"><img src="<?=$_SESSION["projectName"]?>/lib/images/product/'+cart[i].img+'" alt=" " class="img-responsive" style="width: 50px; height: 50px"></a></td><td class="invert"><div class="quantity"><label style="font-size: 18px">'+cart[i].qty+'</label></div></td><td class="invert">'+cart[i].name+'</td><td class="invert">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+' VND</td><td class="invert" style="color:darkblue; font-weight: bold">'+new Intl.NumberFormat('de-DE').format(parseInt(cart[i].price) * parseInt(cart[i].qty))+' VND</td></tr>');
-			}
-			
-		}
-	}
-</script>
+
