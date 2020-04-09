@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 <head>
-	<title>Site</title>
+	<title>Nlink Vietnam Co., Ltd</title>
 	<!--/tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -16,7 +16,7 @@
 		}
 	</script>
 	<!--//tags -->
-
+	<link rel="shortcut icon" href="<?=$_SESSION['projectName']?>/lib/images/logo.png" />
 	<link href="<?=$_SESSION['projectName']?>/lib/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="<?=$_SESSION['projectName']?>/lib/css/style.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="<?=$_SESSION['projectName']?>/lib/css/font-awesome.css" rel="stylesheet">
@@ -607,42 +607,42 @@
 			</div>
 			<!-- //footer third section -->
 			<!-- footer fourth section (text) -->
-			<div class="agile-sometext">				
+			<!--<div class="agile-sometext">				
 				<!-- payment -->
-				<div class="sub-some child-momu">
+				<!--<div class="sub-some child-momu">
 					<h5>Payment Method</h5>
 					<ul>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay2.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay2.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay5.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay5.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay1.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay1.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay4.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay4.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay6.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay6.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay3.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay3.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay7.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay7.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay8.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay8.png" alt="">
 						</li>
 						<li>
-							<img src="<?=$_SESSION['projectName']?>/images/pay9.png" alt="">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/pay9.png" alt="">
 						</li>
 					</ul>
-				</div>
+				</div>-->
 				<!-- //payment -->
-			</div>
+			<!--</div>-->
 			<!-- //footer fourth section (text) -->
 		</div>
 	</footer>
@@ -670,7 +670,7 @@
 					
 					
 				</div>
-				<div class="modal-footer">					
+				<div class="modal-footer">						
 					<button onclick="window.location='<?=$_SESSION['projectName']?>/Cart'" type="button" class="btn btn-primary">Kiểm Tra Giỏ Hàng</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 				</div>
@@ -991,7 +991,13 @@
 				totalPrice += cart[i].qty * cart[i].price;
 				$("#cart-modal").append('<table style="margin-top: 10px"><tr><td style="width: 200px; font-size: 15px">'+cart[i].name+'</td><td style="width: 100px"><input onchange="updateCart('+cart[i].id+',$(this).val())" type="number" min="1" value="'+cart[i].qty+'" style="width: 50px; text-align: center" /></td><td style="width: 100px"><button class="btn btn-danger" onclick="deleteCart('+cart[i].id+')" style="font-size: 8px">X</button></td><td><label style="font-size: 15px">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+'</label></td></tr></table>');
 			}
-			$("#cart-modal").append('<table style="margin-top: 40px"><tr><td colspan="2" style="font-weight: bold">Tổng thành tiền: <span style="color:red">'+new Intl.NumberFormat('de-DE').format(totalPrice)+' VND</span></td></tr></table>');
+			if(cart.length > 0)
+			{
+				$("#cart-modal").append('<table style="margin-top: 40px"><tr><td colspan="2" style="font-weight: bold">Tổng thành tiền: <span style="color:red">'+new Intl.NumberFormat('de-DE').format(totalPrice)+' VND</span></td></tr></table>');
+			}
+			else{
+				$("#cart-modal").append('<table><tr><td colspan="2" style="font-weight: bold">Bạn chưa chọn sản phẩm nào. Vui lòng chọn sản phẩm!</td></tr></table>');
+			}
 		}
 	}
 	function setCookie(cname, cvalue, exdays) {

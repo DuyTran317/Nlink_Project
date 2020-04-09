@@ -12,15 +12,15 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
 			  <div class="item active">
-				<img class="img-crs" src="lib/images/banner1.jpg" alt="err">			
+				<img class="img-crs" src="lib/images/slideshow/sld_home1.png" alt="err">			
 			  </div>
 
 			  <div class="item">
-				<img class="img-crs" src="lib/images/banner2.jpg" alt="err">
+				<img class="img-crs" src="lib/images/slideshow/sld_home2.png" alt="err">
 			  </div>
 
 			  <div class="item">
-				<img class="img-crs" src="lib/images/banner3.jpg" alt="err">
+				<img class="img-crs" src="lib/images/slideshow/sld_home3.png" alt="err">
 			  </div>
 			</div>
 
@@ -37,13 +37,13 @@
 <!-- //banner -->
 
 <!-- top Products -->
-<div class="ads-grid">
+<div class="ads-grid" style="background-color: #f4f4f4">
 	<div class="container">
 		<div class="agileinfo-ads-display col-md-12">
 			<div class="wrapper">
 				<!-- first section (nuts) -->
 				<div class="product-sec1" style="box-shadow: none">
-					<h3 class="tittle-w3l" style="font-size:30px">Sản Phẩm Mới
+					<h3 class="tittle-w3l" style="font-size:30px; color:#993414">Sản Phẩm Mới
 						<span class="heading-style">
 							<i></i>
 							<i></i>
@@ -99,7 +99,7 @@
 				<!-- //second section (nuts special) -->
 				<!-- third section (oils) -->
 				<div class="product-sec3">
-					<h3 class="tittle-w3l" style="font-size:30px; margin-top: 50px">Sản Phẩm Bán Chạy
+					<h3 class="tittle-w3l" style="font-size:30px; margin-top: 50px; color:#993414">Sản Phẩm Bán Chạy
 						<span class="heading-style">
 							<i></i>
 							<i></i>
@@ -153,7 +153,7 @@ while($depart = current($data['listProductAllDepart']))
 <div class="featured-section" id="projects">
 	<div class="container">
 		<!-- tittle heading -->
-		<h3 class="tittle-w3l" style="font-size:30px"><?php echo key($data['listProductAllDepart']); ?>
+		<h3 class="tittle-w3l" style="font-size:28px"><?php echo key($data['listProductAllDepart']); ?>
 			<span class="heading-style">
 				<i></i>
 				<i></i>

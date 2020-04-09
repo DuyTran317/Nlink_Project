@@ -181,18 +181,26 @@
 						$pageend = $data['pagenumber']+2 < $data['sumpage'] ? $data['pagenumber']+2 : $data['sumpage'];
 					?>
 					<div style="text-align: center">
+						<?php if($pageend == 0) echo"*** Chưa có sản phẩm hiển thị ***";?>
 						<ul class="pagination">
-							<li onclick="toPageNumber(1)"><a class="pointer-mouse">&laquo;</a></li>
+							<?php
+								if($pageend>0)
+								{
+							?>
+							<li onclick="toPageNumber(1)"><a class="pointer-mouse">&laquo;</a></li>		
 							<?php 
+								}
 								for($i = $pagebegin; $i <= $pageend; $i++)
 								{
 							?>
 									<li onclick="toPageNumber(<?=$i?>)" <?php if($i == $data['pagenumber']) {echo 'class="active"';}?>><a class="pointer-mouse"><?=$i?></a></li>
 							<?php
 								}
-							?>
-							
+								if($pageend>0)
+								{
+							?>							
 							<li onclick="toPageNumber(<?=$data['sumpage']?>)"><a class="pointer-mouse">&raquo;</a></li>
+							<?php } ?>
 						</ul>
 					</div>
 				</div>
