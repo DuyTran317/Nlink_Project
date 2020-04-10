@@ -49,7 +49,7 @@
 							</td>
 							<td class="invert">
 								<div class="quantity">
-									<label style="font-size: 18px">2</label>
+									<input type="number" value="1" min="1" style="font-size: 18px" />
 								</div>
 							</td>
 							<td class="invert">Spotzero Spin Mop</td>
@@ -68,7 +68,7 @@
 							</td>
 							<td class="invert">
 								<div class="quantity">
-									<label style="font-size: 18px">2</label>
+									<input type="number" value="2" min="1" style="font-size: 18px" />
 								</div>
 							</td>
 							<td class="invert">Spotzero Spin Mop</td>
