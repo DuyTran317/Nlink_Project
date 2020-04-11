@@ -49,7 +49,7 @@
 							</td>
 							<td class="invert">
 								<div class="quantity">
-									<label style="font-size: 18px">2</label>
+									<input type="number" value="1" min="1" style="font-size: 18px; width:50px; text-align: center" />
 								</div>
 							</td>
 							<td class="invert">Spotzero Spin Mop</td>
@@ -68,7 +68,7 @@
 							</td>
 							<td class="invert">
 								<div class="quantity">
-									<label style="font-size: 18px">2</label>
+									<input type="number" value="1" min="1" style="font-size: 18px; width:50px; text-align: center" />
 								</div>
 							</td>
 							<td class="invert">Spotzero Spin Mop</td>
@@ -333,7 +333,7 @@ var havevoucher = 0; var payment = 1;
 			for(var i = 0; i< cart.length; i++)
 			{
 				totalPrice += cart[i].qty * cart[i].price;
-				$("#order-detail").append('<tr><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="<?=$_SESSION["projectName"]?>/Product/Detail/'+cart[i].url+'"><img src="<?=$_SESSION["projectName"]?>/lib/images/product/'+cart[i].img+'" alt=" " class="img-responsive" style="width: 50px; height: 50px"></a></td><td class="invert"><div class="quantity"><label style="font-size: 18px">'+cart[i].qty+'</label></div></td><td class="invert">'+cart[i].name+'</td><td class="invert">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+' VND</td><td class="invert" style="color:darkblue; font-weight: bold">'+new Intl.NumberFormat('de-DE').format(parseInt(cart[i].price) * parseInt(cart[i].qty))+' VND</td><td class="invert"><a onclick="deleteCheckout('+cart[i].id+')" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a></td></tr>');
+				$("#order-detail").append('<tr><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="<?=$_SESSION["projectName"]?>/Product/Detail/'+cart[i].url+'"><img src="<?=$_SESSION["projectName"]?>/lib/images/product/'+cart[i].img+'" alt=" " class="img-responsive" style="width: 50px; height: 50px"></a></td><td class="invert"><div class="quantity"><input type="number" min='1' value="'+cart[i].qty+'" style="font-size: 18px; width:50px; text-align: center"/></div></td><td class="invert">'+cart[i].name+'</td><td class="invert">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+' VND</td><td class="invert" style="color:darkblue; font-weight: bold">'+new Intl.NumberFormat('de-DE').format(parseInt(cart[i].price) * parseInt(cart[i].qty))+' VND</td><td class="invert"><a onclick="deleteCheckout('+cart[i].id+')" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a></td></tr>');
 				
 				totalPoint += parseInt(cart[i].point) * parseInt(cart[i].qty);
 			}
