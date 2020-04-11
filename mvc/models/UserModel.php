@@ -8,6 +8,14 @@
 			
 			return json_encode($rs);
         }
+        public function getUserById($id)
+        {
+            $sql="select * from `nl_users` where `UserId` = $id";
+			$r = mysqli_query($this->con,$sql);
+			$rs = mysqli_fetch_assoc($r);
+			
+			return json_encode($rs);
+        }
         public function insertUser($email,$name,$phone,$pass)
         {
             $now = date("Y-m-d H:i:s");

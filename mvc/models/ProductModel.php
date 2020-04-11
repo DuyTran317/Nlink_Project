@@ -165,7 +165,7 @@
 		}
 		public function getCommentsByProductId($id,$field,$sort,$position = -1, $display = -1)
 		{
-			$sql = "SELECT *,SUM(`StarNumber`)/COUNT(*) as sao FROM `nl_comments` WHERE `ProductId`=$id and `ParentId`=NULL order by $field $sort";
+			$sql = "SELECT * FROM `nl_comments` WHERE `ProductId`=$id and `ParentId` is NULL order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	
@@ -177,6 +177,12 @@
 				$mang[] = $rs;
 			}
 			return json_encode($mang);
+		}
+		public function getTotalRateByProductId($id){
+			$sql = "SELECT SUM(StarNumber)/COUNT(`CommentId`) as sao FROM `nl_comments` WHERE `ProductId`=$id and `ParentId` is NULL";
+			$r = mysqli_query($this->con,$sql);
+			$rs = mysqli_fetch_assoc($r);
+			return $rs['sao'];
 		}
 		public function getAnswersCommentByCommentId($id,$field,$sort,$position = -1, $display = -1)
 		{
@@ -192,6 +198,14 @@
 				$mang[] = $rs;
 			}
 			return json_encode($mang);
+		}
+		public function addComment($productId,$content,$name,$phone,$email,$rate,$userId,$parentId){
+			$now = date("Y-m-d H:i:s");
+			$sql = "INSERT INTO `nl_comments`(`CommentId`, `ProductId`, `Content`, `Name`, `PhoneNumber`, `Email`, `Img`, `Like`, `StarNumber`, `CrDateTime`, `UserId`, `AdminId`, `ParentId`) VALUES (NULL,$productId,N'$content',N'$name','$phone','$email','',0,$rate,'$now',$userId,NULL,$parentId)";
+			if(mysqli_query($this->con,$sql))
+				return mysqli_insert_id($this->con);
+			else
+				return 0;
 		}
 		public function getProductsByCateId($id,$brand=0,$priceMin=-1,$priceMax=-1,$field,$sort,$position = -1, $display = -1)
 		{
