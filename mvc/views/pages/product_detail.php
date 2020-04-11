@@ -138,7 +138,7 @@
 			<div class="container" style="margin-top: 15px">
 				<h4>Khách hàng đánh giá</h4>
 				<h3 style="margin-top: 20px; color: red; font-size: 42px">
-					<?=$data['Star']==NULL?0:$data['Star']?>/5 <i class="fa fa-star" aria-hidden="true" style="color: yellow; font-size: 42px"></i>
+					<?=$data['Star']==NULL?0:round($data['Star'])?>/5 <i class="fa fa-star" aria-hidden="true" style="color: yellow; font-size: 42px"></i>
 				</h3>
 				<h4 style="margin-top: 40px">Gửi nhận xét của bạn</h4>
 				<h5 style="margin-top: 20px">1. Đánh giá của bạn về sản phẩm này:<br/>				
@@ -160,60 +160,17 @@
 					<div style="clear: both"></div>
 				</h5>
 				<h5 style="margin-top: 20px">2. Viết nhận xét của bạn vào bên dưới: <span style="color:red">*</span>
-					<textarea class="form-control" style="margin-top: 10px; max-width: 500px; height: 80px" placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
+					<textarea id="content-cmt" class="form-control" style="margin-top: 10px; max-width: 500px; height: 80px" placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
 				</h5>
 				<h5 style="margin-top: 20px">3. Thông tin cá nhân của bạn: <span style="color:red">*</span><br/>
-					<input type="text" value="" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />
-					<input type="number" value="" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />
-					<input type="email" value="" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />
+					<input id="name-cmt" type="text" value="<?php if($data['User']!="") echo $data['User']['FullName'];?>" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />
+					<input id="phone-cmt" type="number" value="<?php if($data['User']!="") echo $data['User']['PhoneNumber'];?>" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />
+					<input id="email-cmt" type="email" value="<?php if($data['User']!="") echo $data['User']['Email'];?>" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />
 				</h5>
-				<button class="btn btn-primary" style="margin-top: 20px">Thêm nhận xét</button>
+				<button onclick="addComment()" class="btn btn-primary" style="margin-top: 20px">Thêm nhận xét</button>
 			</div>
-			<div class="container" style="margin-top: 40px">
-				<div class="row">
-					<div class="col-md-2" style="text-align: center">
-						<i class="fa fa-user" aria-hidden="true" style="font-size: 42px"></i>
-						<p style="color:black; margin-top: 5px">Nguyễn Văn Test</p>
-						<p style="font-size: 12px; color: gray">20/03/2020 14:00</p>
-					</div>
-					<div class="col-md-10">
-						<p>
-							<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-							<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-							<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-							<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-							<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>
-						</p>
-						<span style="font-size: 15px">Qua tuổi 25 rồi nên mình cũng chú trọng và chăm chỉ chăm sóc da hơn, đặc biệt là vấn đề bổ sung collagen để da thực sự khỏe mạnh. Mình uống Collagen pure white được trong khoảng 1 tháng rồi. Vì dạng nước công dụng cũng nhanh hơn khi uống dạng viên, mình dùng được khoảng hơn 2 tuần thì cảm nhận được da mịn màng và căng khỏe hơn trước rất nhiều</span>
-						<p id="rep_nhanxet" style="color:blue; font-size: 14px; cursor: pointer">Trả lời</p>
+			<div id="ds_Comment" data-page="0" data-itemEnd="-1" class="container" style="margin-top: 40px">
 
-						<div id="info_nhanxet" style="margin-top: 20px">
-							<textarea class="form-control" placeholder="Nhận xét của bạn"></textarea>
-							<input type="text" value="" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />
-							<input type="number" value="" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />
-							<input type="email" value="" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />
-
-							<button class="btn btn-danger" style="float: right; margin-top: 10px" id="cancel_info_nhanxet">Hủy</button>					
-							<button class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px">Thêm</button>					
-							<div style="clear: right"></div>
-						</div>
-
-						<div style="margin-top: 10px">
-							<span style="font-weight: bold; margin-bottom: 5px">Nhi</span> - <span style="color:gray">21/03/2020 14:00</span><br/>
-							<span style="font-size: 15px">Ok bạn nhé!</span>
-						</div>
-						
-						<!--Xem thêm theo mỗi comment-->
-						<div style="font-size: 14px; margin-top: 6px">
-							<a href="#">Xem thêm</a>
-						</div>
-						
-						<!--Xem thêm theo tất cả comment-->
-						<div style="font-size: 14px; margin-top: 10px; text-align: center">
-							<button class="btn btn-default">Xem thêm</button>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>			
@@ -377,6 +334,7 @@
 
 <script>
 	$(document).ready(function () {
+		getComments(1);
 		$('.popup-with-zoom-anim').magnificPopup({
 			type: 'inline',
 			fixedContentPos: false,
@@ -431,14 +389,244 @@
 
 		$("#info_nhanxet").hide();
 
-		$("#rep_nhanxet").click(function(){
-			$("#info_nhanxet").show();
-		});
-
-		$("#cancel_info_nhanxet").click(function(){
-			$("#info_nhanxet").hide();
-		});
-
 	});
-	
+	function getComments(page = 1)
+	{
+		$("#btnLoadCmt").remove();
+		//var begin = (page-1)*10;
+		var begin = parseInt($("#ds_Comment").attr("data-itemEnd")) + 1;
+		var numComment = 10;
+		var productId = <?=$data['Product']['ProductId']?>;
+
+		$.ajax({
+			url:"<?=$_SESSION['projectName']?>/Ajax/LoadCommentProduct",
+			type:"POST",
+			data:{
+				begin:begin,
+				numComment:numComment,
+				productId:productId
+			},
+			success: function(data){
+				if(data!='' && data != '[]'){
+					var listComment = JSON.parse(data);
+					for(var i = 0; i<listComment.length;i++)
+					{
+						var drawComment = '<div class="row" style="margin-top:25px">';
+								drawComment += '<div class="col-md-2" style="text-align: center">';
+									drawComment += '<i class="fa fa-user" aria-hidden="true" style="font-size: 42px"></i>';
+									drawComment += 	'<p style="color:black; margin-top: 5px">'+listComment[i].Name+'</p>';
+									drawComment += 	'<p style="font-size: 12px; color: gray">'+listComment[i].CrDateTime.substring(0,listComment[i].CrDateTime.length - 3)+'</p>';
+								drawComment += 	'</div>';
+								drawComment += 	'<div id="comment'+listComment[i].CommentId+'" data-page="0" data-itemEnd="-1" class="col-md-10">';
+									drawComment += 	'<p>';
+									for(var j=1;j<=listComment[i].StarNumber;j++)
+									{
+										drawComment += 	'<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>';
+									}
+									drawComment += 	'</p>';
+									drawComment += '<span style="font-size: 15px">'+listComment[i].Content+'</span>';
+									drawComment += 	'<p onclick="showAnswerCmtForm('+listComment[i].CommentId+')" style="color:blue; font-size: 14px; cursor: pointer">Trả lời</p>';
+									drawComment += 	'<div id="info_nhanxet'+listComment[i].CommentId+'" style="margin-top: 20px;display:none">';
+										drawComment += 	'<textarea name="content" class="form-control" placeholder="Nhận xét của bạn"></textarea>';
+										drawComment += 	'<input name="name" type="text" value="<?=$data['User']['FullName']?>" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />';
+										drawComment += 	'<input name="phone" type="number" value="<?=$data['User']['PhoneNumber']?>" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
+										drawComment += 	'<input name="email" type="email" value="<?=$data['User']['Email']?>" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
+										drawComment += 	'<button class="btn btn-danger" style="float: right; margin-top: 10px;" onclick="hideAnswerCmtForm('+listComment[i].CommentId+')">Hủy</button>';				
+										drawComment += 	'<button onclick="addAnswerComment('+listComment[i].CommentId+')" class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px">Thêm</button>';				
+										drawComment += 	'<div style="clear: right"></div>';
+									drawComment += 	'</div>';
+
+								drawComment += 	'</div>';
+							drawComment += 	'</div>';
+						$("#ds_Comment").append(drawComment);
+						getAnswersComment(listComment[i].CommentId,1);
+					}
+					if(listComment.length == numComment)
+					{
+						$("#ds_Comment").append('<div id="btnLoadCmt" style="font-size: 14px; margin-top: 10px; text-align: center"><button onclick="getComments('+(page+1)+')" class="btn btn-default">Xem thêm</button></div>');
+					}
+					$("#ds_Comment").attr("data-itemEnd",parseInt($("#ds_Comment").attr("data-itemEnd"))+listComment.length);
+					$("#ds_Comment").attr("data-page",page);
+				}
+			}
+		});
+	}
+	function getAnswersComment(commentId,page = 1)
+	{
+		var numComment = 3;
+		//var begin = (page-1)*numComment;
+		var begin = parseInt($("#comment"+commentId).attr("data-itemEnd")) + 1;
+		$("#btnLoadAnswerCmt"+commentId).remove();
+		$.ajax({
+			url:"<?=$_SESSION['projectName']?>/Ajax/LoadAnswersComment",
+			type:"POST",
+			data:{
+				begin:begin,
+				numComment:numComment,
+				commentId:commentId
+			},
+			success: function(data){
+				if(data != '' && data != '[]'){
+					var listAnswer = JSON.parse(data);
+
+					for(var i=0; i<listAnswer.length; i++)
+					{
+						var drawAnswer = '<div style="margin-top: 10px">';
+							drawAnswer += 	'<span style="font-weight: bold; margin-bottom: 5px">'+listAnswer[i].Name+'</span> - <span style="color:gray">'+listAnswer[i].CrDateTime.substring(0,listAnswer[i].CrDateTime.length - 3)+'</span><br/>';
+							drawAnswer += 	'<span style="font-size: 15px">'+listAnswer[i].Content+'</span>';
+							drawAnswer += '</div>';
+						
+						$("#comment"+commentId).append(drawAnswer);
+					}
+					if(listAnswer.length == numComment)
+					{
+						$("#comment"+commentId).append('<div id="btnLoadAnswerCmt'+commentId+'" style="font-size: 14px; margin-top: 6px"><a onclick="getAnswersComment('+commentId+','+(page+1)+')">Xem thêm</a></div>');
+					}
+					$("#comment"+commentId).attr("data-itemEnd",parseInt($("#comment"+commentId).attr("data-itemEnd"))+listAnswer.length);
+					$("#comment"+commentId).attr("data-page",page);
+				}
+			}
+		});
+	}
+	function addComment(){
+		if($("#content-cmt").val()=='')
+		{
+			alert("Vui lòng nhập nội dung nhận xét!");
+		}
+		else if($("#name-cmt").val()=='')
+		{
+			alert("Vui lòng nhập tên!");
+		}
+		else if($("#phone-cmt").val()=='')
+		{
+			alert("Vui lòng nhập số điện thoại!");
+		}
+		else if($("#email-cmt").val()=='')
+		{
+			alert("Vui lòng nhập email!");
+		}
+		else
+		{
+			var productId = <?=$data['Product']['ProductId']?>;
+			var content = $("#content-cmt").val();
+			var name = $("#name-cmt").val();
+			var phone = $("#phone-cmt").val();
+			var email = $("#email-cmt").val();
+			var rate = document.querySelector('input[name="rate"]:checked').value;
+			var userId = <?=$data['User']==''?0:$data['User']['UserId']?>;
+			$.ajax({
+				url:"<?=$_SESSION['projectName']?>/Ajax/addComment",
+				type:"POSt",
+				data:{
+					productId:productId,
+					content:content,
+					name:name,
+					phone:phone,
+					email:email,
+					rate:rate,
+					userId:userId
+				},
+				success: function(data){
+					if(data != 0)
+					{
+						var now = new Date();
+						var timeformat = now.getDate() +"/"+(now.getMonth()+1)+"/"+now.getFullYear()+" "+now.getHours() + ":" + now.getMinutes();
+
+							var drawComment = '<div class="row style="margin-top:25px">';
+									drawComment += '<div class="col-md-2" style="text-align: center">';
+										drawComment += '<i class="fa fa-user" aria-hidden="true" style="font-size: 42px"></i>';
+										drawComment += 	'<p style="color:black; margin-top: 5px">'+name+'</p>';
+										drawComment += 	'<p style="font-size: 12px; color: gray">'+timeformat+'</p>';
+									drawComment += 	'</div>';
+									drawComment += 	'<div id="comment'+data+'" data-page="0" data-itemEnd="-1" class="col-md-10">';
+										drawComment += 	'<p>';
+										for(var j=1;j<=rate;j++)
+										{
+											drawComment += 	'<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>';
+										}
+										drawComment += 	'</p>';
+										drawComment += '<span style="font-size: 15px">'+content+'</span>';
+										drawComment += 	'<p onclick="showAnswerCmtForm('+data+')" style="color:blue; font-size: 14px; cursor: pointer">Trả lời</p>';
+										drawComment += 	'<div id="info_nhanxet'+data+'" style="margin-top: 20px;display:none">';
+											drawComment += 	'<textarea name="content" class="form-control" placeholder="Nhận xét của bạn"></textarea>';
+											drawComment += 	'<input name="name" type="text" value="<?=$data['User']['FullName']?>" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />';
+											drawComment += 	'<input name="phone" type="number" value="<?=$data['User']['PhoneNumber']?>" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
+											drawComment += 	'<input name="email" type="email" value="<?=$data['User']['Email']?>" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
+											drawComment += 	'<button class="btn btn-danger" style="float: right; margin-top: 10px" onclick="hideAnswerCmtForm('+data+')">Hủy</button>';				
+											drawComment += 	'<button onclick="addAnswerComment('+data+')" class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px">Thêm</button>';				
+											drawComment += 	'<div style="clear: right"></div>';
+										drawComment += 	'</div>';
+
+									drawComment += 	'</div>';
+								drawComment += 	'</div>';
+						$("#ds_Comment").prepend(drawComment);
+						$("#ds_Comment").attr("data-itemEnd",parseInt($("#ds_Comment").attr("data-itemEnd"))+1);
+					}
+				}
+			});
+		}
+	}
+	function addAnswerComment(commentId){
+		if($("#info_nhanxet"+commentId).children("textarea[name='content']").val()=='')
+		{
+			alert("Vui lòng nhập nội dung trả lời nhận xét!");
+		}
+		else if($("#info_nhanxet"+commentId).children("input[name='name']").val()=='')
+		{
+			alert("Vui lòng nhập tên!");
+		}
+		else if($("#info_nhanxet"+commentId).children("input[name='phone']").val()=='')
+		{
+			alert("Vui lòng nhập số điện thoại!");
+		}
+		else if($("#info_nhanxet"+commentId).children("input[name='email']").val()=='')
+		{
+			alert("Vui lòng nhập email!");
+		}
+		else
+		{
+			var productId = <?=$data['Product']['ProductId']?>;
+			var content = $("#info_nhanxet"+commentId).children("textarea[name='content']").val();
+			var name = $("#info_nhanxet"+commentId).children("input[name='name']").val();
+			var phone = $("#info_nhanxet"+commentId).children("input[name='phone']").val();
+			var email = $("#info_nhanxet"+commentId).children("input[name='email']").val();
+			var userId = <?=$data['User']==''?0:$data['User']['UserId']?>;
+			$.ajax({
+				url:"<?=$_SESSION['projectName']?>/Ajax/addComment",
+				type:"POST",
+				data:{
+					productId:productId,
+					content:content,
+					name:name,
+					phone:phone,
+					email:email,
+					userId:userId,
+					parentId:commentId
+				},
+				success: function(data){
+					if(data != 0)
+					{
+						var now = new Date();
+						var timeformat = now.getDate() +"/"+(now.getMonth()+1)+"/"+now.getFullYear()+" "+now.getHours() + ":" + now.getMinutes();
+
+						var drawAnswer = '<div style="margin-top: 10px">';
+								drawAnswer += 	'<span style="font-weight: bold; margin-bottom: 5px">'+name+'</span> - <span style="color:gray">'+timeformat+'</span><br/>';
+								drawAnswer += 	'<span style="font-size: 15px">'+content+'</span>';
+							drawAnswer += '</div>';
+						$("#info_nhanxet"+commentId).after(drawAnswer);
+						$("#comment"+commentId).attr("data-itemEnd",parseInt($("#comment"+commentId).attr("data-itemEnd"))+1);
+						hideAnswerCmtForm(commentId);
+					}
+				}
+			});
+		}
+	}
+	function hideAnswerCmtForm(id)
+	{
+		$("#info_nhanxet"+id).hide();
+	}
+	function showAnswerCmtForm(id)
+	{
+		$("#info_nhanxet"+id).show();
+	}
 </script>

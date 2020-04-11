@@ -3,11 +3,13 @@
 		public $DepartModel;
 		public $CategoryModel;
 		public $ProductModel;
+		public $UserModel;
 		function __construct()
 		{
 			$this->DepartModel = $this->model("DepartmentModel");
 			$this->CategoryModel = $this->model("CategoryModel");
 			$this->ProductModel = $this->model("ProductModel");
+			$this->UserModel = $this->model("UserModel");
 		}
 		function Index(){
 			
@@ -72,8 +74,13 @@
 			$Product = json_decode($this->ProductModel->getProductByUrl($url),true);
 			$Img = json_decode($this->ProductModel->getProductImgs($Product['ProductId']),true);
 			$listQA = json_decode($this->ProductModel->getQuestionAnswersByProductId($Product['ProductId'],"a.`CrDateTime`","DESC"),true);
-			$listComment = json_decode($this->ProductModel->getCommentsByProductId($Product['ProductId'],"CrDateTime","DESC"),true);
-			$Star = current($listComment)['sao'];
+			
+			$Star =  $this->ProductModel->getTotalRateByProductId($Product['ProductId']);
+			$User = "";
+			if(isset($_SESSION['UserId']))
+			{
+				$User = json_decode($this->UserModel->getUserById($_SESSION['UserId']),true);
+			}
 
 			$this->view("layout1",array(
 				"page" => "product_detail",
@@ -82,7 +89,8 @@
 				"Product"=>$Product,
 				"Img" => $Img,
 				"listQA" => $listQA,
-				"Star" => $Star
+				"Star" => $Star,
+				"User" => $User
 			));
 		}
 		function Department($url = "")
