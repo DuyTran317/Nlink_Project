@@ -157,7 +157,7 @@
 					</div>
 
 					<i class="fa fa-hand-o-right" aria-hidden="true"></i>
-					<a id="use_ma_giamgia" href="javascript:void()" style="font-size:14px; color:black; font-weight: bold">Sử dụng mã giảm giá <i class="fa fa-chevron-down" aria-hidden="true"></i></a><br/>
+					<a id="use_ma_giamgia" href="javascript:void();" style="font-size:14px; color:black; font-weight: bold">Sử dụng mã giảm giá <i class="fa fa-chevron-down" aria-hidden="true"></i></a><br/>
 
 					<div id="ma_giamgia">
 						<input id="value-voucher" type=number style="display:none" />
@@ -166,7 +166,7 @@
 
 					<div style="margin-top: 15px">
 						<i class="fa fa-hand-o-right" aria-hidden="true"></i>
-						<a id="use_diem_tichluy" href="javascript:void()" style="font-size:14px; color:black; font-weight: bold">Sử dụng điểm tích lũy <i class="fa fa-question-circle" aria-hidden="true" style="color:#3D6199" title="Xem chính sách tích điểm của chúng tôi"></i></a><br/>
+						<a id="use_diem_tichluy" href="javascript:void();" style="font-size:14px; color:black; font-weight: bold">Sử dụng điểm tích lũy <i class="fa fa-question-circle" aria-hidden="true" style="color:#3D6199" title="Xem chính sách tích điểm của chúng tôi"></i></a><br/>
 						<p id="diem_tichluy" style="color:black; margin: 8px; font-size: 15px">Bạn có: 9 điểm <button class="btn btn-success">Áp dụng</button></p>
 					</div>
 
