@@ -289,7 +289,7 @@
 						<!-- Collect the nav links, forms, and other content for toggling -->
 						<div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
 							<ul class="nav navbar-nav menu__list">
-								<li class="active">
+								<li class="">
 									<a class="nav-stylehead" href="<?=$_SESSION['projectName']?>/Home">Trang Chủ
 										<span class="sr-only">(current)</span>
 									</a>
@@ -447,10 +447,10 @@
 	</div>
 	<!-- //newsletter -->
 	<!-- footer -->
-	<footer>
+	<footer style="padding-bottom: 0px">
 		<div class="container">
 			<!-- footer first section -->
-			<p class="footer-main">
+			<p class="footer-main" style="margin-top: -30px">
 				<span>"NLink Việt Nam"</span> xây dựng một đội ngũ nhân sự chuyên môn cao và có tâm với nghề, một môi trường làm việc lành mạnh, đoàn kết, chia sẻ, cùng nhau phát triển. Hướng tới chính sách đãi ngộ nhân sự xứng đáng, NLink Việt Nam là điểm đến cho những ai muốn phát triển bằng chính thực lực.</p>
 			<!-- //footer first section -->
 			<!-- footer second section -->
@@ -490,49 +490,14 @@
 				<!-- footer categories -->
 				<div class="col-sm-5 address-right">
 					<div class="col-xs-6 footer-grids">
-						<h3>Các Sản Phẩm</h3>
-						<ul>
-							<li>
-								<a href="product.html">Grocery</a>
-							</li>
-							<li>
-								<a href="product.html">Fruits</a>
-							</li>
-							<li>
-								<a href="product.html">Soft Drinks</a>
-							</li>
-							<li>
-								<a href="product2.html">Dishwashers</a>
-							</li>
-							<li>
-								<a href="product.html">Biscuits & Cookies</a>
-							</li>
-							<li>
-								<a href="product2.html">Baby Diapers</a>
-							</li>
-						</ul>
+						<h3>Nlink</h3>
+						<a href="http://online.gov.vn/Home/WebDetails/32856" target="_blank">
+							<img src="<?=$_SESSION['projectName']?>/lib/images/bct.png" alt="err" style="width: 80%; height: 60px" />
+						</a>
 					</div>
 					<div class="col-xs-6 footer-grids agile-secomk">
-						<ul>
-							<li>
-								<a href="product.html">Snacks & Beverages</a>
-							</li>
-							<li>
-								<a href="product.html">Bread & Bakery</a>
-							</li>
-							<li>
-								<a href="product.html">Sweets</a>
-							</li>
-							<li>
-								<a href="product.html">Chocolates & Biscuits</a>
-							</li>
-							<li>
-								<a href="product2.html">Personal Care</a>
-							</li>
-							<li>
-								<a href="product.html">Dried Fruits & Nuts</a>
-							</li>
-						</ul>
+						<h5 style="color:#656565; font-weight: bold; font-size:12px">CÔNG TY TNHH NLINK VIỆT NAM</h5>
+						<p style="font-size: 12px; color:#656565; margin-top: 10px">Độc quyền phân phối thương hiệu REVLON, AIMER và TWG tại thị trường Việt Nam.</p>
 					</div>
 					<div class="clearfix"></div>
 				</div>
@@ -543,10 +508,10 @@
 						<h3>Liên Kết</h3>
 						<ul>
 							<li>
-								<a href="about.html">Giới Thiệu</a>
+								<a href="<?=$_SESSION['projectName']?>/Introduce">Giới Thiệu</a>
 							</li>
 							<li>
-								<a href="contact.html">Liên Hệ</a>
+								<a href="<?=$_SESSION['projectName']?>/Contact">Liên Hệ</a>
 							</li>
 							<li>
 								<a data-toggle="modal" data-target="#tra_cuu_don_hang" style="cursor: pointer">Tra Cứu Đơn Hàng</a>
@@ -555,7 +520,7 @@
 								<a href="faqs.html">Tin Tức</a>
 							</li>
 							<li>
-								<a href="terms.html">Chính Sách Đổi Trả</a>
+								<a href="<?=$_SESSION['projectName']?>/Introduce/Policy">Chính Sách Đổi Trả</a>
 							</li>
 							<li>
 								<a href="privacy.html">Hướng Dẫn Đặt Hàng</a>
@@ -565,11 +530,11 @@
 					<div class="col-xs-6 footer-grids">
 						<h3>Thông Tin</h3>
 						<ul>
-							<li>
+							<li style="color:#656565">
 								<i class="fa fa-map-marker"></i> 76 Trần Đình Xu, P. Cô Giang, Q.1, TP.HCM</li>
-							<li>
+							<li style="color:#656565">
 								<i class="fa fa-mobile"></i> +84 08 383 78111/222</li>
-							<li>
+							<li style="color:#656565">
 								<i class="fa fa-phone"></i> 0903 029 313 </li>
 							<li>
 								<i class="fa fa-envelope-o"></i>

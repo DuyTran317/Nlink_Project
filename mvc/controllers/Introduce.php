@@ -17,5 +17,14 @@
 			));
 		}
 		
+		function Policy(){
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$this->view("layout1",array (
+			"page" => "policy",
+			"listDepart" => $listDepart,
+			"listCate" => $listCate
+			));
+		}
 	}
 ?>

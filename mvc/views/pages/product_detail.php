@@ -40,7 +40,7 @@
 					</li>
 					<li>
 						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,'<?=$data['Product']['ProductName']?>','<?=$data['Product']['Img']?>','<?=$data['Product']['url']?>',<?=$data['Product']['Point']?>,1)" class="btn btn-danger">Mua Ngay</button>
-						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,'<?=$data['Product']['ProductName']?>','<?=$data['Product']['Img']?>','<?=$data['Product']['url']?>',<?=$data['Product']['Point']?>)" class="btn btn-success">Thêm Vào Giỏ</button>
+						<button onclick="addCart(<?=$data['Product']['ProductId']?>,$('#qty').val(),<?=$data['Product']['Price']?>,'<?=$data['Product']['ProductName']?>','<?=$data['Product']['Img']?>','<?=$data['Product']['url']?>',<?=$data['Product']['Point']?>)" class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm Vào Giỏ</button>
 					</li>
 					<!--<li>
 						1 offer from
