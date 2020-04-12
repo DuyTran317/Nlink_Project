@@ -67,13 +67,13 @@
 			));
 			
 		}
-		function Detail($url="")
+		function Detail($url="",$email="")
 		{
 			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
 			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
 			$Product = json_decode($this->ProductModel->getProductByUrl($url),true);
 			$Img = json_decode($this->ProductModel->getProductImgs($Product['ProductId']),true);
-			$listQA = json_decode($this->ProductModel->getQuestionAnswersByProductId($Product['ProductId'],"a.`CrDateTime`","DESC"),true);
+			// $listQA = json_decode($this->ProductModel->getQuestionAnswersByProductId($Product['ProductId'],"a.`CrDateTime`","DESC"),true);
 			
 			$Star =  $this->ProductModel->getTotalRateByProductId($Product['ProductId']);
 			$User = "";
@@ -81,16 +81,25 @@
 			{
 				$User = json_decode($this->UserModel->getUserById($_SESSION['UserId']),true);
 			}
-
+			$Email = '';
+			if($User!='')
+			{
+				$Email = $User['Email'];
+			}
+			else if($email !='')
+			{
+				$Email = $email;
+			}
 			$this->view("layout1",array(
 				"page" => "product_detail",
 				"listDepart" => $listDepart,
 				"listCate" => $listCate,
 				"Product"=>$Product,
 				"Img" => $Img,
-				"listQA" => $listQA,
+				// "listQA" => $listQA,
 				"Star" => $Star,
-				"User" => $User
+				"User" => $User,
+				"Email" => $Email,
 			));
 		}
 		function Department($url = "")

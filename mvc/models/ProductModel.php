@@ -179,7 +179,7 @@
 			return json_encode($mang);
 		}
 		public function getTotalRateByProductId($id){
-			$sql = "SELECT SUM(StarNumber)/COUNT(`CommentId`) as sao FROM `nl_comments` WHERE `ProductId`=$id and `ParentId` is NULL";
+			$sql = "SELECT SUM(StarNumber)/COUNT(`CommentId`) as sao FROM `nl_comments` WHERE `ProductId`=$id and `ParentId` is NULL and `StarNumber` is not NULL";
 			$r = mysqli_query($this->con,$sql);
 			$rs = mysqli_fetch_assoc($r);
 			return $rs['sao'];
@@ -320,6 +320,28 @@
 			$rs = mysqli_fetch_assoc($r);
 			
 			return json_encode($rs['Point']);
+		}
+		public function checkAllowRateProduct($productId,$email)
+		{
+			$sql = "select a.`OrderId` from `nl_orders` as a INNER JOIN `nl_orderdetails` as b ON a.`OrderId` = b.`OrderId` where a.`StatusId` == 4 and a`Email` = '$email' and b.`productId`=$productId";
+			$r = mysqli_query($this->con,$sql);
+			if($rs = mysqli_fetch_assoc($r))
+			{
+				$sql1 = "select * from `nl_rateproduct` where `OrderId`={$rs['OrderId']} and `Email`='$email' and `ProductId`=$productId";
+				$r1 = mysqli_query($this->con,$sql1);
+				if($rs1 = mysqli_fetch_assoc($r1))
+				{
+					return 0;
+				}
+				else
+				{
+					return 1;
+				}
+			}
+			else
+			{
+				return 0;
+			}
 		}
 	}
 ?>

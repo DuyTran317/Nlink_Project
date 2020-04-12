@@ -62,6 +62,20 @@
 				echo 0;
 			}
 		}
+		function checkAllowRate()
+		{
+			if(isset($_POST['email']))
+			{
+				$email = $_POST['email'];
+				$productId = $_POST['productId'];
+
+				echo $this->ProductModel->checkAllowRateProduct($productId,$email);
+			}
+			else 
+			{
+				echo 0;
+			}
+		}
 		function CheckIssetUser()
 		{
 			if(isset($_POST['email']))

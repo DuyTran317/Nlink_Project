@@ -15,7 +15,7 @@
 <!-- //page -->
 <!-- checkout page -->
 <div class="privacy">
-	<div class="container">
+	<div id="fullpage" class="container">
 		<!-- tittle heading -->
 		<h3 class="tittle-w3l" style="font-size: 30px">Thông Tin Đơn Hàng
 			<span class="heading-style">
@@ -40,44 +40,7 @@
 						</tr>
 					</thead>
 					<tbody id="order-detail">
-						<tr>
-							<td class="invert">1</td>
-							<td class="invert-image">
-								<a href="single2.html">
-									<img src="lib/images/s8.jpg" alt=" " class="img-responsive" style="width: 50px; height: 50px">
-								</a>
-							</td>
-							<td class="invert">
-								<div class="quantity">
-									<input type="number" value="1" min="1" style="font-size: 18px; width:50px; text-align: center" />
-								</div>
-							</td>
-							<td class="invert">Spotzero Spin Mop</td>
-							<td class="invert">10,000 VND</td>
-							<td class="invert" style="color:darkblue; font-weight: bold">20,000 VND</td>
-							<td class="invert">
-								<a href="#" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="invert">2</td>
-							<td class="invert-image">
-								<a href="single2.html">
-									<img src="lib/images/s7.jpg" alt=" " class="img-responsive" style="width: 50px; height: 50px">
-								</a>
-							</td>
-							<td class="invert">
-								<div class="quantity">
-									<input type="number" value="1" min="1" style="font-size: 18px; width:50px; text-align: center" />
-								</div>
-							</td>
-							<td class="invert">Spotzero Spin Mop</td>
-							<td class="invert">20,000 VND</td>
-							<td class="invert" style="color:darkblue; font-weight: bold">40,000 VND</td>
-							<td class="invert">
-								<a href="#" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a>
-							</td>
-						</tr>
+						
 					</tbody>
 				</table>				
 			</div>
@@ -328,30 +291,37 @@ var havevoucher = 0; var payment = 1;
 		if(getCookie("cart_nlink")!="")
 		{
 			var cart = JSON.parse(getCookie("cart_nlink"));
-			
-			var totalPrice = 0; var totalPoint = 0;
-			for(var i = 0; i< cart.length; i++)
+			if(cart.length == 0)
 			{
-				totalPrice += cart[i].qty * cart[i].price;
-				$("#order-detail").append('<tr><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="<?=$_SESSION["projectName"]?>/Product/Detail/'+cart[i].url+'"><img src="<?=$_SESSION["projectName"]?>/lib/images/product/'+cart[i].img+'" alt=" " class="img-responsive" style="width: 50px; height: 50px"></a></td><td class="invert"><div class="quantity"><input type="number" min='1' value="'+cart[i].qty+'" style="font-size: 18px; width:50px; text-align: center"/></div></td><td class="invert">'+cart[i].name+'</td><td class="invert">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+' VND</td><td class="invert" style="color:darkblue; font-weight: bold">'+new Intl.NumberFormat('de-DE').format(parseInt(cart[i].price) * parseInt(cart[i].qty))+' VND</td><td class="invert"><a onclick="deleteCheckout('+cart[i].id+')" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a></td></tr>');
-				
-				totalPoint += parseInt(cart[i].point) * parseInt(cart[i].qty);
+				$("#fullpage").html("<h1>Bạn chưa chọn sản phẩm. Vui lòng chọn sản phẩm mà bạn muốn!</h1>");
 			}
-			$("#total-point").html(totalPoint);
-			$("#total").html(new Intl.NumberFormat('de-DE').format(totalPrice));
-			$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPrice));
-			if(havevoucher == 1)
+			else
 			{
-				var totalPay = parseInt($('#total-pay').html().replace('.',''));
-				$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPay-parseInt($("#value-voucher").val())));
-			}
-			if($("#shipFee").html()!='0')
-			{
-				var totalPay = parseInt($('#total-pay').html().replace('.',''));
-				var shipFee = parseInt($('#shipFee').html().replace('.',''));
-				$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPay+shipFee));
+				var totalPrice = 0; var totalPoint = 0;
+				for(var i = 0; i< cart.length; i++)
+				{
+					totalPrice += cart[i].qty * cart[i].price;
+					$("#order-detail").append('<tr><td class="invert">'+(i+1)+'</td><td class="invert-image"><a href="<?=$_SESSION["projectName"]?>/Product/Detail/'+cart[i].url+'"><img src="<?=$_SESSION["projectName"]?>/lib/images/product/'+cart[i].img+'" alt=" " class="img-responsive" style="width: 50px; height: 50px"></a></td><td class="invert"><div class="quantity"><input onchange="updateCart('+cart[i].id+',$(this).val());drawOrderDetail();" type="number" min="1" value="'+cart[i].qty+'" style="font-size: 18px; width:50px; text-align: center"/></div></td><td class="invert">'+cart[i].name+'</td><td class="invert">'+new Intl.NumberFormat('de-DE').format(cart[i].price)+' VND</td><td class="invert" style="color:darkblue; font-weight: bold">'+new Intl.NumberFormat('de-DE').format(parseInt(cart[i].price) * parseInt(cart[i].qty))+' VND</td><td class="invert"><a onclick="deleteCheckout('+cart[i].id+')" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a></td></tr>');
+					
+					totalPoint += parseInt(cart[i].point) * parseInt(cart[i].qty);
+				}
+				$("#total-point").html(totalPoint);
+				$("#total").html(new Intl.NumberFormat('de-DE').format(totalPrice));
+				$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPrice));
+				if(havevoucher == 1)
+				{
+					var totalPay = parseInt($('#total-pay').html().replace('.',''));
+					$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPay-parseInt($("#value-voucher").val())));
+				}
+				if($("#shipFee").html()!='0')
+				{
+					var totalPay = parseInt($('#total-pay').html().replace('.',''));
+					var shipFee = parseInt($('#shipFee').html().replace('.',''));
+					$("#total-pay").html(new Intl.NumberFormat('de-DE').format(totalPay+shipFee));
+				}
 			}
 		}
+		
 	}
 	function deleteCheckout(id)
 	{

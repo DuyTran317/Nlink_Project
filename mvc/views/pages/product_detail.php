@@ -63,7 +63,7 @@
 <div class="container">
 	<ul class="nav nav-tabs">
 	<li class="active"><a data-toggle="tab" href="#home">Thông Tin Chi Tiết</a></li>
-	<li><a data-toggle="tab" href="#menu1">Hỏi & Đáp</a></li>
+	<!-- <li><a data-toggle="tab" href="#menu1">Hỏi & Đáp</a></li> -->
 	<li><a data-toggle="tab" href="#menu2">Đánh Giá</a></li>
 	</ul>
 
@@ -71,7 +71,7 @@
 		<div id="home" class="tab-pane fade in active" style="margin-top: 10px">
 			<?=$data['Product']['ProductDesc']?>
 		</div>
-		<div id="menu1" class="tab-pane fade">
+		<!-- <div id="menu1" class="tab-pane fade">
 			<div class="container-fluid">
 				<textarea class="form-control" placeholder="Câu hỏi của bạn" style="margin-top: 15px"></textarea>
 				<button class="btn btn-primary" style="float: right; margin-top: 10px" id="open_add_question">Thêm Câu Hỏi</button>
@@ -91,18 +91,18 @@
 			</div>
 			<div style="margin-top: 20px">
 			<?php
-				$flag = 0;
-				foreach($data['listQA'] as $item)
-				{
-					if($flag != $item['QuestionId'] && $flag != 0)
-					{
+				// $flag = 0;
+				// foreach($data['listQA'] as $item)
+				// {
+				// 	if($flag != $item['QuestionId'] && $flag != 0)
+				// 	{
 						?>
 							</div>
 							<hr/>
 						<?php
-					}
-					if($flag != $item['QuestionId'])
-					{
+					// }
+					// if($flag != $item['QuestionId'])
+					// {
 						?>
 						<div class="container-fluid" style="margin-top: 20px">
 							<div class="row" style="margin-top: 15px">
@@ -111,9 +111,9 @@
 								<span style="font-size: 14px; color: gray">Bởi: Thanh Mai vào 21/03/2020 14:00</span></span>
 							</div>
 						<?php
-					}
-					if($item['AnswerId'] != NULL)
-					{
+					// }
+					// if($item['AnswerId'] != NULL)
+					// {
 						?>
 							<div class="row" style="margin-top: 15px">
 								<label class="col-md-1">Đáp:</label>
@@ -121,19 +121,19 @@
 								<span style="font-size: 14px; color: gray">Bởi: Nlink.vn vào 21/03/2020 14:00</span></span>
 							</div>
 						<?php
-					}
-				}
-				if($flag != 0)
-				{
+				// 	}
+				// }
+				// if($flag != 0)
+				// {
 			?>
 				</div>
 				<hr/>
 			<?php
-				}
+				// }
 			?>
 			</div>
 			<div style="text-align: center"><button class="btn btn-default">Xem thêm</button></div>
-		</div>
+		</div> -->
 		<div id="menu2" class="tab-pane fade">
 			<div class="container" style="margin-top: 15px">
 				<h4>Khách hàng đánh giá</h4>
@@ -141,7 +141,7 @@
 					<?=$data['Star']==NULL?0:round($data['Star'])?>/5 <i class="fa fa-star" aria-hidden="true" style="color: yellow; font-size: 42px"></i>
 				</h3>
 				<h4 style="margin-top: 40px">Gửi nhận xét của bạn</h4>
-				<h5 style="margin-top: 20px">1. Đánh giá của bạn về sản phẩm này:<br/>				
+				<h5 id="rateform" style="margin-top: 20px">Đánh giá của bạn về sản phẩm này:<br/>				
 					<div class="form-group">
 						<div class="rate" style="margin-top: 12px">
 							<i class="fa fa-hand-o-right" aria-hidden="true" style="font-size: 20px; margin-right: 10px"></i>
@@ -159,10 +159,10 @@
 					</div>
 					<div style="clear: both"></div>
 				</h5>
-				<h5 style="margin-top: 20px">2. Viết nhận xét của bạn vào bên dưới: <span style="color:red">*</span>
+				<h5 style="margin-top: 20px">Viết nhận xét của bạn vào bên dưới: <span style="color:red">*</span>
 					<textarea id="content-cmt" class="form-control" style="margin-top: 10px; max-width: 500px; height: 80px" placeholder="Nhận xét của bạn về sản phẩm này"></textarea>
 				</h5>
-				<h5 style="margin-top: 20px">3. Thông tin cá nhân của bạn: <span style="color:red">*</span><br/>
+				<h5 style="margin-top: 20px">Thông tin cá nhân của bạn: <span style="color:red">*</span><br/>
 					<input id="name-cmt" type="text" value="<?php if($data['User']!="") echo $data['User']['FullName'];?>" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />
 					<input id="phone-cmt" type="number" value="<?php if($data['User']!="") echo $data['User']['PhoneNumber'];?>" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />
 					<input id="email-cmt" type="email" value="<?php if($data['User']!="") echo $data['User']['Email'];?>" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />
@@ -334,6 +334,7 @@
 
 <script>
 	$(document).ready(function () {
+		checkAllowRate();
 		getComments(1);
 		$('.popup-with-zoom-anim').magnificPopup({
 			type: 'inline',
@@ -419,18 +420,21 @@
 								drawComment += 	'</div>';
 								drawComment += 	'<div id="comment'+listComment[i].CommentId+'" data-page="0" data-itemEnd="-1" class="col-md-10">';
 									drawComment += 	'<p>';
-									for(var j=1;j<=listComment[i].StarNumber;j++)
+									if(listComment[i].StarNumber != 'NULL')
 									{
-										drawComment += 	'<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>';
+										for(var j=1;j<=listComment[i].StarNumber;j++)
+										{
+											drawComment += 	'<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>';
+										}
 									}
 									drawComment += 	'</p>';
 									drawComment += '<span style="font-size: 15px">'+listComment[i].Content+'</span>';
 									drawComment += 	'<p onclick="showAnswerCmtForm('+listComment[i].CommentId+')" style="color:blue; font-size: 14px; cursor: pointer">Trả lời</p>';
 									drawComment += 	'<div id="info_nhanxet'+listComment[i].CommentId+'" style="margin-top: 20px;display:none">';
 										drawComment += 	'<textarea name="content" class="form-control" placeholder="Nhận xét của bạn"></textarea>';
-										drawComment += 	'<input name="name" type="text" value="<?=$data['User']['FullName']?>" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />';
-										drawComment += 	'<input name="phone" type="number" value="<?=$data['User']['PhoneNumber']?>" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
-										drawComment += 	'<input name="email" type="email" value="<?=$data['User']['Email']?>" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
+										drawComment += 	'<input name="name" type="text" value="<?=isset($data['User']['FullName'])?$data['User']['FullName']:""?>" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />';
+										drawComment += 	'<input name="phone" type="number" value="<?=isset($data['User']['PhoneNumber'])?$data['User']['PhoneNumber']:""?>" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
+										drawComment += 	'<input name="email" type="email" value="<?=isset($data['User']['Email'])?$data['User']['Email']:""?>" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
 										drawComment += 	'<button class="btn btn-danger" style="float: right; margin-top: 10px;" onclick="hideAnswerCmtForm('+listComment[i].CommentId+')">Hủy</button>';				
 										drawComment += 	'<button onclick="addAnswerComment('+listComment[i].CommentId+')" class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px">Thêm</button>';				
 										drawComment += 	'<div style="clear: right"></div>';
@@ -512,7 +516,7 @@
 			var name = $("#name-cmt").val();
 			var phone = $("#phone-cmt").val();
 			var email = $("#email-cmt").val();
-			var rate = document.querySelector('input[name="rate"]:checked').value;
+			var rate = $("#rateform").is(":hidden")?'NULL':document.querySelector('input[name="rate"]:checked').value;
 			var userId = <?=$data['User']==''?0:$data['User']['UserId']?>;
 			$.ajax({
 				url:"<?=$_SESSION['projectName']?>/Ajax/addComment",
@@ -540,18 +544,20 @@
 									drawComment += 	'</div>';
 									drawComment += 	'<div id="comment'+data+'" data-page="0" data-itemEnd="-1" class="col-md-10">';
 										drawComment += 	'<p>';
-										for(var j=1;j<=rate;j++)
-										{
-											drawComment += 	'<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>';
+										if(rate!='NULL'){
+											for(var j=1;j<=rate;j++)
+											{
+												drawComment += 	'<i class="fa fa-star" aria-hidden="true" style="color: yellow"></i>';
+											}
 										}
 										drawComment += 	'</p>';
 										drawComment += '<span style="font-size: 15px">'+content+'</span>';
 										drawComment += 	'<p onclick="showAnswerCmtForm('+data+')" style="color:blue; font-size: 14px; cursor: pointer">Trả lời</p>';
 										drawComment += 	'<div id="info_nhanxet'+data+'" style="margin-top: 20px;display:none">';
 											drawComment += 	'<textarea name="content" class="form-control" placeholder="Nhận xét của bạn"></textarea>';
-											drawComment += 	'<input name="name" type="text" value="<?=$data['User']['FullName']?>" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />';
-											drawComment += 	'<input name="phone" type="number" value="<?=$data['User']['PhoneNumber']?>" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
-											drawComment += 	'<input name="email" type="email" value="<?=$data['User']['Email']?>" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
+											drawComment += 	'<input name="name" type="text" value="<?=isset($data['User']['FullName'])?$data['User']['FullName']:""?>" placeholder="Họ tên" required class="form-control" style="max-width: 300px; margin-top: 10px" />';
+											drawComment += 	'<input name="phone" type="number" value="<?=isset($data['User']['PhoneNumber'])?$data['User']['PhoneNumber']:""?>" placeholder="Số điện thoại" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
+											drawComment += 	'<input name="email" type="email" value="<?=isset($data['User']['Email'])?$data['User']['Email']:""?>" placeholder="Email" class="form-control" required style="max-width: 300px; margin-top: 10px" />';
 											drawComment += 	'<button class="btn btn-danger" style="float: right; margin-top: 10px" onclick="hideAnswerCmtForm('+data+')">Hủy</button>';				
 											drawComment += 	'<button onclick="addAnswerComment('+data+')" class="btn btn-info" style="float: right; margin-top: 10px; margin-right: 10px">Thêm</button>';				
 											drawComment += 	'<div style="clear: right"></div>';
@@ -561,6 +567,7 @@
 								drawComment += 	'</div>';
 						$("#ds_Comment").prepend(drawComment);
 						$("#ds_Comment").attr("data-itemEnd",parseInt($("#ds_Comment").attr("data-itemEnd"))+1);
+						checkAllowRate();
 					}
 				}
 			});
@@ -628,5 +635,31 @@
 	function showAnswerCmtForm(id)
 	{
 		$("#info_nhanxet"+id).show();
+	}
+	function checkAllowRate(){
+		var productId = <?=$data['Product']['ProductId']?>;
+		var email = '<?=$data['Email']?>';
+		if(email != '')
+		{
+			$.ajax({
+				url:"<?=$_SESSION['projectName']?>/Ajax/checkAllowRate",
+				type:"POST",
+				data:{
+					productId:productId,
+					email:email
+				},
+				success:function(data){
+					console.log(data);
+					if(data == '1')
+					{
+						$("#rateform").show();
+					}
+					else
+					{
+						$("#rateform").hide();
+					}
+				}
+			})
+		}
 	}
 </script>
