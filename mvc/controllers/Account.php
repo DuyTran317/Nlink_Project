@@ -1,17 +1,26 @@
 <?php
-	class Home extends Controller{
-		public $DepartModel;
-		public $Category;
+	class Account extends Controller{
+		public $UserModel;
+        public $DepartModel;
+        public $CategoryModel;
+        public $KeywordModel;
 		function __construct()
 		{
-			$this->DepartModel = $this->model("DepartmentModel");
-			$this->Category = $this->model("CategoryModel");
+			$this->UserModel = $this->model("UserModel");
+            $this->DepartModel = $this->model("DepartmentModel");
+            $this->CategoryModel = $this->model("CategoryModel");
+            $this->KeywordModel = $this->model("KeywordModel");
 		}
 		function Index(){
-			$this->view("layout1",array (
-			"page" => "index",
-			"listDepart" => json_decode($this->DepartModel->getAllDepartment(),true),
-			"listCate" => json_decode($this->Category->getAllCategory(),true)
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+            $listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+            $listKeyword=json_decode($this->KeywordModel->getKeywords("`TimesSearch`","DESC"),true);
+            
+            $this->view("layout1",array (
+				"page" => "account_info",
+				"listDepart" => $listDepart,
+				"listCate" => $listCate,
+				"listKeyword" => $listKeyword
 			));
 		}
 		

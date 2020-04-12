@@ -82,7 +82,7 @@
 						{
 					?>
 							<li>
-								<a href="#">
+								<a href="<?=$_SESSION['projectName']?>/Profile">
 									<i class="fa fa-user-circle-o" aria-hidden="true"></i> Tài Khoản
 								</a>
 							</li>
@@ -705,22 +705,6 @@
 	<!-- js-files -->
 	<!-- <script>-->		
 	
-	<script>
-		window.onload = function () {
-			document.getElementById("password1").onchange = validatePassword;
-			document.getElementById("password2").onchange = validatePassword;
-		}
-
-		function validatePassword() {
-			var pass2 = document.getElementById("password2").value;
-			var pass1 = document.getElementById("password1").value;
-			if (pass1 != pass2)
-				document.getElementById("password2").setCustomValidity("Passwords Don't Match");
-			else
-				document.getElementById("password2").setCustomValidity('');
-			//empty string means no validation error
-		}
-	</script>
 
 	<script src="<?=$_SESSION['projectName']?>/lib/js/SmoothScroll.min.js"></script>
 
@@ -922,62 +906,73 @@
 		}
 	function addCart(id,qty,price,name,img,url,point,buynow = 0)
 	{
-		var cart = new Array();
-		if(getCookie("cart_nlink") == '')
-		{
-			setCookie("cart_nlink",JSON.stringify(cart),30);
-		}
-		
-		cart = JSON.parse(getCookie("cart_nlink"));
-		var flag = 0;
-		for(var i = 0; i < cart.length; i++){
-			if(cart[i].id == id)
+		if(qty > 0){
+			var cart = new Array();
+			if(getCookie("cart_nlink") == '')
 			{
-				cart[i].qty = parseInt(cart[i].qty) + parseInt(qty); 
-				flag = 1;
-				break;
+				setCookie("cart_nlink",JSON.stringify(cart),30);
 			}
-		}
-		if(flag == 0)
-		{
-			var pro = {
-					id:id,
-					qty:qty,
-					price:price,
-					name:name,
-					img:img,
-					url:url,
-					point:point
-				}
-			cart.push(pro);
-		}
-		setCookie("cart_nlink",JSON.stringify(cart),30);
-		drawCart();
-		if(buynow == 1)
-		{
-			window.location = "<?=$_SESSION['projectName']?>/Cart";
-		}
-		else
-		{
-			$("#myModal").modal("show");
-		}
-		
-	}
-	function updateCart(id,qty)
-	{
-		if(getCookie("cart_nlink") != "")
-		{
-			var cart = JSON.parse(getCookie("cart_nlink"));
-
+			
+			cart = JSON.parse(getCookie("cart_nlink"));
+			var flag = 0;
 			for(var i = 0; i < cart.length; i++){
 				if(cart[i].id == id)
 				{
-					cart[i].qty = qty;
+					cart[i].qty = parseInt(cart[i].qty) + parseInt(qty); 
+					flag = 1;
 					break;
 				}
 			}
+			if(flag == 0)
+			{
+				var pro = {
+						id:id,
+						qty:qty,
+						price:price,
+						name:name,
+						img:img,
+						url:url,
+						point:point
+					}
+				cart.push(pro);
+			}
 			setCookie("cart_nlink",JSON.stringify(cart),30);
 			drawCart();
+			if(buynow == 1)
+			{
+				window.location = "<?=$_SESSION['projectName']?>/Cart";
+			}
+			else
+			{
+				$("#myModal").modal("show");
+			}
+		}
+		else
+		{
+			alert("Số lượng sản phẩm phải lớn hơn 0");
+		}
+	}
+	function updateCart(id,qty)
+	{
+		if(qty > 0){
+			if(getCookie("cart_nlink") != "")
+			{
+				var cart = JSON.parse(getCookie("cart_nlink"));
+
+				for(var i = 0; i < cart.length; i++){
+					if(cart[i].id == id)
+					{
+						cart[i].qty = qty;
+						break;
+					}
+				}
+				setCookie("cart_nlink",JSON.stringify(cart),30);
+				drawCart();
+			}
+		}
+		else
+		{
+			alert("Số lượng sản phẩm phải lớn hơn 0");
 		}
 	}
 	function deleteCart(id)

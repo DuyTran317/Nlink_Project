@@ -68,7 +68,7 @@
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6 style="text-align: center"><?php echo number_format($item['Price'])." đ"?></h6>
-										<p style="text-align: center; border: none"><button class="btn btn-danger">Mua Ngay</button></p>
+										<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-danger">Mua Ngay</button></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										
@@ -124,7 +124,7 @@
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6 style="text-align: center"><?php echo number_format($item['Price'])." đ"?></h6>
-										<p style="text-align: center; border: none"><button class="btn btn-danger">Mua Ngay</button></p>
+										<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-danger">Mua Ngay</button></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
 										
@@ -149,6 +149,7 @@
 <?php
 while($depart = current($data['listProductAllDepart'])) 
 {
+	$temp = current($data['listDepart']);
 ?>
 <div class="featured-section" id="projects">
 	<div class="container">
@@ -162,7 +163,7 @@ while($depart = current($data['listProductAllDepart']))
 		</h3>
 		<!-- //tittle heading -->
 		<div class="content-bottom-in">
-			<ul id="flexisel<?=key($data['listProductAllDepart'])?>">
+			<ul id="flexisel<?=$temp['DepartId']?>">
 			<?php
 				foreach($depart as $pro)
 				{
@@ -197,8 +198,10 @@ while($depart = current($data['listProductAllDepart']))
 </div>
 
 <?php
+	next($data['listDepart']);
 	next($data['listProductAllDepart']);
 	}
+	reset($data['listDepart']);
 	reset($data['listProductAllDepart']);
 ?>
 <script>
@@ -258,10 +261,11 @@ while($depart = current($data['listProductAllDepart']))
 <?php
 while($depart = current($data['listProductAllDepart']))
 {
+	$temp = current($data['listDepart']);
 	?>
 	<script>
 	$(document).ready(function () {
-		$("#flexisel<?=key($data['listProductAllDepart'])?>").flexisel({
+		$("#flexisel<?=$temp['DepartId']?>").flexisel({
 			visibleItems: 3,
 			animationSpeed: 1000,
 			autoPlay: false,
@@ -286,6 +290,7 @@ while($depart = current($data['listProductAllDepart']))
 	});
 	</script>
 	<?php
+	next($data['listDepart']);
 	next($data['listProductAllDepart']);
 }
 ?>
