@@ -83,11 +83,11 @@
 					?>
 							<li>
 								<a href="<?=$_SESSION['projectName']?>/Profile">
-									<i class="fa fa-user-circle-o" aria-hidden="true"></i> Tài Khoản
+									<i class="fa fa-user-circle-o" aria-hidden="true" style="color:#993414"></i> Tài Khoản
 								</a>
 							</li>
-							<li>
-								<a href="#">Hi, <?=$_SESSION['UserName']?></a>
+							<li style="border-right:none">
+								<a href="javascript:void();"><i class="fa fa-sign-out" aria-hidden="true" style="color:#993414"></i> Đăng Xuất</a>
 							</li>
 					<?php
 						}
@@ -155,7 +155,7 @@
 							<div class="styled-input">
 								<input id="l_pass" type="password" placeholder="Mật Khẩu" name="pass" required>
 							</div>
-							<a href="#">Quên mật khẩu</a><br/>
+							<a data-toggle="modal" data-target="#tim_lai_mat_khau" style="cursor: pointer">Quên mật khẩu</a><br/>
 							<div style="margin-top: 15px">
 								<input class="btn btn-primary" type="button" onclick="login()" value="Đăng Nhập">&nbsp;					
 								Chưa có tài khoản? Đăng ký <a href="" data-toggle="modal" data-target="#myModal2">tại đây</a>
@@ -549,7 +549,7 @@
 								<a href="contact.html">Liên Hệ</a>
 							</li>
 							<li>
-								<a href="help.html">Tra Cứu Đơn Hàng</a>
+								<a data-toggle="modal" data-target="#tra_cuu_don_hang" style="cursor: pointer">Tra Cứu Đơn Hàng</a>
 							</li>
 							<li>
 								<a href="faqs.html">Tin Tức</a>
@@ -693,6 +693,28 @@
 				</div>
 				<div class="modal-footer">						
 					<button type="button" class="btn btn-primary">Tra Cứu</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+				</div>
+		  	</div>
+
+		</div>
+	</div>
+	
+	<div class="modal fade" id="tim_lai_mat_khau" role="dialog">
+		<div class="modal-dialog">
+
+		  <!-- Modal content-->
+	  		<div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">Tìm Lại Mật Khẩu</h4>
+				</div>
+				<div class="modal-body">		
+					<label>Nhập Email: <span style="color:red">*</span></label>
+					<input class="form-control" type="text" placeholder="Vui lòng nhập email của bạn tại đây" style="width: 50%; margin-top: 15px" />
+				</div>
+				<div class="modal-footer">						
+					<button type="button" class="btn btn-success">Gửi</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 				</div>
 		  	</div>

@@ -158,7 +158,7 @@
 										<span class="item_price"><?php echo number_format($item['Price'])." đ";?></span>
 										<del><?php echo number_format($item['PriceOfMarket'])." đ";?></del>
 									</div>
-									<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-danger">Mua Ngay</button></p>
+									<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-success">Thêm Vào Giỏ</button></p>
 
 								</div>
 							</div>
