@@ -1,17 +1,19 @@
 <?php
-	class Home extends Controller{
+	class Contact extends Controller{
 		public $DepartModel;
-		public $Category;
+		public $CategoryModel;
 		function __construct()
 		{
 			$this->DepartModel = $this->model("DepartmentModel");
-			$this->Category = $this->model("CategoryModel");
+			$this->CategoryModel = $this->model("CategoryModel");
 		}
 		function Index(){
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
 			$this->view("layout1",array (
-			"page" => "index",
-			"listDepart" => json_decode($this->DepartModel->getAllDepartment(),true),
-			"listCate" => json_decode($this->Category->getAllCategory(),true)
+			"page" => "contact",
+			"listDepart" => $listDepart,
+			"listCate" => $listCate
 			));
 		}
 		

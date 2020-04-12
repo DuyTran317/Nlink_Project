@@ -293,9 +293,9 @@
 									<a class="nav-stylehead" href="<?=$_SESSION['projectName']?>/Home">Trang Chủ
 										<span class="sr-only">(current)</span>
 									</a>
-								</li>
+								</li>								
 								<li class="">
-									<a class="nav-stylehead" href="about.html">Liên Hệ</a>
+									<a class="nav-stylehead" href="<?=$_SESSION['projectName']?>/Introduce">Giới Thiệu</a>
 								</li>
 								<li class="dropdown">
 									<a href="#" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Sản Phẩm
@@ -328,9 +328,9 @@
 												?>
 												</ul>
 											</div>
-											<div class="col-sm-4 multi-gd-img">
+											<!--<div class="col-sm-4 multi-gd-img">
 												<img src="<?=$_SESSION['projectName']?>/lib/images/nav.png" alt="">
-											</div>
+											</div>-->
 											<div class="clearfix"></div>
 										</div>
 									</ul>
@@ -396,10 +396,10 @@
 									</ul>
 								</li>-->
 								<li class="">
-									<a class="nav-stylehead" href="faqs.html">Giới Thiệu</a>
+									<a class="nav-stylehead" href="<?=$_SESSION['projectName']?>/Contact">Liên Hệ</a>
 								</li>
 								<li class="dropdown">
-									<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="dropdown">Tra Cứu Đơn Hàng
+									<a class="nav-stylehead dropdown-toggle" href="#" data-toggle="modal" data-target="#tra_cuu_don_hang">Tra Cứu Đơn Hàng
 										<!--<b class="caret"></b>-->
 									</a>
 									<!--<ul class="dropdown-menu agile_short_dropdown">
@@ -672,6 +672,27 @@
 				</div>
 				<div class="modal-footer">						
 					<button onclick="window.location='<?=$_SESSION['projectName']?>/Cart'" type="button" class="btn btn-primary">Kiểm Tra Giỏ Hàng</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+				</div>
+		  	</div>
+
+		</div>
+	</div>
+	
+	<div class="modal fade" id="tra_cuu_don_hang" role="dialog">
+		<div class="modal-dialog">
+
+		  <!-- Modal content-->
+	  		<div class="modal-content">
+				<div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal">&times;</button>
+				  <h4 class="modal-title">Tra Cứu Đơn Hàng</h4>
+				</div>
+				<div class="modal-body">					
+					<input class="form-control" type="text" placeholder="Vui lòng nhập mã đơn hàng tại đây" style="width: 50%" />
+				</div>
+				<div class="modal-footer">						
+					<button type="button" class="btn btn-primary">Tra Cứu</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 				</div>
 		  	</div>
