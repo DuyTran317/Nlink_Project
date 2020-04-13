@@ -79,7 +79,7 @@
 							</tr>
 						</table>
 					</div>
-				</div>
+				</div>								
 				
 				<div id="upd_thong_tin_ca_nhan">
 					<h4 style="font-weight: bold">Thay Đổi Thông Tin</h4>
