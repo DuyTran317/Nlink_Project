@@ -9,7 +9,7 @@
 			</div>
 			<div class="col-md-3" style="border:1px solid #ebe1e1">
 				<p><i class="fa fa-check" aria-hidden="true" style="color:green"></i> <span style="color:black">GIÁ THÀNH HỢP LÝ</span></p>
-				<p style="font-size: 12px">Nhập khẩu và Phân phối trực tiếp</p>
+				<p style="font-size: 12px">Nhập khẩu và phân phối trực tiếp</p>
 			</div>
 			<div class="col-md-3" style="border:1px solid #ebe1e1">
 				<p><i class="fa fa-check" aria-hidden="true" style="color:green"></i> <span style="color:black">AN TOÀN TÀI CHÍNH</span></p>
@@ -158,7 +158,7 @@
 										<span class="item_price"><?php echo number_format($item['Price'])." đ";?></span>
 										<del><?php echo number_format($item['PriceOfMarket'])." đ";?></del>
 									</div>
-									<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-danger">Mua Ngay</button></p>
+									<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm Vào Giỏ</button></p>
 
 								</div>
 							</div>
@@ -168,7 +168,7 @@
 						{
 					?>
 							<div class="clearfix"></div>
-						</div>
+						</div>					
 					<?php
 						}
 					}
