@@ -105,8 +105,14 @@
 								</div>
 								<div class="controls">
 									<select id="transpot" class="option-w3ls">
-										<option value="1">Giao Hàng Tiêu Chuẩn</option>
-										<option value="2">Giao Hàng Nhanh</option>							
+									<?php
+										foreach($data['listTransport'] as $item)
+										{
+									?>
+										<option value="<?=$item['TransportId']?>"><?=$item['TransportName']?></option>
+									<?php
+										}
+									?>
 									</select>
 								</div>								
 							</div>							
@@ -130,7 +136,7 @@
 					<div style="margin-top: 15px">
 						<i class="fa fa-hand-o-right" aria-hidden="true"></i>
 						<a id="use_diem_tichluy" href="javascript:void();" style="font-size:14px; color:black; font-weight: bold">Sử dụng điểm tích lũy <i class="fa fa-question-circle" aria-hidden="true" style="color:#3D6199" title="Xem chính sách tích điểm của chúng tôi"></i></a><br/>
-						<p id="diem_tichluy" style="color:black; margin: 8px; font-size: 15px">Bạn có: 9 điểm <button class="btn btn-success">Áp dụng</button></p>
+						<p id="diem_tichluy" style="color:black; margin: 8px; font-size: 15px">Bạn có: <?=$data['User']['Point']?> điểm <button <?php if(isset($_SESSION['UserId']) && $data['User']['Point'] <= 0) {echo "disabled";} else {echo "onClick='UsePoint()'";}?> class="btn btn-success">Áp dụng</button></p>
 					</div>
 
 					<p style="color:black; margin-top: 15px;">Tổng Tiền Cần Thanh Toán: <span id="total-pay" style="color:#d60c0c; font-weight: bold">0</span> VND</p>
@@ -174,7 +180,7 @@
 <!-- //checkout page -->
 
 <script>
-var havevoucher = 0; var payment = 1;
+var havevoucher = 0; var haveusepoint = 0; var payment = 1;
 	$(document).ready(function () {
 		drawOrderDetail();
 		//Chọn Tỉnh/Thành Phố => Mã vận chuyển
@@ -378,6 +384,10 @@ var havevoucher = 0; var payment = 1;
 			})
 		}
 	}
+	function UsePoint()
+	{
+		haveusepoint = 1;
+	}
 	function submitCheckout(){
 		var flag = 1;
 		var name = $("#name").val().trim();
@@ -391,25 +401,30 @@ var havevoucher = 0; var payment = 1;
 		var note = $("#note").val().trim();
 		var transpot = $("#transpot").val();
 		var support = $("#support").val() == 'on' ? 1 : 0;
-		var total = parseInt($('#total').html().replace('.',''));
-		var totalPay = parseInt($('#total-pay').html().replace('.',''));
-		var shipFee = parseInt($('#shipFee').html().replace('.',''));
+		// var total = parseInt($('#total').html().replace('.',''));
+		// var totalPay = parseInt($('#total-pay').html().replace('.',''));
+		// var shipFee = parseInt($('#shipFee').html().replace('.',''));
 		var codeVoucher = '';
-		var valueVoucher = 0;
+		// var valueVoucher = 0;
 		if(havevoucher == 1)
 		{
 			codeVoucher = $('#code-voucher').val();
-			valueVoucher = parseInt($('#value-voucher').val());
+			// valueVoucher = parseInt($('#value-voucher').val());
 		}
-		var timemin = $("#day_shipfrom").html();
-		var timemax = $("#day_shipmax").html();
+		// var timemin = $("#day_shipfrom").html();
+		// var timemax = $("#day_shipmax").html();
 		
 		if(name == "")
 		{
 			alert("Vui lòng nhập tên người nhận!");
 			flag = 0;
 		}
-		if(email != "")
+		if(email == "")
+		{
+			alert("Vui lòng nhập email người nhận!");
+			flag = 0;
+		}
+		else if(email != "")
 		{
 			if(!validateEmail(email))
 			{
@@ -469,13 +484,14 @@ var havevoucher = 0; var payment = 1;
 					transpot:transpot,
 					support:support,
 					payment:payment,
-					total:total,
-					totalPay:totalPay,
-					shipFee:shipFee,
+					// total:total,
+					// totalPay:totalPay,
+					// shipFee:shipFee,
 					codeVoucher:codeVoucher,
-					valueVoucher:valueVoucher,
-					timemin:timemin,
-					timemax:timemax
+					// valueVoucher:valueVoucher,
+					// timemin:timemin,
+					// timemax:timemax,
+					haveusepoint:haveusepoint
 				},
 				success: function(data){
 					console.log(data);

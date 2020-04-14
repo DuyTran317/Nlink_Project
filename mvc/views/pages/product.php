@@ -172,6 +172,13 @@
 					<?php
 						}
 					}
+					if($dem % 3 != 0)
+					{
+					?>
+							<div class="clearfix"></div>
+						</div>
+					<?php
+					}
 					?>
 						
 					<input id="pagenumber" name="pagenumber" type="number" value="<?=$data['pagenumber']?>" style="display:none" />

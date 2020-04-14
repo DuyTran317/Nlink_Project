@@ -46,7 +46,7 @@
 			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
 			$listProductNew = json_decode($this->ProductModel->getProductsByOrder("`CrDateTime`","DESC",0,5),true);
 			$listCateOfSearch = json_decode($this->ProductModel->getCategoriesOfSearch($key,$brand,$priceMin,$priceMax,"b.`Order`","ASC"),true);
-			$listProduct = json_decode($this->ProductModel->getProductsByKeyWord($key,$brand,$priceMin,$priceMax,"CrDateTime","DESC"),true);
+			$listProduct = json_decode($this->ProductModel->getProductsByKeyWord($key,$brand,$priceMin,$priceMax,"CrDateTime","DESC",$begin,$display),true);
 			$listBrands = json_decode($this->ProductModel->getBrandsProductByKeyWord($key,$brand,$priceMin,$priceMax,"b.`BrandName`","ASC"),true);
 			$action = "Search";
 			

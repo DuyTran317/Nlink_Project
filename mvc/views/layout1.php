@@ -82,7 +82,7 @@
 						{
 					?>
 							<li>
-								<a href="<?=$_SESSION['projectName']?>/Profile">
+								<a href="<?=$_SESSION['projectName']?>/Account">
 									<i class="fa fa-user-circle-o" aria-hidden="true"></i> Tài Khoản
 								</a>
 							</li>
@@ -214,33 +214,30 @@
 							</div>
 							<div>
 								<label style="margin-bottom: 5px">Năm Sinh <span style="color:red">*</span></label>								
-								<input id="" type="date" class="form-control" name="" id="" required style="margin-bottom: 15px">
+								<span id="noti_birthday"></span>
+								<input id="r_birthday" type="date" class="form-control" name="birthday" style="margin-bottom: 15px">
 							</div>
 							<div>
 								<label style="margin:10px 0 5px 0">Tỉnh/Thành Phố <span style="color:red">*</span></label>				
 								<select id="tinh_thanh_ly" class="form-control">
 									<option value="0">---Chọn Tỉnh Thành---</option>
-									<option value="1">Hồ Chí Minh</option>
 								</select>
 							</div>
 							<div>
 								<label style="margin:20px 0 5px 0">Quận/Huyện <span style="color:red">*</span></label>				
 								<select id="qh_change" class="form-control">
 								    <option id="chon_qh_ly" value="0">---Chọn Quận/Huyện---</option>
-									<option class="quan_huyen_ly" value="1">Gò Vấp</option>				
 								</select>
 							</div>
 							<div>
 								<label style="margin:20px 0 5px 0">Phường/Xã <span style="color:red">*</span></label>				
-								<select class="form-control">
-									<option id="chon_px_ly" value="0">---Chọn Phường/Xã---</option>
-									<option class="phuong_xa_ly" value="1">Phường 16</option>
+								<select id="chon_px_ly" class="form-control">
+									<option value="0">---Chọn Phường/Xã---</option>
 								</select>
 							</div>
 							<div>
 								<label style="margin:20px 0 5px 0">Địa Chỉ <span style="color:red">*</span></label><br/>
-								<span id="noti_email"></span>
-								<input class="form-control" id="" type="text" name="" required>
+								<input class="form-control" id="r_address" type="text" name="" required>
 							</div>
 								<input type="button" class="btn btn-primary" id="r_submit" onclick="register()" name="register" value="Đăng Ký">					
 							</div>
@@ -728,7 +725,17 @@
 			$().UItoTop({
 				easingType: 'easeOutQuart'
 			});
-			
+			$.ajax({
+				url:"<?=$_SESSION['projectName']?>/Ajax/loadCity",
+				type:"POST",
+				success: function(data){
+					var listCity = JSON.parse(data);
+					for(var i = 0; i<listCity.length; i++)
+					{
+						$("#tinh_thanh_ly").append('<option value="'+listCity[i].CityId+'">'+listCity[i].CityName+'</option>');
+					}
+				}
+			});
 			$(".quan_huyen_ly").hide();
 			$(".phuong_xa_ly").hide();
 			$("#tinh_thanh_ly").change(function(){
@@ -740,7 +747,27 @@
 					$("#chon_px_ly").prop('selected', true);
 				}
 				else{
-					$(".quan_huyen_ly").show();					
+					$(".quan_huyen_ly").show();	
+
+					if($("#tinh_thanh_ly").val()!=0)
+					{
+						$("#qh_change").html("");
+						$("#qh_change").append('<option id="chon_qh_ly" value="0">---Chọn Quận/Huyện---</option>')
+						$.ajax({
+							url:"<?=$_SESSION['projectName']?>/Ajax/loadDictrict",
+							type:"POST",
+							data:{
+								id:$("#tinh_thanh_ly").val()
+							},
+							success: function(data){
+								var listDictrict = JSON.parse(data);
+								for(var i = 0; i<listDictrict.length; i++)
+								{
+									$("#qh_change").append('<option class="quan_huyen_ly" value="'+listDictrict[i].DictrictId+'">'+listDictrict[i].DictrictName+'</option>');
+								}
+							}
+						});
+					}				
 				}
 			});
 			
@@ -751,7 +778,27 @@
 					$(".phuong_xa_ly").hide();	
 				}
 				else{
-					$(".phuong_xa_ly").show();					
+					$(".phuong_xa_ly").show();
+					if($("#qh_change").val() != 0)
+					{
+						$("#chon_px_ly").html("");
+						$("#chon_px_ly").append('<option id="chon_px_ly" value="0">---Chọn Phường/Xã---</option>');
+						
+						$.ajax({
+							url:"<?=$_SESSION['projectName']?>/Ajax/loadWard",
+							type:"POST",
+							data:{
+								id:$("#qh_change").val()
+							},
+							success: function(data){
+								var listWard = JSON.parse(data);
+								for(var i = 0; i<listWard.length; i++)
+								{
+									$("#chon_px_ly").append('<option class="phuong_xa_ly" value="'+listWard[i].WardId+'">'+listWard[i].WardName+'</option>');
+								}
+							}
+						})	
+					}					
 				}
 			});
 			$("#agileinfo-nav_search").change(function(){
@@ -829,6 +876,11 @@
 			var phone = $("#r_phone").val();
 			var pass = $("#r_pass").val();
 			var repass = $("#r_repass").val();
+			var birthday = $("#r_birthday").val();
+			var city = $("#tinh_thanh_ly").val();
+			var dictrict = $("#qh_change").val();
+			var ward = $("#chon_px_ly").val();
+			var address = $("#r_address").val();
 			var noti = "";
 			if(email == "")
 			{
@@ -865,16 +917,24 @@
 						name: name,
 						mobile: phone,
 						pass : pass,
+						birthday : birthday,
+						city:city,
+						dictrict:dictrict,
+						ward:ward,
+						address:address
 					},
 					success: function (data){
 						console.log(data);
 						switch(data)
 						{
 							case "1":
-								location.reload(true);
+								alert("Đăng ký thành công!");
+								setTimeout(function(){
+									location.reload(true);
+								}, 2000);
 								break;
 							default:
-								alert("Đăng ký thất bại!")
+								alert("Đăng ký thất bại!");
 								break;
 						}
 					}

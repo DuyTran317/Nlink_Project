@@ -114,11 +114,16 @@
 				$phone = $_POST['mobile'];
 				$email = Trim($_POST['email']);
 				$pass = password_hash($_POST['pass'],PASSWORD_DEFAULT); //sử dụng password_verify($passNgdungnhap,$passdaduochash) để xác thực
-				$userid = $this->UserModel->insertUser($email,$name,$phone,$pass);
+				$birthday = $_POST['birthday'];
+				$cityId = $_POST['city'];
+				$dictrictId = $_POST['dictrict'];
+				$wardId = $_POST['ward'];
+				$address = Trim($_POST['address']);
+				$userId = $this->UserModel->insertUser($email,$name,$phone,$pass,$birthday,$cityId,$dictrictId,$wardId,$address);
 				
-				if($userid!=0)
+				if($userId!=0)
 				{
-					$_SESSION['UserId'] = $userid;
+					$_SESSION['UserId'] = $userId;
 					$_SESSION['UserName'] = $name;
 
 					echo "1";
@@ -173,6 +178,10 @@
 				echo null;
 			}
 		}
+		function loadCity()
+		{
+			echo $this->LocationModel->getAllCity("`CityName`","ASC");
+		}
 		function loadDictrict()
 		{
 			if(isset($_POST['id']))
@@ -200,8 +209,7 @@
 		function createOrder()
 		{
 			if(isset($_POST['cart'])){
-				$price = $_POST['total'];
-				$pricePay = $_POST['totalPay'];
+				 $price = 0;
 				$userId = isset($_SESSION['UserId']) ? $_SESSION['UserId'] : 0;
 				$name = $_POST['name'];
 				$email = $_POST['email'];
@@ -213,23 +221,56 @@
 				$note = $_POST['note'];
 				$support = $_POST['support'];
 				$payment = $_POST['payment'];
-				$shipFee = $_POST['shipFee'];
-				$valueVoucher = $_POST['valueVoucher'];
-
+				$valueVoucher = 0;
+				$haveusepoint = $_POST['haveusepoint'];
+				$cart = json_decode($_POST['cart'],true);
+				// tính tổng tiền hàng
+				foreach($cart as $item)
+				{
+					$price += $item['price'] * $item['qty'];
+				}
+				$pricePay = $price;
+				if(isset($_POST['codeVoucher']))
+				{
+					$voucher = json_decode($this->VoucherModel->checkVoucher($_POST['codeVoucher']),true);
+					switch($voucher['TypeId'])
+					{
+						case '1':
+							$valueVoucher = $voucher['Value'];
+							$pricePay -= $valueVoucher;
+							break;
+						case '2':
+							$valueVoucher = $price*$voucher['Value'];
+							$pricePay -= $valueVoucher;
+							break;
+					}
+				}
+				$location = json_decode($this->LocationModel->getAllbyWardId($wardId),true);
+				$shipFee = $location['FeeShip'];
+				$pricePay += $shipFee;
+				$timeShipMin = $location['TimeShipMin'];
+				$timeShipMax = $location['TimeShipMax'];
+				$point = 0;
+				if($haveusepoint == 1)
+				{
+					$User = json_decode($this->UserModel->getUserById($_SESSION['UserId']),true);
+					$pricePay -= $User['Point'] * 500;
+					$point = $User['Point'];
+					$this->UserModel->updatePointUser($User['UserId'],0);
+				}
+				
 				$now = date("Y-m-d H:i:s");
             	$code = date("YmdHis");
-				$sql = "INSERT INTO `nl_orders`(`OrderId`, `OrderCode`, `Price`, `PointUsed`, `PricePay`, `UserId`, `FullName`, `Email`, `PhoneNumber1`, `PhoneNumber2`, `WardId`, `Address`, `TransportId`, `NoteTypeId`, `Note`, `CallSupport`, `PaymentId`, `StatusId`, `CrDateTime`, `Sale`, `ShipFee`, `ShipDateTime`) 
-                VALUES (NULL,'$code',$price,0,$pricePay,$userId,N'$name','$email','$phonenumber1','$phonenumber2',$wardId,N'$address',$transpotId,0,N'$note',$support,$payment,1,'$now',$shipFee,$valueVoucher,NULL)";
 				
-				$orderId = $this->OrderModel->addOrder($price,$pricePay,$userId,$name,$email,$phonenumber1,$phonenumber2,$wardId,$address,$transpotId,$note,$support,$payment,$shipFee,$valueVoucher);
+				$orderId = $this->OrderModel->addOrder($price,$pricePay,$userId,$name,$email,$phonenumber1,$phonenumber2,$wardId,$address,$transpotId,$note,$support,$payment,$shipFee,$valueVoucher,$point,$timeShipMin,$timeShipMax);
 				
-				$cart = json_decode($_POST['cart'],true);
+				
 				foreach($cart as $item)
 				{
 					$this->OrderModel->addOrderDetail($orderId,$item['id'],$item['qty'],$item['price']);
 				}
 
-				if(isset($_POST['codeVoucher']) && $_POST['codeVoucher']!="")
+				if(isset($_POST['codeVoucher']))
 				{
 					$voucher = json_decode($this->VoucherModel->checkVoucher($_POST['codeVoucher']),true);
 					$this->VoucherModel->addOrderVoucher($orderId,$voucher['VoucherId']);
@@ -242,6 +283,34 @@
 			else
 			{
 			echo 0;
+			}
+		}
+		function loadDsOrderUser()
+		{
+			if(isset($_POST['userId']))
+			{
+				$userId = $_POST['userId'];
+				$begin = $_POST['begin'];
+				$numOrder = $_POST['numOrder'];
+
+				echo $this->OrderModel->loadDsOrderOfUser($userId,"a.`CrDateTime`","DESC",$begin,$numOrder);
+			}
+			else
+			{
+				echo "";
+			}
+		}
+		function getSumOrderUser()
+		{
+			if(isset($_POST['userId']))
+			{
+				$userId = $_POST['userId'];
+
+				echo $this->OrderModel->getSumOrderOfUser($userId);
+			}
+			else
+			{
+				echo 0;
 			}
 		}
 		// function setCart()
