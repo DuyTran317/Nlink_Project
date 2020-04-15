@@ -313,6 +313,25 @@
 				echo 0;
 			}
 		}
+		function changePassword()
+		{
+			if(isset($_POST['oldpass']))
+			{
+				$oldpass = $_POST['oldpass'];
+				$newpass = $_POST['newpass'];
+				$repass = $_POST['repass'];
+
+				$User = json_decode($this->UserModel->getUserById($_SESSION['UserId']),true);
+				if(password_verify($oldpass,$User['Password'])){
+					$this->UserModel->updatePassword($User['UserId'],password_hash($newpass,PASSWORD_DEFAULT));
+					echo "1";
+				}
+				else
+				{
+					echo "0";
+				}
+			}
+		}
 		// function setCart()
 		// {
 		// 	if(isset($_POST['id']))

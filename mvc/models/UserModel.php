@@ -49,5 +49,11 @@
             $r = mysqli_query($this->con,$sql);
             return mysqli_affected_rows($this->con);
         }
+        public function updatePassword($userId,$pass)
+        {
+            $sql = "UPDATE `nl_users` SET `Password` = '$pass' WHERE `UserId` = $userId";
+            $r = mysqli_query($this->con,$sql);
+            return mysqli_affected_rows($this->con);
+        }
     }
 ?>

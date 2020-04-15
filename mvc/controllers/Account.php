@@ -122,5 +122,64 @@
 				"listOrderDetail"=>$listOrderDetail
 			));
 		}
+		function ForgotPassword()
+		{
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+            $listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$listKeyword=json_decode($this->KeywordModel->getKeywords("`TimesSearch`","DESC"),true);
+
+			$this->view("layout1",array (
+				"page" => "password_forgot_change",
+				"listDepart" => $listDepart,
+				"listCate" => $listCate,
+				"listKeyword" => $listKeyword
+			));
+		}
+		function sendPassword()
+		{
+			if(isset($_POST['email']))
+			{
+				$User = json_decode($this->UserModel->getUserByEmail($_POST['email']),true);
+				$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
+				// Output: 54esmdr0qf
+				$passnew = substr(str_shuffle($permitted_chars), 0, 10);
+				$pass = password_hash($passnew,PASSWORD_DEFAULT);
+				$kq = $this->UserModel->updatePassword($User['UserId'],$pass);
+				if($kq > 0)
+				{
+					$this->mailer("dodangkhoagtvt@gmail.com",$_POST['email'],"Tạo mới password!","Mật khẩu mới của bạn là:".$passnew);
+					echo "<script>
+						alert('Gửi Password thành công!');
+						setTimeout(function(){
+							window.location = '".$_SESSION['projectName']."/Home';
+						}, 2000);
+					</script>";
+				}
+				else
+				{
+					echo "<script>
+						alert('Gửi Password thất bại!');
+					</script>";
+				}
+			}
+		}
+		function ChangePassword()
+		{
+			if(isset($_SESSION['UserId']))
+			{
+				$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+				$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+				$listKeyword=json_decode($this->KeywordModel->getKeywords("`TimesSearch`","DESC"),true);
+
+				$this->view("layout1",array (
+					"page" => "account_info",
+					"pagechild" => "password_change",
+					"listDepart" => $listDepart,
+					"listCate" => $listCate,
+					"listKeyword" => $listKeyword
+				));
+			}
+		}
+		
 	}
 ?>

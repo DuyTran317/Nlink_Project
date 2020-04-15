@@ -11,6 +11,9 @@
 					<a href="<?=$_SESSION['projectName']?>/Account/dsOrder" style="font-size: 15px">&rarr; Thông Tin Đơn Hàng</a>
 				</div>
 				<div style="margin-top: 12px">
+					<a href="<?=$_SESSION['projectName']?>/Account/ChangePassword" style="font-size: 15px">&rarr; Đổi Mật Khẩu</a>
+				</div>
+				<div style="margin-top: 12px">
 					<a href="<?=$_SESSION['projectName']?>/Account/logout" style="font-size: 15px">&rarr; Đăng Xuất</a>
 				</div>
 			</div>

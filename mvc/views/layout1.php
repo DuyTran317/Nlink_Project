@@ -82,12 +82,12 @@
 						{
 					?>
 							<li>
-								<a href="<?=$_SESSION['projectName']?>/Profile">
+								<a href="<?=$_SESSION['projectName']?>/Account">
 									<i class="fa fa-user-circle-o" aria-hidden="true" style="color:#993414"></i> Tài Khoản
 								</a>
 							</li>
 							<li style="border-right:none">
-								<a href="javascript:void();"><i class="fa fa-sign-out" aria-hidden="true" style="color:#993414"></i> Đăng Xuất</a>
+								<a href="<?=$_SESSION['projectName']?>/Account/logout"><i class="fa fa-sign-out" aria-hidden="true" style="color:#993414"></i> Đăng Xuất</a>
 							</li>
 					<?php
 						}
@@ -667,18 +667,20 @@
 
 		  <!-- Modal content-->
 	  		<div class="modal-content">
+			  <form action="<?=$_SESSION['projectName']?>/Account/sendPassword" method="POST">
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal">&times;</button>
 				  <h4 class="modal-title">Tìm Lại Mật Khẩu</h4>
 				</div>
 				<div class="modal-body">		
 					<label>Nhập Email: <span style="color:red">*</span></label>
-					<input class="form-control" type="text" placeholder="Vui lòng nhập email của bạn tại đây" style="width: 50%; margin-top: 15px" />
+					<input class="form-control" name="email" type="email" placeholder="Vui lòng nhập email của bạn tại đây" style="width: 50%; margin-top: 15px" />
 				</div>
 				<div class="modal-footer">						
-					<button type="button" class="btn btn-success">Gửi</button>
+					<button type="submit" class="btn btn-success">Gửi mật khẩu</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 				</div>
+				</form>
 		  	</div>
 
 		</div>
