@@ -275,10 +275,14 @@
 					$voucher = json_decode($this->VoucherModel->checkVoucher($_POST['codeVoucher']),true);
 					$this->VoucherModel->addOrderVoucher($orderId,$voucher['VoucherId']);
 				}
-				if($orderId != 0)
+				if($orderId != 0){
+					$this->mailer("dodangkhoagtvt@gmail.com",$email,"Thông tin đặt hàng thành công","Nhấp vào <a href='".$this->domain.$_SESSION['projectName']."/Account/OrderDetail/".$code."'>đây</a> để xem thông tin đơn hàng");
 					echo 1;
-				else 
+				}
+				else
+				{ 
 					echo 0;
+				}
 			}
 			else
 			{

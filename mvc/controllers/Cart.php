@@ -35,6 +35,18 @@
 				"User" => $User
 			));
 		}
-		
+		function paymentBanking()
+		{
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+            $listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$listKeyword=json_decode($this->KeywordModel->getKeywords("`TimesSearch`","DESC"),true);
+
+			$this->view("layout1",array (
+				"page" => "payment_banking",
+				"listDepart" => $listDepart,
+				"listCate" => $listCate,
+				"listKeyword" => $listKeyword,
+			));
+		}
 	}
 ?>

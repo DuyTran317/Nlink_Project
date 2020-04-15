@@ -72,6 +72,7 @@
 			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
 			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
 			$Product = json_decode($this->ProductModel->getProductByUrl($url),true);
+			$listProductSame = json_decode($this->ProductModel->getProductsByCateId($Product['CategoryId'],0,-1,-1,"a.`Sold`","DESC",0,5),true);
 			$Img = json_decode($this->ProductModel->getProductImgs($Product['ProductId']),true);
 			// $listQA = json_decode($this->ProductModel->getQuestionAnswersByProductId($Product['ProductId'],"a.`CrDateTime`","DESC"),true);
 			
@@ -100,6 +101,7 @@
 				"Star" => $Star,
 				"User" => $User,
 				"Email" => $Email,
+				"listProductSame" => $listProductSame
 			));
 		}
 		function Department($url = "")

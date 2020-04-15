@@ -501,9 +501,16 @@ var havevoucher = 0; var haveusepoint = 0; var payment = 1;
 						drawCart();
 						drawOrderDetail();
 						alert("Đặt hàng thành công!");
-						setTimeout(function(){
-							window.location = "<?=$_SESSION['projectName']?>/Home";
-						}, 2000);
+						if(payment == 1){
+							setTimeout(function(){
+								window.location = "<?=$_SESSION['projectName']?>/Home";
+							}, 2000);
+						}
+						else if(payment == 2){
+							setTimeout(function(){
+								window.location = "<?=$_SESSION['projectName']?>/Cart/paymentBanking";
+							}, 2000);
+						}
 					}
 				}
 			})

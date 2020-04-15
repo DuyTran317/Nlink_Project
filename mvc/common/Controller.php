@@ -1,5 +1,6 @@
 <?php
 	class Controller{
+		public $domain = "localhost";
 		public function model($model){
 			require_once("./mvc/models/".$model.".php");
 			return new $model;
