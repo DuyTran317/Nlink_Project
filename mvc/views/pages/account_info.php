@@ -18,7 +18,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-8 col-sm-8 col-xs-12"  style="margin-top: 30px">
+		<div class="col-md-8 col-sm-8 col-xs-12"  style="margin-top: 30px; margin-bottom: 30px">
 		<?php 
 			require_once("./mvc/views/pages/pagechildAccount/".$data['pagechild'].".php");
 		?>

@@ -21,7 +21,7 @@
 				</td>
 			</tr>	
 			<tr>
-				<td colspan="2"><button class="btn btn-primary">Cập Nhật</button></td>
+				<td colspan="2"><button onClick="submitChangePassword()" class="btn btn-primary">Cập Nhật</button></td>
 			</tr>
 		</table>
 	</div>

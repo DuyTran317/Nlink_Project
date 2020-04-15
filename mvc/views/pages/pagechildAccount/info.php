@@ -31,9 +31,9 @@
                 </td>
             </tr>
             <tr>
-                <td><span style="margin-top:20px">Password:</span><hr/></td>
+                <td><span style="margin-top:20px">Mật khẩu:</span><hr/></td>
                 <td>
-                    <span style="width:250px; margin-left:10px; margin-top:20px"><a href="<?=$_SESSION['projectName']?>/Account/ChangePassword"><button type="button" class="btn btn-primary">Đổi mật khẩu</button></a></span><hr/>
+                    <span style="width:250px; margin-left:10px; margin-top:20px"><a href="<?=$_SESSION['projectName']?>/Account/ChangePassword"><button type="button" class="btn btn-info">Thay Đổi</button></a></span><hr/>
                 </td>
             </tr>
             <tr>
