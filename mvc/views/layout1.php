@@ -667,7 +667,7 @@
 
 		  <!-- Modal content-->
 	  		<div class="modal-content">
-			  <form action="<?=$_SESSION['projectName']?>/Account/sendPassword" method="POST">
+			  <form action="<?=$_SESSION['projectName']?>/Home/sendPassword" method="POST">
 				<div class="modal-header">
 				  <button type="button" class="close" data-dismiss="modal">&times;</button>
 				  <h4 class="modal-title">Tìm Lại Mật Khẩu</h4>
@@ -1068,7 +1068,6 @@
 	}
 	function searchOrder()
 	{
-		debugger;
 		var code = $("#codeSearchOrder").val().trim();
 		if(code == "")
 		{
@@ -1076,7 +1075,7 @@
 		}
 		else
 		{
-			window.location = "<?=$_SESSION['projectName']?>/Account/OrderDetail/"+code;
+			window.location = "<?=$_SESSION['projectName']?>/Cart/OrderDetail/"+code;
 		}
 	}
 	function setCookie(cname, cvalue, exdays) {

@@ -336,6 +336,22 @@
 				}
 			}
 		}
+		function CancelOrder(){
+			if(isset($_POST['code']))
+			{
+				$kq = $this->OrderModel->CancelOrder($_POST['code']);
+
+				if($kq){
+					echo 1;
+				}
+				else
+				{
+					echo 0;
+				}
+			}
+			else
+			{echo 0;}
+		}
 		// function setCart()
 		// {
 		// 	if(isset($_POST['id']))

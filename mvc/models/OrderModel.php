@@ -104,5 +104,10 @@
 			}
 			return json_encode($mang);
         }
+        public function CancelOrder($code){
+            $sql = "UPDATE `nl_orders` SET `StatusId`=5 WHERE `OrderCode`='$code' and `StatusId`=1";
+            $r = mysqli_query($this->con,$sql);
+            return $r;
+        }
     }
 ?>

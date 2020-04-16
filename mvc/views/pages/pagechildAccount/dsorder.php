@@ -48,11 +48,10 @@
                                 row += '<td align="center">'+ds[i].OrderCode+'</td>';
                                 row += '<td align="center">'+ds[i].CrDateTime+'</td>';
                                 row += '<td align="center">'+ds[i].FullName+'</td>';
-                                debugger;
                                 row += '<td align="center">'+new Intl.NumberFormat('de-DE').format(ds[i].PricePay)+' đ</td>';
                                 row += '<td align="center" colspan="2"><span style="font-size: 14px">'+ds[i].OrderStatusName+'</span>';
-                                row += '<div></div><a href="<?=$_SESSION['projectName']?>/Account/OrderDetail/'+ds[i].OrderCode+'" style="text-decoration:none">Xem</a>'; 
-                                if(ds[i].OrderStatusId == 1) {row += '<a style="text-decoration:none" onclick=""> | Hủy</a></td>';}
+                                row += '<div></div><a href="<?=$_SESSION['projectName']?>/Cart/OrderDetail/'+ds[i].OrderCode+'" style="text-decoration:none">Xem</a>'; 
+                                if(ds[i].OrderStatusId == 1) {row += '<a style="text-decoration:none" onclick="CancelOrder('+ds[i].OrderCode+')"> | Hủy</a></td>';}
                             row += '</tr>';
                         $("#dsOrder").append(row);
                     }
@@ -92,5 +91,25 @@
             }
         });
 
+    }
+    function CancelOrder(code)
+    {
+        var cancel = confirm("Bạn có chắc muốn hủy đơn hàng?");
+        if(cancel == true){
+            $.ajax({
+                url:"<?=$_SESSION['projectName']?>/Ajax/CancelOrder",
+                type:"POST",
+                data:{
+                    code:code
+                },
+                success: function(data){
+                    if(data == '1')
+                    {
+                        alert("Hủy đơn hàng thành công!");
+                        setTimeout(function(){location.reload(true);}, 1500)
+                    }
+                }
+            })
+        }
     }
 </script>

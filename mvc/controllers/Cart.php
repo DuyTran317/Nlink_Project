@@ -5,6 +5,7 @@
 		public $LocationModel;
 		public $OrderModel;
 		public $UserModel;
+		public $KeywordModel;
 		function __construct()
 		{
 			$this->DepartModel = $this->model("DepartmentModel");
@@ -12,6 +13,7 @@
 			$this->LocationModel = $this->model("LocationModel");
 			$this->OrderModel = $this->model("OrderModel");
 			$this->UserModel = $this->model("UserModel");
+			$this->KeywordModel = $this->model("KeywordModel");
 		}
 		function Index(){
 			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
@@ -46,6 +48,22 @@
 				"listDepart" => $listDepart,
 				"listCate" => $listCate,
 				"listKeyword" => $listKeyword,
+			));
+		}
+		function OrderDetail($OrderCode){
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+            $listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+			$listKeyword=json_decode($this->KeywordModel->getKeywords("`TimesSearch`","DESC"),true);
+			$Order = json_decode($this->OrderModel->getOrderByCode($OrderCode),true);
+			$listOrderDetail = json_decode($this->OrderModel->getOrderDetailsByOrderId($Order['OrderId'],"a.`OrderDetailId`","ASC"),true);
+			
+			$this->view("layout1",array (
+				"page" => "order_detail",
+				"listDepart" => $listDepart,
+				"listCate" => $listCate,
+				"listKeyword" => $listKeyword,
+				"Order" => $Order,
+				"listOrderDetail"=>$listOrderDetail
 			));
 		}
 	}

@@ -343,5 +343,10 @@
 				return 0;
 			}
 		}
+		public function updateViewProduct($id,$numView)
+        {
+            $sql="UPDATE `nl_products` SET `View`=$numView WHERE `ProductId` = $id";
+            $r = mysqli_query($this->con,$sql);
+        }
 	}
 ?>

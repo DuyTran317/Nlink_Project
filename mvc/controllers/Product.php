@@ -93,6 +93,7 @@
 				{
 					$Email = $email;
 				}
+				$this->ProductModel->updateViewProduct($Product['ProductId'],$Product['View']+1);
 				$this->view("layout1",array(
 					"page" => "product_detail",
 					"listDepart" => $listDepart,

@@ -91,11 +91,11 @@
 						?>
 						<li><a href="<?=$_SESSION['projectName']?>/News/Index/1">&lt;</a></li>
 						<?php
-						$begin = $page-2<=1?1:$page-2;
-						$end = $page+2>=$data['sumPageNews']?$data['sumPageNews']:$page+2;
+						$begin = $data['pageNews']-2<=1?1:$data['pageNews']-2;
+						$end = $data['pageNews']+2>=$data['sumPageNews']?$data['sumPageNews']:$data['pageNews']+2;
 						for($i=$begin;$i<=$end;$i++)
 						{
-							if($i == $data['page'])
+							if($i == $data['pageNews'])
 							{
 							?>
 							<li class="active"><a><?=$i?></a></li>
