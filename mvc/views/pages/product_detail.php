@@ -51,7 +51,7 @@
 			</div>
 			<div class="product-single-w3l">	
 				<div style="margin-top: 20px">
-					<?=$data['Product']['ProductDesc']?>						
+					<?=substr($data['Product']['ProductDesc'],0,800)?>...					
 				</div>					
 			</div>				
 		</div>
@@ -198,16 +198,28 @@
 					<div class="w3l-specilamk">
 						<div class="speioffer-agile">
 							<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>">
-								<img src="<?=$_SESSION['projectName']?>/lib/images/pruduct/<?=$item['Img']?>" alt="">
+								<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$item['Img']?>" alt="">
 							</a>
 						</div>
 						<div class="product-name-w3l">
-							<h4>
+							<h4 style="text-align: center">
 								<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><?=$item['ProductName']?></a>
 							</h4>
 							<div class="w3l-pricehkj">
-								<h6><?php echo number_format($item['Price']);?> VND</h6>
-								<p><?php echo number_format($item['PriceOfMarket'] - $item['Price']);?> VND</p>
+								<h6 style="text-align: center"><?php echo number_format($item['Price']);?> VND</h6>
+								<?php
+									if($item['PriceOfMarket'] != 0)
+									{
+								?>
+								<p style="text-align: center">-<?php echo number_format($item['PriceOfMarket'] - $item['Price']); ?> VND</p>
+								<?php } 
+									else
+									{
+								?>
+								<p style="text-align: center">-0</p>
+								<?php
+									}
+								?>
 							</div>
 						</div>
 					</div>

@@ -67,12 +67,12 @@
 				<!-- header lists -->
 				<ul>
 					<li>
-						<a href="#" class="play-icon popup-with-zoom-anim">
+						<a href="<?=$_SESSION['projectName']?>/Introduce/Tutorial_Buying" class="play-icon popup-with-zoom-anim">
 							<i class="fa fa-shopping-cart" aria-hidden="true" style="color:#993414"></i> Mua Hàng</a>
 					</li>
 					<li>
-						<a href="#" data-toggle="modal">
-							<span class="fa fa-truck" aria-hidden="true"></span>Thanh Toán</a>
+						<a href="<?=$_SESSION['projectName']?>/Introduce/Policy" data-toggle="modal">
+							<span class="fa fa-truck" aria-hidden="true"></span>Đổi Trả</a>
 					</li>
 					<li>
 						<span class="fa fa-phone" aria-hidden="true"></span> 0903 029 313
@@ -431,7 +431,11 @@
 		<div class="container-fluid">
 			<div class="col-xs-8 agile-leftmk">
 				<p>CÔNG TY TNHH NLINK VIỆT NAM - Độc quyền phân phối thương hiệu REVLON, AIMER và TWG tại thị trường Việt Nam.</p>
-				<p style="font-size: 17px">Địa chỉ: 76 Trần Đình Xu, P. Cô Giang, Q.1, TP.HCM /  E-mail: crm@nlink.vn / contact@nlink.vn - ĐT: +84 08 383 78111/222 - Fax: +84 08 3837 8000 - Hotline: 0903 029 313</p>
+				<p style="font-size: 17px">Đăng Ký Email Để Nhận Thông Báo Mới Nhất Từ Chúng Tôi <i class="fa fa-hand-o-down" aria-hidden="true"></i></p>
+				<span>
+					<input class="form-control" type="email" />&nbsp;
+					<button class="btn btn-success">Đăng Ký</button>
+				</span>
 				<div class="newsform-w3l">
 					<span class="fa fa-envelope-o" aria-hidden="true"></span>
 				</div>
@@ -520,7 +524,7 @@
 								<a href="<?=$_SESSION['projectName']?>/Introduce/Policy">Chính Sách Đổi Trả</a>
 							</li>
 							<li>
-								<a href="privacy.html">Hướng Dẫn Đặt Hàng</a>
+								<a href="<?=$_SESSION['projectName']?>/Introduce/Tutorial_Buying">Hướng Dẫn Mua Hàng</a>
 							</li>
 						</ul>
 					</div>

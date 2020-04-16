@@ -68,6 +68,19 @@
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6 style="text-align: center"><?php echo number_format($item['Price'])." VND"?></h6>
+										<?php
+											if($item['PriceOfMarket'] != 0)
+											{
+										?>
+										<p style="text-align: center">-<?php echo number_format($item['PriceOfMarket'] - $item['Price']); ?> VND</p>
+										<?php } 
+											else
+											{
+										?>
+										<p style="text-align: center">-0</p>
+										<?php
+											}
+										?>
 										<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm Vào Giỏ</button></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
@@ -124,6 +137,19 @@
 									</h4>
 									<div class="w3l-pricehkj">
 										<h6 style="text-align: center"><?php echo number_format($item['Price'])." VND"?></h6>
+										<?php
+											if($item['PriceOfMarket'] != 0)
+											{
+										?>
+										<p style="text-align: center">-<?php echo number_format($item['PriceOfMarket'] - $item['Price']); ?> VND</p>
+										<?php } 
+											else
+											{
+										?>
+										<p style="text-align: center">-0</p>
+										<?php
+											}
+										?>
 										<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm Vào Giỏ</button></p>
 									</div>
 									<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
@@ -181,6 +207,19 @@ while($depart = current($data['listProductAllDepart']))
 							</h4>
 							<div class="w3l-pricehkj">
 								<h6 style="text-align: center"><?php echo number_format($pro['Price'])." VND"; ?></h6>
+								<?php
+									if($pro['PriceOfMarket'] != 0)
+									{
+								?>
+								<p style="text-align: center">-<?php echo number_format($pro['PriceOfMarket'] - $pro['Price']); ?> VND</p>
+								<?php } 
+									else
+									{
+								?>
+								<p style="text-align: center">-0</p>
+								<?php
+									}
+								?>
 								<p style="text-align: center; border: none"><button onclick="addCart(<?=$pro['ProductId']?>,1,<?=$pro['Price']?>,'<?=$pro['ProductName']?>','<?=$pro['Img']?>','<?=$pro['url']?>',<?=$pro['Point']?>,0)" class="btn btn-primary"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm Vào Giỏ</button></p>
 							</div>
 							<div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
