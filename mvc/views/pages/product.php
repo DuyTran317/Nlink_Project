@@ -155,8 +155,8 @@
 										<a href="<?=$_SESSION['projectName']?>/Product/Detail/<?=$item['url']?>"><?=$item['ProductName']?></a>
 									</h4>
 									<div class="info-product-price">
-										<span class="item_price"><?php echo number_format($item['Price'])." đ";?></span>
-										<del><?php echo number_format($item['PriceOfMarket'])." đ";?></del>
+										<span class="item_price"><?php echo number_format($item['Price'])." VND";?></span>
+										<del style="font-size: 13px"><?php echo number_format($item['PriceOfMarket'])." VND";?></del>
 									</div>
 									<p style="text-align: center; border: none"><button type="button" onclick="addCart(<?=$item['ProductId']?>,1,<?=$item['Price']?>,'<?=$item['ProductName']?>','<?=$item['Img']?>','<?=$item['url']?>',<?=$item['Point']?>,0)" class="btn btn-success"><i class="fa fa-cart-plus" aria-hidden="true"></i> Thêm Vào Giỏ</button></p>
 
