@@ -69,40 +69,43 @@
 		}
 		function Detail($url="",$email="")
 		{
-			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
-			$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
-			$Product = json_decode($this->ProductModel->getProductByUrl($url),true);
-			$listProductSame = json_decode($this->ProductModel->getProductsByCateId($Product['CategoryId'],0,-1,-1,"a.`Sold`","DESC",0,5),true);
-			$Img = json_decode($this->ProductModel->getProductImgs($Product['ProductId']),true);
-			// $listQA = json_decode($this->ProductModel->getQuestionAnswersByProductId($Product['ProductId'],"a.`CrDateTime`","DESC"),true);
-			
-			$Star =  $this->ProductModel->getTotalRateByProductId($Product['ProductId']);
-			$User = "";
-			if(isset($_SESSION['UserId']))
+			if($url != "")
 			{
-				$User = json_decode($this->UserModel->getUserById($_SESSION['UserId']),true);
+				$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+				$listCate = json_decode($this->CategoryModel->getCategories("`Order`,`DepartId`","ASC"),true);
+				$Product = json_decode($this->ProductModel->getProductByUrl($url),true);
+				$listProductSame = json_decode($this->ProductModel->getProductsByCateId($Product['CategoryId'],0,-1,-1,"a.`Sold`","DESC",0,5),true);
+				$Img = json_decode($this->ProductModel->getProductImgs($Product['ProductId']),true);
+				// $listQA = json_decode($this->ProductModel->getQuestionAnswersByProductId($Product['ProductId'],"a.`CrDateTime`","DESC"),true);
+				
+				$Star =  $this->ProductModel->getTotalRateByProductId($Product['ProductId']);
+				$User = "";
+				if(isset($_SESSION['UserId']))
+				{
+					$User = json_decode($this->UserModel->getUserById($_SESSION['UserId']),true);
+				}
+				$Email = '';
+				if($User!='')
+				{
+					$Email = $User['Email'];
+				}
+				else if($email !='')
+				{
+					$Email = $email;
+				}
+				$this->view("layout1",array(
+					"page" => "product_detail",
+					"listDepart" => $listDepart,
+					"listCate" => $listCate,
+					"Product"=>$Product,
+					"Img" => $Img,
+					// "listQA" => $listQA,
+					"Star" => $Star,
+					"User" => $User,
+					"Email" => $Email,
+					"listProductSame" => $listProductSame
+				));
 			}
-			$Email = '';
-			if($User!='')
-			{
-				$Email = $User['Email'];
-			}
-			else if($email !='')
-			{
-				$Email = $email;
-			}
-			$this->view("layout1",array(
-				"page" => "product_detail",
-				"listDepart" => $listDepart,
-				"listCate" => $listCate,
-				"Product"=>$Product,
-				"Img" => $Img,
-				// "listQA" => $listQA,
-				"Star" => $Star,
-				"User" => $User,
-				"Email" => $Email,
-				"listProductSame" => $listProductSame
-			));
 		}
 		function Department($url = "")
 		{

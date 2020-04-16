@@ -1673,6 +1673,12 @@ h3.agileits-icons-title {
     text-align: center;
     word-wrap: break-word;
 }
+.hiddentext{
+    white-space: nowrap; 
+    width: 700px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 @media (max-width:991px){
 	h3.agileits-icons-title {
 		font-size: 28px;

@@ -38,27 +38,18 @@
 			<div class="panel panel-info" style="margin-top: 15px">
 			  <div class="panel-heading" style="text-align:center; font-size:18px; font-weight:bold">Bài Viết Nổi Bật</div>
 			  <div class="panel-body">                  
-				  <ul style="list-style-type:none; padding:0 3px 0 5px;">                      
+				  <ul style="list-style-type:none; padding:0 3px 0 5px;"> 
+				  <?php
+					  foreach($data['listNewsTopView'] as $item)
+					  {
+				  ?>                     
 					<li style="padding-bottom:20px;">
-						<a href=""><img style="float:left; margin-right:15px;" src="lib/images/banner1.jpg" width="70px" height="50px" alt="" /></a>
-						<a href="" style="font-size:16px; color: black">Review từ A - Z “nước thần” tinh chất rau má Madagascar</a>                            
+						<a href=""><img style="float:left; margin-right:15px;" src="<?=$_SESSION['projectName']?>/lib/images/news/<?=$item['Img']?>" width="70px" height="50px" alt="" /></a>
+						<a href="" style="font-size:16px; color: black"><?=$item['NewTitle']?></a>                            
 					</li>   
-					<li style="padding-bottom:20px;">
-						<a href=""><img style="float:left; margin-right:15px;" src="lib/images/banner2.jpg" width="70px" height="50px" alt="" /></a>
-						<a href="" style="font-size:16px; color: black">Review từ A - Z “nước thần” tinh chất rau má Madagascar</a>                            
-					</li> 
-					<li style="padding-bottom:20px;">
-						<a href=""><img style="float:left; margin-right:15px;" src="lib/images/banner3.jpg" width="70px" height="50px" alt="" /></a>
-						<a href="" style="font-size:16px; color: black">Review từ A - Z “nước thần” tinh chất rau má Madagascar</a>                            
-					</li>
-					<li style="padding-bottom:20px;">
-						<a href=""><img style="float:left; margin-right:15px;" src="lib/images/banner3.jpg" width="70px" height="50px" alt="" /></a>
-						<a href="" style="font-size:16px; color: black">Review từ A - Z “nước thần” tinh chất rau má Madagascar</a>                            
-					</li> 
-					<li style="padding-bottom:20px;">
-						<a href=""><img style="float:left; margin-right:15px;" src="lib/images/banner4.jpg" width="70px" height="50px" alt="" /></a>
-						<a href="" style="font-size:16px; color: black">Review từ A - Z “nước thần” tinh chất rau má Madagascar</a>                            
-					</li> 
+				<?php
+					  }
+				?>
 				  </ul>                                           
 			 </div>                 
 			</div>
@@ -68,75 +59,60 @@
 
 <div class="container">
 	<div class="col-md-10 col-sm-10 col-xs-10">
-		<div style="margin-top:40px; margin-bottom:25px">	           		
+		<div style="margin-top:40px; margin-bottom:25px">
+			<?php
+				foreach($data['listNews'] as $item)
+				{
+			?>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-3 col-sm-12 col-xs-12">
-							<a href="">
-								<figure style="display: flex"><img src="lib/images/banner1.jpg" style="height:100px; margin-top:10px; margin: auto" alt=""></figure>
+							<a href="<?=$_SESSION['projectName']?>/News/Detail/<?=$item['url']?>">
+								<figure style="display: flex"><img src="<?=$_SESSION['projectName']?>/lib/images/news/<?=$item['Img']?>" style="height:100px; margin-top:10px; margin: auto" alt=""></figure>
 							</a>    
 						</div>
 						<div class="col-md-9 col-sm-12 col-xs-12 content-tin" style="margin-bottom: 10px">
-							<a class="header_new" href="" style="color:#337ab7; overflow-wrap:break-word"><b style="color:#000">TOP 5 thỏi son MAC bán chạy nhất mọi thời đại nàng nào cũng nên có</b></a>
-							<div class="content_new" style="margin-top:10px">Dù “vật đổi sao dời”, theo dòng chảy thời gian với sự lên xuống của biết bao thương hiệu son môi thì son MAC có lẽ vẫn là cái tên trường tồn, luôn giữ vững vị trí của mình trong bảng xếp hạng những thỏi son đáng mua nhất mọi thời đại...</div>
-							<p style="font-size: 14px; color: gray">25/03/2020 14:00</p>
-							<div style="text-align:right;margin:5px 0 10px auto;"><a href="" class="btn btn-info btn_res_size">Xem thêm</a></div>
+							<a class="header_new" href="<?=$_SESSION['projectName']?>/News/Detail/<?=$item['url']?>" style="color:#337ab7; overflow-wrap:break-word"><b style="color:#000"><?=$item['NewTitle']?></b></a>
+							<div class="content_new hiddentext" style="margin-top:10px"><?=$item['Content']?></div>
+							<p style="font-size: 14px; color: gray"><?=$item['CrDateTime']?></p>
+							<div style="text-align:right;margin:5px 0 10px auto;"><a href="<?=$_SESSION['projectName']?>/News/Detail/<?=$item['url']?>" class="btn btn-info btn_res_size">Xem thêm</a></div>
 						</div>
 					</div>                    
 				</div>   
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 col-sm-12 col-xs-12">
-							<a href="">
-								<figure style="display: flex"><img src="lib/images/banner1.jpg" style="height:100px; margin-top:10px; margin: auto" alt=""></figure>
-							</a>    
-						</div>
-						<div class="col-md-9 col-sm-12 col-xs-12 content-tin" style="margin-bottom: 10px">
-							<a class="header_new" href="" style="color:#337ab7; overflow-wrap:break-word"><b style="color:#000">TOP 5 thỏi son MAC bán chạy nhất mọi thời đại nàng nào cũng nên có</b></a>
-							<div class="content_new" style="margin-top:10px">Dù “vật đổi sao dời”, theo dòng chảy thời gian với sự lên xuống của biết bao thương hiệu son môi thì son MAC có lẽ vẫn là cái tên trường tồn, luôn giữ vững vị trí của mình trong bảng xếp hạng những thỏi son đáng mua nhất mọi thời đại...</div>
-							<p style="font-size: 14px; color: gray">25/03/2020 14:00</p>
-							<div style="text-align:right;margin:5px 0 10px auto;"><a href="" class="btn btn-info btn_res_size">Xem thêm</a></div>
-						</div>
-					</div>                    
-				</div>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 col-sm-12 col-xs-12">
-							<a href="">
-								<figure style="display: flex"><img src="lib/images/banner1.jpg" style="height:100px; margin-top:10px; margin: auto" alt=""></figure>
-							</a>    
-						</div>
-						<div class="col-md-9 col-sm-12 col-xs-12 content-tin" style="margin-bottom: 10px">
-							<a class="header_new" href="" style="color:#337ab7; overflow-wrap:break-word"><b style="color:#000">TOP 5 thỏi son MAC bán chạy nhất mọi thời đại nàng nào cũng nên có</b></a>
-							<div class="content_new" style="margin-top:10px">Dù “vật đổi sao dời”, theo dòng chảy thời gian với sự lên xuống của biết bao thương hiệu son môi thì son MAC có lẽ vẫn là cái tên trường tồn, luôn giữ vững vị trí của mình trong bảng xếp hạng những thỏi son đáng mua nhất mọi thời đại...</div>
-							<p style="font-size: 14px; color: gray">25/03/2020 14:00</p>
-							<div style="text-align:right;margin:5px 0 10px auto;"><a href="" class="btn btn-info btn_res_size">Xem thêm</a></div>
-						</div>
-					</div>                    
-				</div>
-				<div class="container">
-					<div class="row">
-						<div class="col-md-3 col-sm-12 col-xs-12">
-							<a href="">
-								<figure style="display: flex"><img src="lib/images/banner1.jpg" style="height:100px; margin-top:10px; margin: auto" alt=""></figure>
-							</a>    
-						</div>
-						<div class="col-md-9 col-sm-12 col-xs-12 content-tin" style="margin-bottom: 10px">
-							<a class="header_new" href="" style="color:#337ab7; overflow-wrap:break-word"><b style="color:#000">TOP 5 thỏi son MAC bán chạy nhất mọi thời đại nàng nào cũng nên có</b></a>
-							<div class="content_new" style="margin-top:10px">Dù “vật đổi sao dời”, theo dòng chảy thời gian với sự lên xuống của biết bao thương hiệu son môi thì son MAC có lẽ vẫn là cái tên trường tồn, luôn giữ vững vị trí của mình trong bảng xếp hạng những thỏi son đáng mua nhất mọi thời đại...</div>
-							<p style="font-size: 14px; color: gray">25/03/2020 14:00</p>
-							<div style="text-align:right;margin:5px 0 10px auto;"><a href="" class="btn btn-info btn_res_size">Xem thêm</a></div>
-						</div>
-					</div>                    
-				</div>
+			<?php
+				}
+			?>
 		</div>   
 		<div style="text-align: center; margin:10px 0 20px 0">
 			<ul class="pagination">
-				<li><a href="#">&lt;</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">&gt;</a></li>
+				<?php
+					if(count($data['listNews']))
+					{
+						?>
+						<li><a href="<?=$_SESSION['projectName']?>/News/Index/1">&lt;</a></li>
+						<?php
+						$begin = $page-2<=1?1:$page-2;
+						$end = $page+2>=$data['sumPageNews']?$data['sumPageNews']:$page+2;
+						for($i=$begin;$i<=$end;$i++)
+						{
+							if($i == $data['page'])
+							{
+							?>
+							<li class="active"><a><?=$i?></a></li>
+							<?php
+							}
+							else
+							{
+							?>
+							<li><a href="<?=$_SESSION['projectName']?>/News/Index/<?=$i?>"><?=$i?></a></li>
+							<?php
+							}
+						}
+						?>
+						<li><a href="<?=$_SESSION['projectName']?>/News/Index/<?=$data['sumPageNews']?>">&gt;</a></li>
+						<?php
+					}
+				?>
 			</ul>
 		</div>
 	</div>

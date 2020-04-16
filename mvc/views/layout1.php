@@ -409,7 +409,7 @@
 									</ul>-->
 								</li>
 								<li class="">
-									<a class="nav-stylehead" href="contact.html">Tin Tức</a>
+									<a class="nav-stylehead" href="<?=$_SESSION['projectName']?>/News">Tin Tức</a>
 								</li>
 							</ul>
 						</div>
@@ -651,10 +651,10 @@
 				  <h4 class="modal-title">Tra Cứu Đơn Hàng</h4>
 				</div>
 				<div class="modal-body">					
-					<input class="form-control" type="text" placeholder="Vui lòng nhập mã đơn hàng tại đây" style="width: 50%" />
+					<input class="form-control" id="codeSearchOrder" type="text" placeholder="Vui lòng nhập mã đơn hàng tại đây" style="width: 50%" />
 				</div>
 				<div class="modal-footer">						
-					<button type="button" class="btn btn-primary">Tra Cứu</button>
+					<button type="button" onclick="searchOrder()" class="btn btn-primary">Tra Cứu</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 				</div>
 		  	</div>
@@ -1064,6 +1064,19 @@
 			else{
 				$("#cart-modal").append('<table><tr><td colspan="2" style="font-weight: bold">Bạn chưa chọn sản phẩm nào. Vui lòng chọn sản phẩm!</td></tr></table>');
 			}
+		}
+	}
+	function searchOrder()
+	{
+		debugger;
+		var code = $("#codeSearchOrder").val().trim();
+		if(code == "")
+		{
+			alert("Vui lòng nhập mã đơn hàng để tra cứu!");
+		}
+		else
+		{
+			window.location = "<?=$_SESSION['projectName']?>/Account/OrderDetail/"+code;
 		}
 	}
 	function setCookie(cname, cvalue, exdays) {
