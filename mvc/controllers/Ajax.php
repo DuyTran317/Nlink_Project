@@ -278,7 +278,7 @@
 					$this->VoucherModel->addOrderVoucher($orderId,$voucher['VoucherId']);
 				}
 				if($orderId != 0){
-					$this->mailer("dodangkhoagtvt@gmail.com",$email,"Thông tin đặt hàng thành công","Nhấp vào <a href='".$this->domain.$_SESSION['projectName']."/Account/OrderDetail/".$code."'>đây</a> để xem thông tin đơn hàng");
+					$this->mailer("dodangkhoagtvt@gmail.com",$email,"Thông tin đặt hàng thành công","Đơn hàng ".$code.":<br>Nhấp vào <a href='".$this->domain.$_SESSION['projectName']."/Account/OrderDetail/".$code."'>đây</a> để xem thông tin đơn hàng");
 					echo 1;
 				}
 				else

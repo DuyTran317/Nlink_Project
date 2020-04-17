@@ -795,7 +795,6 @@
 				}
 			});
 			$("#agileinfo-nav_search").change(function(){
-				console.log($("#agileinfo-nav_search").val());
 				window.location = "<?=$_SESSION['projectName']?>/Product/Department/"+$("#agileinfo-nav_search").val();
 			})
 		});
@@ -917,7 +916,6 @@
 						address:address
 					},
 					success: function (data){
-						console.log(data);
 						switch(data)
 						{
 							case "1":
@@ -945,7 +943,6 @@
 						pass : pass,
 					},
 					success: function (data){
-						console.log(data);
 						if(data == "1")
 						{
 							location.reload(true);
@@ -1114,7 +1111,6 @@
 					email:email
 				},
 				success: function(data){
-					console.log(data);
 					if(data!="-1")
 					{
 						alert("Cảm ơn bạn đã đăng ký nhận thông tin từ Chúng tôi!");

@@ -16,7 +16,7 @@
 				foreach($data['listNewsHot'] as $item){
 			?>
 			  <div class="item <?php if($flag == 0) {$flag = 1; echo "active";}?>">
-				<img src="<?=$_SESSION['projectName']?>/lib/images/news/<?=$item['Img']?>" alt="<?=$item['NewTitle']?>" style="max-width:100%;">			
+			  <a href="<?=$_SESSION['projectName']?>/News/Detail/<?=$item['url']?>"><img src="<?=$_SESSION['projectName']?>/lib/images/news/<?=$item['Img']?>" alt="<?=$item['NewTitle']?>" style="max-width:100%;"></a>			
 			  </div>
 			<?php
 				}
@@ -43,8 +43,8 @@
 					  {
 				  ?>                     
 					<li style="padding-bottom:20px;">
-						<a href=""><img style="float:left; margin-right:15px;" src="<?=$_SESSION['projectName']?>/lib/images/news/<?=$item['Img']?>" width="70px" height="50px" alt="" /></a>
-						<a href="" style="font-size:16px; color: black"><?=$item['NewTitle']?></a>                            
+						<a href="<?=$_SESSION['projectName']?>/News/Detail/<?=$item['url']?>"><img style="float:left; margin-right:15px;" src="<?=$_SESSION['projectName']?>/lib/images/news/<?=$item['Img']?>" width="70px" height="50px" alt="" /></a>
+						<a href="<?=$_SESSION['projectName']?>/News/Detail/<?=$item['url']?>" style="font-size:16px; color: black"><?=$item['NewTitle']?></a>                            
 					</li>   
 				<?php
 					  }
