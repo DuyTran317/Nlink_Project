@@ -433,8 +433,8 @@
 				<p>CÔNG TY TNHH NLINK VIỆT NAM - Độc quyền phân phối thương hiệu REVLON, AIMER và TWG tại thị trường Việt Nam.</p>
 				<p style="font-size: 17px">Đăng Ký Email Để Nhận Thông Báo Mới Nhất Từ Chúng Tôi <i class="fa fa-hand-o-down" aria-hidden="true"></i></p>
 				<span>
-					<input class="form-control" type="email" />&nbsp;
-					<button class="btn btn-success">Đăng Ký</button>
+					<input id="emailsub" class="form-control" type="email" />&nbsp;
+					<button onClick="sub()" class="btn btn-success">Đăng Ký</button>
 				</span>
 				<div class="newsform-w3l">
 					<span class="fa fa-envelope-o" aria-hidden="true"></span>
@@ -1103,7 +1103,38 @@
        }
        return "";
     }
-	
+	function sub(){
+		var email=$("#emailsub").val();
+		if(validateEmail(email))
+		{
+			$.ajax({
+				url:"<?=$_SESSION['projectName']?>/Ajax/Sub",
+				type:"POST",
+				data:{
+					email:email
+				},
+				success: function(data){
+					console.log(data);
+					if(data!="-1")
+					{
+						alert("Cảm ơn bạn đã đăng ký nhận thông tin từ Chúng tôi!");
+					}
+					else
+					{
+						alert("Đăng ký thất bại!");
+					}
+				}
+			});
+		}
+		else
+		{
+			alert("Địa chỉ email không đúng định dạng!");
+		}
+	}
+	function validateEmail(email) {
+		var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return re.test(String(email).toLowerCase());
+	}
 	</script>
 
 	<script src="<?=$_SESSION['projectName']?>/lib/js/bootstrap.js"></script>

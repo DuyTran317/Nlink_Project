@@ -11,17 +11,16 @@
 
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner">
-			  <div class="item active">
-				<img src="lib/images/banner1.jpg" alt="Los Angeles" style="max-width:100%;">			
+			<?php
+				$flag = 0;
+				foreach($data['listNewsHot'] as $item){
+			?>
+			  <div class="item <?php if($flag == 0) {$flag = 1; echo "active";}?>">
+				<img src="<?=$_SESSION['projectName']?>/lib/images/news/<?=$item['Img']?>" alt="<?=$item['NewTitle']?>" style="max-width:100%;">			
 			  </div>
-
-			  <div class="item">
-				<img src="lib/images/banner2.jpg" alt="Chicago" style="max-width:100%;">
-			  </div>
-
-			  <div class="item">
-				<img src="lib/images/banner3.jpg" alt="New york" style="max-width:100%;">
-			  </div>
+			<?php
+				}
+			?>
 			</div>
 
 			<!-- Left and right controls -->

@@ -5,6 +5,7 @@
 		public $VoucherModel;
 		public $LocationModel;
 		public $OrderModel;
+		public $SubscribeModel;
 		function __construct()
 		{
 			$this->ProductModel = $this->model("ProductModel");
@@ -12,6 +13,7 @@
 			$this->VoucherModel = $this->model("VoucherModel");
 			$this->LocationModel = $this->model("LocationModel");
 			$this->OrderModel = $this->model("OrderModel");
+			$this->SubscribeModel = $this->model("SubscribeModel");
 		}
 		function LoadCommentProduct()
 		{
@@ -352,45 +354,24 @@
 			else
 			{echo 0;}
 		}
-		// function setCart()
-		// {
-		// 	if(isset($_POST['id']))
-		// 	{
-		// 		$id = $_POST['id'];
-		// 		$qty = $_POST['qty'];
 
-		// 		$cart = json_decode($_COOKIE['cart_nlink'],true);
-		// 		if(!isset($cart[$id]))
-		// 		{
-		// 			$cart[$id]=$qty;
-		// 		}
-		// 		else
-		// 		{
-		// 			$cart[$id]+=$qty;
-		// 		}
-		// 		$_COOKIE['cart_nlink']=json_encode($cart);
-		// 		echo $_COOKIE['cart_nlink'];
-		// 		echo "1";
-		// 	}
-		// 	else
-		// 	{
-		// 		echo "0";
-		// 	}
-		// }
-		// function deleteCart()
-		// {
-		// 	if(isset($_POST['id']))
-		// 	{
-		// 		$id = $_POST['id'];
-		// 		if(isset($_COOKIE['cart_nlink']))
-		// 		{
-		// 			$cart = json_decode($_COOKIE['cart_nlink'],true);
-		// 			unset($cart[$id]);
-		// 			$_COOKIE['cart_nlink'] = json_encode($cart);
-		// 			echo "1";
-		// 		}
-		// 		else echo "0";
-		// 	}else echo "0";
-		// }
+		function Sub(){
+			if(isset($_POST['email'])){
+				$email = $_POST['email'];
+				$kq = $this->SubscribeModel->issetEmailSub($email);
+				if($kq == 0){
+					$this->SubscribeModel->addEmailSub($email);
+					echo 1;
+				}
+				else
+				{
+					echo 0;
+				}
+			}
+			else
+			{
+				echo -1;
+			}
+		}
 	}
 ?>
