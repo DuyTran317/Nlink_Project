@@ -16,7 +16,7 @@
 			return json_encode($mang);
 		}
 		function getCategoriesOfDepartment($id,$field,$sort,$position = -1, $display = -1){
-			$sql="select b.* from `nl_departments` as a INNER JOIN `nl_categories` as b ON a.`DepartId`=b.`DepartId` where b.`Active` = 1 order by $field $sort";
+			$sql="select b.* from `nl_departments` as a INNER JOIN `nl_categories` as b ON a.`DepartId`=b.`DepartId` where a.`DepartId` = $id order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	

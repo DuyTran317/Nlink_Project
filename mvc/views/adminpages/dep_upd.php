@@ -23,7 +23,7 @@
 							<tr>
 								<td><label style="margin-top:20px">Tên Chủng Loại<span style="color:red"> *</span>:</label></td>
 								<td>
-									<input name="name" onchange="getUrl($(this).val(),'url')" type="text" style="width:250px; margin-left:10px; margin-top:20px" value="<?=$data['Depart']['DepartName']?>" required>
+									<input name="name" onchange="getUrl($(this).val())" type="text" style="width:250px; margin-left:10px; margin-top:20px" value="<?=$data['Depart']['DepartName']?>" required>
 								</td>
 							</tr>
 							<tr>

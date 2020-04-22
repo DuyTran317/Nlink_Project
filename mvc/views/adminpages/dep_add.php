@@ -21,7 +21,7 @@
 							<tr>
 								<td><label style="margin-top:20px">Tên Chủng Loại<span style="color:red"> *</span>:</label></td>
 								<td>
-									<input name="name" type="text" onchange="getUrl($(this).val(),'url')" style="width:250px; margin-left:10px; margin-top:20px" value="" required>
+									<input name="name" type="text" onchange="getUrl($(this).val())" style="width:250px; margin-left:10px; margin-top:20px" value="" required>
 								</td>
 							</tr>
 							<tr>
