@@ -10,19 +10,19 @@
 			if(isset($arr[0]) && $arr[0] == "admin")
 			{
 				
-				$_SESSION['area'] = "/".$arr[0];
+				$_SESSION['area'] = $arr[0];
 				array_shift($arr);
 				
 			}
 			if(isset($arr[0]))
 			{
-				if(file_exists(".".$_SESSION['area']."/mvc/controllers/".$arr[0].".php"));
+				if(file_exists("./mvc/controllers/".$arr[0].".php"));
 				{
 					$this->controller = $arr[0];
 					unset($arr[0]);
 				}
 			}
-			require_once(".".$_SESSION['area']."/mvc/controllers/".$this->controller.".php");
+			require_once("./mvc/".$_SESSION['area']."controllers/".$this->controller.".php");
 			$temp = $this->controller;
 			$this->controller = new $this->controller;
 			

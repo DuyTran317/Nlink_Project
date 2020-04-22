@@ -6,7 +6,7 @@
 			return new $model;
 		}
 		public function view($view, $data = array()){
-			require_once(".".$_SESSION['area']."/mvc/views/".$view.".php");
+			require_once("./mvc/views/".$view.".php");
 		}
 		public function mailer($from, $to, $subject, $message)
 		{

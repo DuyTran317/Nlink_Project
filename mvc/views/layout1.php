@@ -422,7 +422,7 @@
 	
 	<!--main-->
 	<?php 
-		require_once("./mvc/views/pages/".$data['page'].".php");
+		require_once("./mvc/views/".$_SESSION['area']."pages/".$data['page'].".php");
 	?>
 	<!--end main-->
 	
@@ -943,6 +943,7 @@
 						pass : pass,
 					},
 					success: function (data){
+						console.log(data);
 						if(data == "1")
 						{
 							location.reload(true);

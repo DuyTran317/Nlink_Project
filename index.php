@@ -5,7 +5,7 @@
 	// 	setcookie('cart_nlink',json_encode(array()),time()+(86400 * 30),COOKIEPATH,COOKIE_DOMAIN);
 	
 	// }
-	$_SESSION['projectName'] = "/Nlink_Project";
+	$_SESSION['projectName'] = "/nlink";
 	require_once "./mvc/Bridge.php";
 	$myApp = new App();
 ?>
