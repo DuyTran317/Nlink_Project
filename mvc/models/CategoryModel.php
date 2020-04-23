@@ -2,7 +2,21 @@
 	class CategoryModel extends DB{
 		
 		function getCategories($field,$sort,$position = -1, $display = -1){
-			$sql="select * from `nl_categories` where `Active` = 1 order by $field $sort";
+			$sql="select * from `nl_categories` where `Active` = $active order by $field $sort";
+			if($position >= 0 && $display > 0)
+			{
+				$sql .= " limit $position,$display";	
+			}
+			$r = mysqli_query($this->con,$sql);
+			$mang = array();
+			while($rs = mysqli_fetch_assoc($r))
+			{
+				$mang[] = $rs;
+			}
+			return json_encode($mang);
+		}
+		function getCategoriesFullActive($field,$sort,$position = -1, $display = -1){
+			$sql="select * from `nl_categories` order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	
@@ -70,7 +84,7 @@
 		}
 		function updateCategory($id,$departId,$name,$order,$active,$metaTitle,$metaDes,$metaKeyword,$url)
 		{
-			$sql = "UPDATE `nl_categories` SET `DepartId`=$departId,`CateName`=N'$name',`Order`=$order,`Active`=$active,`meta_title`=N'$metaTitle',`meta_description`=N'$metaDes',`meta_keyword`=N'$metaKeyword',`url`='$url' WHERE `DepartId`=$id";
+			$sql = "UPDATE `nl_categories` SET `DepartId`=$departId,`CateName`=N'$name',`Order`=$order,`Active`=$active,`meta_title`=N'$metaTitle',`meta_description`=N'$metaDes',`meta_keyword`=N'$metaKeyword',`url`='$url' WHERE `CateId`=$id";
 			return mysqli_query($this->con,$sql);
 		}
 	}

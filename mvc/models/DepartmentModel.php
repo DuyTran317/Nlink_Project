@@ -15,6 +15,20 @@
 			}
 			return json_encode($mang);
 		}
+		function getDepartmentsFullActive($field,$sort,$position = -1, $display = -1){
+			$sql="select * from `nl_departments` order by $field $sort";
+			if($position >= 0 && $display > 0)
+			{
+				$sql .= " limit $position,$display";	
+			}
+			$r = mysqli_query($this->con,$sql);
+			$mang = array();
+			while($rs = mysqli_fetch_assoc($r))
+			{
+				$mang[] = $rs;
+			}
+			return json_encode($mang);
+		}
 		function getCategoriesOfDepartment($id,$field,$sort,$position = -1, $display = -1){
 			$sql="select b.* from `nl_departments` as a INNER JOIN `nl_categories` as b ON a.`DepartId`=b.`DepartId` where a.`DepartId` = $id order by $field $sort";
 			if($position >= 0 && $display > 0)

@@ -46,6 +46,7 @@
 			}
 		}
 		function addComment(){
+			
 			if(isset($_POST['productId']))
 			{
 				$productId = $_POST['productId'];
