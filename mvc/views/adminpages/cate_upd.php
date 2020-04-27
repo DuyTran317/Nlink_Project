@@ -82,7 +82,7 @@
 						</tbody>
 					</table>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" style="font-size:14px">Quay Lại</button>
+						<a href="<?=$_SESSION['projectName']?>/admin/Category"><button type="button" class="btn btn-default" style="font-size:14px">Quay Lại</button></a>
 						<button type="submit" name="updateCate" class="btn btn-success" style="font-size:14px">Cập Nhật</button>
 					</div>
 					</form>

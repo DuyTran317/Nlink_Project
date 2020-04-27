@@ -1,8 +1,13 @@
 <?php
 	class CategoryModel extends DB{
 		
-		function getCategories($field,$sort,$position = -1, $display = -1){
-			$sql="select * from `nl_categories` where `Active` = $active order by $field $sort";
+		function getCategories($field,$sort,$position = -1, $display = -1, $fullactive = 0){
+			$sql="select * from `nl_categories`";
+			if($fullactive == 0)
+			{
+				$sql .= " where `Active`=1";
+			}
+			$sql.=" order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	
@@ -15,22 +20,12 @@
 			}
 			return json_encode($mang);
 		}
-		function getCategoriesFullActive($field,$sort,$position = -1, $display = -1){
-			$sql="select * from `nl_categories` order by $field $sort";
-			if($position >= 0 && $display > 0)
-			{
-				$sql .= " limit $position,$display";	
-			}
-			$r = mysqli_query($this->con,$sql);
-			$mang = array();
-			while($rs = mysqli_fetch_assoc($r))
-			{
-				$mang[] = $rs;
-			}
-			return json_encode($mang);
-		}
-		function getSumCategory(){
+		function getSumCategory($fullactive = 0){
 			$sql = "select COUNT(`CateId`) as sum from `nl_categories`";
+			if($fullactive == 0)
+			{
+				$sql.=" where `Active` = 1"; 
+			}
 			$r = mysqli_query($this->con,$sql);
 			$rs = mysqli_fetch_assoc($r);
 			return json_encode($rs['sum']);

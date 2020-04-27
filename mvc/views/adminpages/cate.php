@@ -123,7 +123,7 @@
           }
         })
       }
-	  }
+	}
     function toUpdate(id){
 		  window.location = "<?=$_SESSION['projectName']?>/admin/Category/Update/"+id;
 	  }

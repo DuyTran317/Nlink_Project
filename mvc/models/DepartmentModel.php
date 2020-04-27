@@ -1,36 +1,13 @@
 <?php
 	class DepartmentModel extends DB{
 		
-		function getDepartments($field,$sort,$position = -1, $display = -1){
-			$sql="select * from `nl_departments` where `Active` = 1 order by $field $sort";
-			if($position >= 0 && $display > 0)
+		function getDepartments($field,$sort,$position = -1, $display = -1, $fullactive = 0){
+			$sql="select * from `nl_departments`";
+			if($fullactive == 0)
 			{
-				$sql .= " limit $position,$display";	
+				$sql.=" where `Active` = 1";
 			}
-			$r = mysqli_query($this->con,$sql);
-			$mang = array();
-			while($rs = mysqli_fetch_assoc($r))
-			{
-				$mang[] = $rs;
-			}
-			return json_encode($mang);
-		}
-		function getDepartmentsFullActive($field,$sort,$position = -1, $display = -1){
-			$sql="select * from `nl_departments` order by $field $sort";
-			if($position >= 0 && $display > 0)
-			{
-				$sql .= " limit $position,$display";	
-			}
-			$r = mysqli_query($this->con,$sql);
-			$mang = array();
-			while($rs = mysqli_fetch_assoc($r))
-			{
-				$mang[] = $rs;
-			}
-			return json_encode($mang);
-		}
-		function getCategoriesOfDepartment($id,$field,$sort,$position = -1, $display = -1){
-			$sql="select b.* from `nl_departments` as a INNER JOIN `nl_categories` as b ON a.`DepartId`=b.`DepartId` where a.`DepartId` = $id order by $field $sort";
+			$sql.=" order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	
@@ -44,6 +21,36 @@
 			return json_encode($mang);
 		}
 		
+		function getCategoriesOfDepartment($id,$field,$sort,$position = -1, $display = -1,$fullactive = 0){
+			$sql="select b.* from `nl_departments` as a INNER JOIN `nl_categories` as b ON a.`DepartId`=b.`DepartId` where a.`DepartId` = $id";
+			if($fullactive == 0)
+			{
+				$sql.=" and `Active` = 1";
+			}
+			$sql.=" order by $field $sort";
+			if($position >= 0 && $display > 0)
+			{
+				$sql .= " limit $position,$display";	
+			}
+			$r = mysqli_query($this->con,$sql);
+			$mang = array();
+			while($rs = mysqli_fetch_assoc($r))
+			{
+				$mang[] = $rs;
+			}
+			return json_encode($mang);
+		}
+		function getSumCategoriesOfDepartment($id,$fullactive=0){
+			$sql="select COUNT(b.`CateId`) as sum from `nl_departments` as a INNER JOIN `nl_categories` as b ON a.`DepartId`=b.`DepartId` where a.`DepartId` = $id";
+			if($fullactive == 0)
+			{
+				$sql.=" and `Active` = 1";
+			}
+			$r = mysqli_query($this->con,$sql);
+			$rs = mysqli_fetch_assoc($r);
+			
+			return json_encode($rs['sum']);
+		}
 		function getDepartmentByUrl($url)
 		{
 			$sql="select * from `nl_departments` where `url` = '$url'";
@@ -76,8 +83,11 @@
 			}
 			return json_encode($mang);
 		}
-		function getSumDepartment(){
+		function getSumDepartment($fullactive = 0){
 			$sql = "select COUNT(`DepartId`) as sum from `nl_departments`";
+			if($fullactive == 0){
+				$sql.=" where `Active`=1";
+			}
 			$r = mysqli_query($this->con,$sql);
 			$rs = mysqli_fetch_assoc($r);
 			return json_encode($rs['sum']);

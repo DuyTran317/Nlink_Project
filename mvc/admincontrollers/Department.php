@@ -10,8 +10,8 @@
         }
         function Index($pageDepart = 1){
             $display=10; $begin=($pageDepart-1)*$display;
-			$listDepart = json_decode($this->DepartModel->getDepartmentsFullActive("`Order`","ASC",$begin,$display),true);
-			$sumDepart = json_decode($this->DepartModel->getSumDepartment(),true);
+			$listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC",$begin,$display,1),true);
+			$sumDepart = json_decode($this->DepartModel->getSumDepartment(1),true);
             $sumPageDepart = ceil($sumDepart/$display);
             $this->view("layout2",array(
                 "page" => "dep",

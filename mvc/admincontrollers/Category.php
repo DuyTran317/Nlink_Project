@@ -13,13 +13,15 @@
         function Index($departId = 0,$pageCate = 1){
             $display=10; $begin=($pageCate-1)*$display;
             if($departId == 0){
-			    $listCate = json_decode($this->CateModel->getCategoriesFullActive("`Order`","ASC",$begin,$display),true);
+			    $listCate = json_decode($this->CateModel->getCategories("`Order`","ASC",$begin,$display,1),true);
+                $sumCate = json_decode($this->CateModel->getSumCategory(1),true);
             }
             else
             {
                 $listCate = json_decode($this->DepartModel->getCategoriesOfDepartment($departId,"`Order`","ASC",$begin,$display),true);
+                $sumCate = json_decode($this->DepartModel->getSumCategoriesOfDepartment($departId,1),true);
             }
-            $sumCate = json_decode($this->CateModel->getSumCategory(),true);
+            
             $sumPageCate = ceil($sumCate/$display);
             $listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
             
@@ -41,7 +43,7 @@
         }
         function Create(){
             $Order = $this->CateModel->getBiggestOrder();
-            $listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+            $listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC",1),true);
             $this->view("layout2",array(
                 "page" => "cate_add",
                 "listDepart" => $listDepart,
@@ -50,7 +52,7 @@
         }
         function Update($id){
             $Cate = json_decode($this->CateModel->getCategoryById($id),true);
-            $listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC"),true);
+            $listDepart = json_decode($this->DepartModel->getDepartments("`Order`","ASC",1),true);
             $this->view("layout2",array(
                 "page" => "cate_upd",
                 "listDepart" => $listDepart,
@@ -135,6 +137,16 @@
                 {
                     header("location:".$_SESSION['projectName']."/admin/Category/Update/".$id);
                 }
+            }
+        }
+        function loadCategoriesOfDepartment(){
+            if(isset($_POST['departId'])){
+                $departId = $_POST['departId'];
+                echo $this->DepartModel->getCategoriesOfDepartment($departId,"`Order`","ASC",-1,-1,1);
+            }
+            else
+            {
+                echo "";
             }
         }
     }

@@ -1,7 +1,10 @@
 <?php
 	class ProductModel extends DB{
-		public function getProductsByKeyWord($key,$brand=0,$priceMin=-1,$priceMax=-1, $field, $sort, $position = -1, $display = -1){
-			$sql= "select * from `nl_products` where `Active` = 1 and `ProductName` like('%$key%')";
+		public function getProductsByKeyWord($key,$brand=0,$priceMin=-1,$priceMax=-1, $field, $sort, $position = -1, $display = -1, $fullactive = 0){
+			$sql= "select * from `nl_products` where `ProductName` like('%$key%')";
+			if($fullactive == 0){
+				$sql.=" and `Active` = 1";
+			}
 			if($brand != "")
 			{
 				$sql.=" and `BrandId` = $brand";
@@ -54,10 +57,13 @@
 			}
 			return json_encode($mang);
 		}
-		public function getSumProductsOfSearch($key,$brand=0,$priceMin=-1,$priceMax=-1)
+		public function getSumProductsOfSearch($key,$brand=0,$priceMin=-1,$priceMax=-1,$fullactive = 0)
 		{
-			$sql="select COUNT(`ProductId`) as `tongsp` from `nl_products` where `Active` = 1 and `ProductName` like('%$key%')";
-													  
+			$sql="select COUNT(`ProductId`) as `tongsp` from `nl_products` where `ProductName` like('%$key%')";
+			
+			if($fullactive == 0){
+				$sql.=" and `Active` = 1";
+			}
 			if($brand != "")
 			{
 				$sql.=" and `BrandId` = $brand";
@@ -102,9 +108,14 @@
 			}
 			return json_encode($mang);
 		}
-		public function getProductsByOrder($field,$sort,$position = -1, $display = -1)
+		public function getProductsByOrder($field,$sort,$position = -1, $display = -1, $fullactive = 0)
 		{
-			$sql="select * from `nl_products` where `Active` = 1 order by $field $sort";
+			$sql="select * from `nl_products`";
+			
+			if($fullactive == 0){
+				$sql.=" where `Active` = 1";
+			}
+			$sql.=" order by $field $sort";
 			if($position >= 0 && $display > 0)
 			{
 				$sql .= " limit $position,$display";	
@@ -116,6 +127,18 @@
 				$mang[] = $rs;
 			}
 			return json_encode($mang);
+		}
+		public function getSumProductsByOrder($fullactive = 0)
+		{
+			$sql="select COUNT(`ProductId`) as sum from `nl_products`";
+
+			if($fullactive == 0){
+				$sql.=" where `Active` = 1";
+			}
+			$r = mysqli_query($this->con,$sql);
+			$rs = mysqli_fetch_assoc($r);
+			
+			return json_encode($rs['sum']);
 		}
 		public function getProductById($id)
 		{
@@ -207,11 +230,15 @@
 			else
 				return 0;
 		}
-		public function getProductsByCateId($id,$brand=0,$priceMin=-1,$priceMax=-1,$field,$sort,$position = -1, $display = -1)
+		public function getProductsByCateId($id,$brand=0,$priceMin=-1,$priceMax=-1,$field,$sort,$position = -1, $display = -1,$fullactive = 0)
 		{
 			$sql="select a.* from `nl_products` as a 
 							INNER JOIN `nl_categories` as b ON a.`CategoryId` = b.`CateId` 
-							where a.`Active` = 1 and b.`CateId` = $id";
+							where b.`CateId` = $id";
+
+			if($fullactive == 0){
+				$sql.=" and a.`Active` = 1";
+			}
 			if($brand != "")
 			{
 				$sql.=" and a.`BrandId` = $brand";
@@ -237,11 +264,13 @@
 			}
 			return json_encode($mang);
 		}
-		public function getSumProductsOfCate($id,$brand=0,$priceMin=-1,$priceMax=-1)
+		public function getSumProductsOfCate($id,$brand=0,$priceMin=-1,$priceMax=-1,$fullactive = 0)
 		{
 			$sql="select COUNT(a.`ProductId`) as tongsp from `nl_products` as a INNER JOIN `nl_categories` as b ON a.`CategoryId` = b.`CateId`
-														  where a.`Active` = 1 and b.`CateId` = $id";
-													  
+														  where b.`CateId` = $id";
+			if($fullactive == 0){
+				$sql.=" and a.`Active` = 1";
+			}										  
 			if($brand != "")
 			{
 				$sql.=" and a.`BrandId` = $brand";
@@ -346,7 +375,29 @@
 		public function updateViewProduct($id,$numView)
         {
             $sql="UPDATE `nl_products` SET `View`=$numView WHERE `ProductId` = $id";
-            $r = mysqli_query($this->con,$sql);
-        }
+            return $r = mysqli_query($this->con,$sql);
+		}
+		public function deleteProductById($id){
+			$sql="DELETE FROM `nl_products` WHERE `ProductId` = $id";
+			return $r = mysqli_query($this->con,$sql);
+		}
+		public function addProduct($cateId,$name,$img,$img1,$img2,$img3,$desc,$price,$priceOfMarket,$point,$brandid,$qty,$active,$meta_title,$meta_des,$meta_keyword,$url){
+			$now = date("Y-m-d H:i:s");
+			$sql="INSERT INTO `nl_products`(`ProductId`, `CategoryId`, `ProductName`, `Img`, `ProductDesc`, `Price`, `PriceOfMarket`, `Point`, `brandid`, `CrDateTime`, `Qty`, `Sold`, `View`, `Active`, `meta_title`, `meta_description`, `meta_keyword`, `url`)
+			 VALUES (NULL,$cateId,$name,'$img',N'$desc',$price,$priceOfMarket,$point,$brandid,'$now',$qty,0,0,$active,N'$meta_title',N'$meta_des',N'$meta_keyword','$url')";
+			$r = mysqli_query($this->con,$sql);
+			$id = mysqli_insert_id($this->con);
+			$sql1 = "INSERT INTO `nl_productimg`(`ProductImgId`, `ProductId`, `Img`) VALUES (NULL,$id,'$img1')";
+			$r1 = mysqli_query($this->con,$sql1);
+			$sql2 = "INSERT INTO `nl_productimg`(`ProductImgId`, `ProductId`, `Img`) VALUES (NULL,$id,'$img2')";
+			$r2 = mysqli_query($this->con,$sql2);
+			$sql3 = "INSERT INTO `nl_productimg`(`ProductImgId`, `ProductId`, `Img`) VALUES (NULL,$id,'$img3')";
+			$r3 = mysqli_query($this->con,$sql3);
+			
+			return $r;
+		}
+		public function updateProduct($id,$cateId,$name,$img,$img1,$img2,$img3,$desc,$price,$priceOfMarket,$point,$brandid,$qty,$active,$meta_title,$meta_des,$meta_keyword,$url){
+			$sql="UPDATE `nl_products` SET `CategoryId`=$cateId,`ProductName`=N'$name',`Img`='$img',`ProductDesc`=N'$desc',`Price`=$price,`PriceOfMarket`=$priceOfMarket,`Point`=$point,`brandid`=$brandid,`Qty`=[value-11],`Sold`=[value-12],`View`=[value-13],`Active`=[value-14],`meta_title`=[value-15],`meta_description`=[value-16],`meta_keyword`=[value-17],`url`=[value-18] WHERE `ProductId`=$id";
+		}
 	}
 ?>

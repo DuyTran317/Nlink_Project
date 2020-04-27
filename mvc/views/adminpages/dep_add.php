@@ -66,7 +66,7 @@
 						</tbody>
 					</table>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default" style="font-size:14px">Quay Lại</button>
+					<a href="<?=$_SESSION['projectName']?>/admin/Department"><button type="button" class="btn btn-default" style="font-size:14px">Quay Lại</button></a>
 						<button type="submit" name="createDepart" class="btn btn-success" style="font-size:14px">Thêm</button>
           </div>
           </form>
