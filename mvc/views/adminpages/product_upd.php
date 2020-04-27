@@ -61,8 +61,12 @@
 							<tr>
 								<td><label style="margin-top:20px">Hình Ảnh Phụ 1<span style="color:red"> *</span>:</label></td>
 								<td>
-									<input type="text" name="oldimg1" value="<?=$img['Img']?>" style="display:none" />
+									<input type="text" name="oldimg1" value="<?=$img['ProductImgId']?>" style="display:none" />
+								<?php
+									if($img){
+								?>
 									<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$img['Img']?>" height="100px" width="100px">
+								<?php } ?>
 									<input type="file" name="img1" style="width:250px; margin-left:10px; margin-top:20px" required>
 								</td>
 							</tr>
@@ -70,16 +74,24 @@
 							<tr>
 								<td><label style="margin-top:20px">Hình Ảnh Phụ 2<span style="color:red"> *</span>:</label></td>
 								<td>
-									<input type="text" name="oldimg2" value="<?=$img['Img']?>" style="display:none" />
+									<input type="text" name="oldimg2" value="<?=$img['ProductImgId']?>" style="display:none" />
+								<?php
+									if($img){
+								?>
 									<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$img['Img']?>" height="100px" width="100px">
+								<?php } ?>
 									<input type="file" style="width:250px; margin-left:10px; margin-top:20px" required>
 								</td>
 							</tr>
 							<tr>
 								<td><label style="margin-top:20px">Hình Ảnh Phụ 3<span style="color:red"> *</span>:</label></td>
 								<td>
-								<input type="text" name="oldimg3" value="<?=$img['Img']?>" style="display:none" />
+								<input type="text" name="oldimg3" value="<?=$img['ProductImgId']?>" style="display:none" />
+								<?php
+									if($img){
+								?>
 									<img src="<?=$_SESSION['projectName']?>/lib/images/product/<?=$img['Img']?>" height="100px" width="100px">
+								<?php } ?>
 									<input type="file" style="width:250px; margin-left:10px; margin-top:20px" required>
 								</td>
 							</tr>
@@ -174,7 +186,7 @@
   <script>
 	$(document).ready(function(){
 		loadCates($("#DepartId").val());
-	})
+	});
 	function loadCates(departId)
 	{
 		$.ajax({

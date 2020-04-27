@@ -197,23 +197,41 @@
                         $img_url = $url.substr($img['name'],-4,4);
                         copy($img['tmp_name'],$_SESSION['projectName']."/lib/images/product/".$img_url);
                     }
-                    $img1_url = $oldimg1;
                     if($img1['name']!=''){
                         unlink($_SESSION['projectName']."/lib/images/product/".$img1_url);
                         $img1_url = $url."-1".substr($img1['name'],-4,4);
                         copy($img1['tmp_name'],$_SESSION['projectName']."/lib/images/product/".$img1_url);
+                        if($oldimg1 != null){
+                            $this->ProductModel->updateProductImg($oldimg1,$img1_url);
+                        }
+                        else
+                        {
+                            $this->ProductModel->addProductImg($id,$img1_url);
+                        }
                     }
-                    $img2_url = $oldimg2;
                     if($img2['name']!=''){
                         unlink($_SESSION['projectName']."/lib/images/product/".$img2_url);
                         $img2_url = $url."-2".substr($img2['name'],-4,4);
                         copy($img2['tmp_name'],$_SESSION['projectName']."/lib/images/product/".$img2_url);
+                        if($oldimg2 != null){
+                            $this->ProductModel->updateProductImg($oldimg2,$img2_url);
+                        }
+                        else
+                        {
+                            $this->ProductModel->addProductImg($id,$img2_url);
+                        }
                     }
-                    $img3_url = $oldimg3;
                     if($img3['name']!=''){
                         unlink($_SESSION['projectName']."/lib/images/product/".$img3_url);
                         $img3_url = $url."-3".substr($img3['name'],-4,4);
                         copy($img3['tmp_name'],$_SESSION['projectName']."/lib/images/product/".$img3_url);
+                        if($oldimg3 != null){
+                            $this->ProductModel->updateProductImg($oldimg3,$img3_url);
+                        }
+                        else
+                        {
+                            $this->ProductModel->addProductImg($id,$img3_url);
+                        }
                     }
                     
                     if($this->ProductModel->addProduct($cateId,$name,$img_url,$img1_url,$img2_url,$img3_url,$desc,$price,$priceOfMarket,$point,$brandid,$qty,$active,$meta_title,$meta_des,$meta_keyword,$url))

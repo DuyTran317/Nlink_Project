@@ -387,17 +387,29 @@
 			 VALUES (NULL,$cateId,$name,'$img',N'$desc',$price,$priceOfMarket,$point,$brandid,'$now',$qty,0,0,$active,N'$meta_title',N'$meta_des',N'$meta_keyword','$url')";
 			$r = mysqli_query($this->con,$sql);
 			$id = mysqli_insert_id($this->con);
-			$sql1 = "INSERT INTO `nl_productimg`(`ProductImgId`, `ProductId`, `Img`) VALUES (NULL,$id,'$img1')";
-			$r1 = mysqli_query($this->con,$sql1);
-			$sql2 = "INSERT INTO `nl_productimg`(`ProductImgId`, `ProductId`, `Img`) VALUES (NULL,$id,'$img2')";
-			$r2 = mysqli_query($this->con,$sql2);
-			$sql3 = "INSERT INTO `nl_productimg`(`ProductImgId`, `ProductId`, `Img`) VALUES (NULL,$id,'$img3')";
-			$r3 = mysqli_query($this->con,$sql3);
-			
+			if($img1!=null){
+				addProductImg($id,$img1);
+			}
+			if($img2!=null){
+				addProductImg($id,$img2);
+			}
+			if($img3!=null){
+				addProductImg($id,$img3);
+			}
 			return $r;
 		}
 		public function updateProduct($id,$cateId,$name,$img,$img1,$img2,$img3,$desc,$price,$priceOfMarket,$point,$brandid,$qty,$active,$meta_title,$meta_des,$meta_keyword,$url){
-			$sql="UPDATE `nl_products` SET `CategoryId`=$cateId,`ProductName`=N'$name',`Img`='$img',`ProductDesc`=N'$desc',`Price`=$price,`PriceOfMarket`=$priceOfMarket,`Point`=$point,`brandid`=$brandid,`Qty`=[value-11],`Sold`=[value-12],`View`=[value-13],`Active`=[value-14],`meta_title`=[value-15],`meta_description`=[value-16],`meta_keyword`=[value-17],`url`=[value-18] WHERE `ProductId`=$id";
+			$sql="UPDATE `nl_products` SET `CategoryId`=$cateId,`ProductName`=N'$name',`Img`='$img',`ProductDesc`=N'$desc',`Price`=$price,`PriceOfMarket`=$priceOfMarket,`Point`=$point,`brandid`=$brandid,`Qty`=$qty,`Active`=$active,`meta_title`=N'$meta_title',`meta_description`=N'$meta_des',`meta_keyword`=N'$meta_keyword',`url`='$url' WHERE `ProductId`=$id";
+			return $r = mysqli_query($this->con,$sql);
+		}
+		public function updateProductImg($imgId,$Img)
+		{
+			$sql="UPDATE `nl_productimg` SET `Img`='$Img' WHERE `ProductImgId`=$imgId";
+			return $r = mysqli_query($this->con,$sql);
+		}
+		public function addProductImg($productId,$Img){
+			$sql = "INSERT INTO `nl_productimg`(`ProductImgId`, `ProductId`, `Img`) VALUES (NULL,$productId,'$Img')";
+			return $r = mysqli_query($this->con,$sql);
 		}
 	}
 ?>
